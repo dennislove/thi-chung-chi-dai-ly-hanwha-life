@@ -30,50 +30,50 @@ interface UserInfo {
 }
 
 const DEPENDENT_KEYWORDS = [
-  /cả\s+.*(đều|đúng|sai)/i,
-  /tất\s+cả\s+(các)?\s+(phương\s+án|đáp\s+án|câu)/i,
-  /phương\s+án\s+trên/i,
-  /câu\s+trên\s+đều/i,
-  /a\s+và\s+b/i,
-  /b\s+và\s+c/i,
-  /a\s+và\s+c/i,
-  /không\s+câu\s+nào/i,
-  /không\s+có\s+trường\s+hợp/i,
-  /đều\s+đúng/i,
-  /đều\s+sai/i
+  /tất\s+cả/i,                      // Tất cả các đáp án/phương án...
+  /đều\s+(đúng|sai)/i,               // đều đúng, đều sai
+  /phương\s+án\s+trên/i,             // phương án trên, các phương án trên
+  /đáp\s+án\s+trên/i,               // đáp án trên, các đáp án trên
+  /câu\s+trên/i,                     // câu trên, các câu trên
+  /không\s+câu\s+nào/i,              // không câu nào đúng/sai
+  /không\s+có\s+trường\s+hợp/i,      // không có trường hợp nào
+  /[a-d]\s*(?:,|và|hoặc)\s*[a-d]/i,  // A, B đúng; A,C sai; A hoặc B; A và C...
+  /cả\s+[a-d]/i,                     // cả A và B, cả A, B, C...
 ];
 
 export default function Home() {
   // Screens: 'auth' | 'dashboard' | 'exam' | 'result'
   const [screen, setScreen] = useState<'auth' | 'dashboard' | 'exam' | 'result'>('auth');
-  
+
   // Registration State
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [code, setCode] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  
+
   // Quiz database & setup
   const [questionsData, setQuestionsData] = useState<QuestionsDatabase | null>(null);
   const [mode, setMode] = useState<'luyen-thi' | 'thi-thu' | ''>('');
   const [selectedExamId, setSelectedExamId] = useState<string>('de_1');
   const [currentExamQuestions, setCurrentExamQuestions] = useState<ProcessedQuestion[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
-  
+
   // Quiz tracking
   const [userAnswers, setUserAnswers] = useState<Record<number, number>>({});
   const [isQuestionAnswered, setIsQuestionAnswered] = useState<Record<number, boolean>>({});
-  
+  const [viewedQuestions, setViewedQuestions] = useState<Record<number, boolean>>({});
+
   // Timer states
   const [timeLeft, setTimeLeft] = useState(3600); // 60 minutes
   const [startTime, setStartTime] = useState<Date | null>(null);
   const [timeSpent, setTimeSpent] = useState(0);
-  
+
   // Modals & effects
   const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const [showInstructionsModal, setShowInstructionsModal] = useState(false);
   const [confettiList, setConfettiList] = useState<{ id: number; left: string; delay: string; color: string; size: string }[]>([]);
-  
+
   const timerIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
   // Clean metadata tag prefixes from question text
@@ -109,7 +109,7 @@ export default function Home() {
 
     if (typeof window !== 'undefined' && 'serviceWorker' in navigator) {
       const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-      
+
       if (isLocalhost) {
         // Unregister any active service worker in local dev mode to prevent HMR and hot-reload loops
         navigator.serviceWorker.getRegistrations().then(registrations => {
@@ -148,6 +148,13 @@ export default function Home() {
     };
   }, [screen, mode]);
 
+  // Track viewed questions
+  useEffect(() => {
+    if (screen === 'exam' && currentExamQuestions.length > 0) {
+      setViewedQuestions(prev => ({ ...prev, [currentQuestionIndex]: true }));
+    }
+  }, [currentQuestionIndex, screen, currentExamQuestions]);
+
   // Handles starting/preparing the exam
   const handleStartExam = () => {
     if (!questionsData || !questionsData[selectedExamId]) {
@@ -156,7 +163,7 @@ export default function Home() {
     }
 
     const rawList = questionsData[selectedExamId];
-    
+
     // 1. Shuffling questions (Fisher-Yates)
     const shuffledQuestions = shuffleArray(rawList);
 
@@ -164,14 +171,14 @@ export default function Home() {
     const processed = shuffledQuestions.map((q, idx) => {
       const cleanText = cleanQuestionText(q.question);
       const shouldShuffle = !hasDependentOptions(q.options);
-      
+
       let finalOptions = [...q.options];
       let correctIdx = q.answer;
 
       if (shouldShuffle) {
         const mapped = q.options.map((opt, i) => ({ text: opt, originalIndex: i }));
         const shuffledOptions = shuffleArray(mapped);
-        
+
         finalOptions = shuffledOptions.map(item => item.text);
         correctIdx = shuffledOptions.findIndex(item => item.originalIndex === q.answer);
       }
@@ -191,6 +198,7 @@ export default function Home() {
     setCurrentQuestionIndex(0);
     setUserAnswers({});
     setIsQuestionAnswered({});
+    setViewedQuestions({ 0: true });
     setTimeLeft(3600); // 60 minutes
     setStartTime(new Date());
     setScreen('exam');
@@ -198,9 +206,6 @@ export default function Home() {
 
   // Select Option Handler
   const handleSelectOption = (qIdx: number, optIdx: number) => {
-    // In practice mode, lock inputs after choosing once
-    if (mode === 'luyen-thi' && isQuestionAnswered[qIdx]) return;
-
     setUserAnswers(prev => ({ ...prev, [qIdx]: optIdx }));
     setIsQuestionAnswered(prev => ({ ...prev, [qIdx]: true }));
   };
@@ -209,18 +214,13 @@ export default function Home() {
   const getGridItemClass = (idx: number) => {
     let base = 'grid-item';
     if (currentQuestionIndex === idx) base += ' active';
-    
-    if (mode === 'luyen-thi') {
-      if (isQuestionAnswered[idx]) {
-        base += ' answered';
-        const q = currentExamQuestions[idx];
-        const isCorrect = userAnswers[idx] === q.correctAnswer;
-        base += isCorrect ? ' correct' : ' incorrect';
-      }
+
+    if (userAnswers[idx] !== undefined) {
+      base += ' answered-mock';
+    } else if (viewedQuestions[idx]) {
+      base += ' viewed-unanswered';
     } else {
-      if (userAnswers[idx] !== undefined) {
-        base += ' answered';
-      }
+      base += ' unviewed';
     }
     return base;
   };
@@ -234,7 +234,7 @@ export default function Home() {
 
     setShowConfirmModal(false);
     if (timerIntervalRef.current) clearInterval(timerIntervalRef.current);
-    
+
     // Evaluate times
     const endTime = new Date();
     const elapsed = startTime ? Math.floor((endTime.getTime() - startTime.getTime()) / 1000) : 0;
@@ -272,14 +272,14 @@ export default function Home() {
   };
 
   const handleLoginAndMode = (selectedMode: 'luyen-thi' | 'thi-thu') => {
-    if (username === '111111111' && password === '111111111') {
+    if (username === '88888888' && password === '88888888') {
       setName('Học viên Hanwha');
-      setPhone('111111111');
-      setCode('HW111111111');
+      setPhone('88888888');
+      setCode('HW88888888');
       setMode(selectedMode);
       setScreen('dashboard');
     } else {
-      alert('Tài khoản hoặc mật khẩu không chính xác! Vui lòng sử dụng tài khoản "111111111" và mật khẩu "111111111".');
+      alert('Tài khoản hoặc mật khẩu không chính xác! Vui lòng sử dụng tài khoản "88888888" và mật khẩu "88888888".');
     }
   };
 
@@ -293,23 +293,48 @@ export default function Home() {
   return (
     <div className="app-container">
       {/* BRAND HEADER */}
-      <header>
-        <div className="logo-container">
-          <svg className="logo-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="50" cy="50" r="45" stroke="#ff6600" strokeWidth="6" strokeDasharray="180 50" />
-            <path d="M35 50 C 35 38, 48 30, 60 38 C 72 46, 72 60, 60 68 C 48 76, 35 62, 35 50 Z" fill="#ff6600" />
-            <circle cx="48" cy="50" r="12" fill="#ffffff" />
-            <circle cx="60" cy="50" r="8" fill="#e65c00" opacity="0.8" />
-          </svg>
-          <div className="brand-info">
-            <h1>Hanwha Life <span>E-Learning</span></h1>
-            <p>Luyện Thi Chứng Chỉ Đại Lý Cơ Bản</p>
+      {/* BRAND HEADER (VIDI STYLE IN ORANGE-WHITE) */}
+      <header style={{
+        background: 'rgba(255, 255, 255, 0.85)',
+        backdropFilter: 'blur(12px)',
+        WebkitBackdropFilter: 'blur(12px)',
+        border: '1px solid rgba(255, 102, 0, 0.15)',
+        borderRadius: 'var(--radius-md)',
+        padding: '16px 24px',
+        boxShadow: 'var(--shadow-sm)',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginBottom: '24px'
+      }}>
+        <div className="logo-container" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <div className="vidi-logo-badge" style={{
+            background: 'var(--primary-color)',
+            border: '2px solid white',
+            borderRadius: '6px',
+            padding: '2px 8px',
+            fontWeight: 800,
+            fontSize: '1.1rem',
+            color: 'white',
+            fontFamily: 'var(--font-title)',
+            boxShadow: '0 2px 4px rgba(255, 102, 0, 0.2)'
+          }}>
+            VIDI
           </div>
+
         </div>
         {screen !== 'auth' && (
-          <div className="user-badge">
-            <span className="user-badge-name">{name}</span>
-            <span className="user-badge-code">Mã: {code || 'CHƯA CÓ'}</span>
+          <div className="user-badge" style={{
+            background: 'var(--primary-light)',
+            border: '1px solid rgba(255, 102, 0, 0.15)',
+            padding: '8px 16px',
+            borderRadius: 'var(--radius-sm)',
+            textAlign: 'right',
+            display: 'flex',
+            flexDirection: 'column'
+          }}>
+            <span className="user-badge-name" style={{ color: 'var(--primary-color)', fontWeight: 700, fontSize: '0.9rem' }}>{name}</span>
+            <span className="user-badge-code" style={{ color: 'var(--text-muted)', fontSize: '0.75rem' }}>Mã: {code || 'CHƯA CÓ'}</span>
           </div>
         )}
       </header>
@@ -329,67 +354,160 @@ export default function Home() {
         />
       ))}
 
-      {/* SCREEN 1: LOGIN / SELECT MODE */}
+      {/* SCREEN 1: LOGIN / SELECT MODE (VIDI PORTAL STYLE IN ORANGE-WHITE) */}
       {screen === 'auth' && (
-        <main className="screen active">
-          <div className="auth-card">
-            <div className="auth-header">
-              <h2>Đăng Nhập Hệ Thống</h2>
-              <p>Vui lòng đăng nhập bằng tài khoản được cấp để tiếp tục</p>
-            </div>
-            
-            <form onSubmit={(e) => e.preventDefault()}>
-              <div className="form-group">
-                <label htmlFor="username-input">Tên đăng nhập <span style={{ color: 'var(--primary-color)' }}>*</span></label>
-                <input
-                  id="username-input"
-                  type="text"
-                  className="form-control"
-                  placeholder="Nhập tên đăng nhập"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  required
-                />
+        <main className="screen active" style={{ display: 'flex', flexDirection: 'column', gap: '24px', width: '100%' }}>
+          {/* Orange VIDI Portal Banner */}
+          <div className="vidi-portal-banner" style={{
+            background: 'linear-gradient(135deg, var(--primary-color) 0%, #ff8833 100%)',
+            borderRadius: 'var(--radius-md)',
+            padding: '40px 24px',
+            textAlign: 'center',
+            color: 'white',
+            boxShadow: 'var(--shadow-md)',
+            position: 'relative',
+            overflow: 'hidden',
+            border: '1px solid rgba(255, 255, 255, 0.1)'
+          }}>
+            {/* Corner Logo Badge */}
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '12px',
+              position: 'absolute',
+              top: '20px',
+              left: '20px'
+            }} className="vidi-banner-header">
+              <div style={{
+                background: 'var(--primary-color)',
+                border: '2px solid white',
+                borderRadius: '8px',
+                padding: '4px 12px',
+                fontWeight: 900,
+                fontSize: '1.25rem',
+                color: 'white',
+                boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+              }}>
+                VIDI
               </div>
-              
-              <div className="form-group">
-                <label htmlFor="password-input">Mật khẩu <span style={{ color: 'var(--primary-color)' }}>*</span></label>
-                <input
-                  id="password-input"
-                  type="password"
-                  className="form-control"
-                  placeholder="Nhập mật khẩu"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
-              </div>
-              
-              <p style={{ textAlign: 'left', fontSize: '0.8rem', color: 'var(--text-muted)', marginBottom: '20px' }}>
-                (*) Đăng nhập bằng tài khoản và mật khẩu <strong>111111111</strong>.
-              </p>
+              <div style={{ textAlign: 'left', display: 'flex', flexDirection: 'column' }}>
 
-              <div className="auth-actions">
-                <button
-                  type="button"
-                  className="btn btn-mode"
-                  onClick={() => handleLoginAndMode('luyen-thi')}
-                >
-                  <i>📚</i>
-                  <span className="mode-title">LUYỆN THI</span>
-                  <span className="mode-desc">Xem đáp án ngay trên từng câu</span>
-                </button>
-                <button
-                  type="button"
-                  className="btn btn-mode"
-                  onClick={() => handleLoginAndMode('thi-thu')}
-                >
-                  <i>⏱️</i>
-                  <span className="mode-title">THI THỬ</span>
-                  <span className="mode-desc">Thời gian 60 phút như thi thật</span>
-                </button>
+                <span style={{ fontSize: '0.65rem', color: 'rgba(255,255,255,0.85)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                  Viện Phát Triển Bảo Hiểm Việt Nam
+                </span>
               </div>
-            </form>
+            </div>
+
+            {/* Portal Titles */}
+            <div style={{ marginTop: '30px' }}>
+              <p style={{
+                fontSize: '1.25rem',
+                fontWeight: 700,
+                color: 'rgba(255, 255, 255, 0.9)',
+                textTransform: 'uppercase',
+                letterSpacing: '1.5px',
+                marginBottom: '8px',
+                textShadow: '0 1px 2px rgba(0,0,0,0.1)'
+              }}>
+                Hệ Thống Quản Lý
+              </p>
+              <h2 style={{
+                fontFamily: 'var(--font-title)',
+                fontSize: '2.25rem',
+                fontWeight: 850,
+                textTransform: 'uppercase',
+                letterSpacing: '1px',
+                lineHeight: 1.2,
+                textShadow: '0 2px 4px rgba(0,0,0,0.15)'
+              }}>
+                Thi Chứng Chỉ Đại Lý Bảo Hiểm
+              </h2>
+            </div>
+          </div>
+
+          {/* Three Landing Cards Grid */}
+          <div className="landing-grid">
+            {/* Column 1: HƯỚNG DẪN */}
+            <div className="landing-card" onClick={() => setShowInstructionsModal(true)} style={{ cursor: 'pointer' }}>
+              <h3 className="landing-card-title">HƯỚNG DẪN</h3>
+              <div className="landing-card-icon">📋</div>
+              <p className="landing-card-link">
+                BẤM VÀO ĐÂY ĐỂ XEM HƯỚNG DẪN
+              </p>
+              <p className="landing-card-desc">
+                Hướng dẫn thao tác làm bài thi, sơ đồ phím tắt và quy chế thi chứng chỉ đại lý bảo hiểm.
+              </p>
+            </div>
+
+            {/* Column 2: HỌC VIÊN */}
+            <div className="landing-card active-card">
+              <h3 className="landing-card-title">HỌC VIÊN</h3>
+
+              <form onSubmit={(e) => e.preventDefault()} style={{ marginTop: '16px', width: '100%' }}>
+                <div className="form-group" style={{ marginBottom: '12px' }}>
+                  <label htmlFor="username-input" style={{ fontSize: '0.8rem', fontWeight: 700 }}>Tên đăng nhập</label>
+                  <input
+                    id="username-input"
+                    type="text"
+                    className="form-control"
+                    placeholder="Nhập tên đăng nhập"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    required
+                    style={{ padding: '10px 12px', fontSize: '0.9rem' }}
+                  />
+                </div>
+
+                <div className="form-group" style={{ marginBottom: '12px' }}>
+                  <label htmlFor="password-input" style={{ fontSize: '0.8rem', fontWeight: 700 }}>Mật khẩu</label>
+                  <input
+                    id="password-input"
+                    type="password"
+                    className="form-control"
+                    placeholder="Nhập mật khẩu"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                    style={{ padding: '10px 12px', fontSize: '0.9rem' }}
+                  />
+                </div>
+
+                <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '16px', textAlign: 'left', borderLeft: '3px solid var(--primary-color)', paddingLeft: '8px' }}>
+                  (*) Đăng nhập bằng tài khoản/mật khẩu: <strong>88888888</strong>.
+                </p>
+
+                <div className="auth-actions" style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginTop: '12px' }}>
+                  <button
+                    type="button"
+                    className="btn btn-primary"
+                    onClick={() => handleLoginAndMode('luyen-thi')}
+                    style={{ width: '100%', padding: '12px 16px', fontSize: '0.95rem', background: 'var(--primary-color)', color: 'white', fontWeight: 700 }}
+                  >
+                    📚 ĐĂNG NHẬP LUYỆN THI
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn-success"
+                    onClick={() => handleLoginAndMode('thi-thu')}
+                    style={{ width: '100%', padding: '12px 16px', fontSize: '0.95rem', fontWeight: 700 }}
+                  >
+                    ⏱️ ĐĂNG NHẬP THI THỬ
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            {/* Column 3: QUẢN LÝ THI */}
+            <div className="landing-card locked-card">
+              <h3 className="landing-card-title">QUẢN LÝ THI</h3>
+              <div className="landing-card-icon">🔒</div>
+              <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', fontWeight: 700, margin: '8px 0' }}>
+                DÀNH CHO HỘI ĐỒNG THI
+              </p>
+              <p className="landing-card-desc">
+                Khu vực dành cho giám thị coi thi, cán bộ kích hoạt đề thi và quản lý hội đồng chấm thi của Bộ Tài Chính.
+              </p>
+            </div>
           </div>
         </main>
       )}
@@ -401,9 +519,29 @@ export default function Home() {
             <div className="user-profile">
               <p>Chào mừng thí sinh</p>
               <h2>{name}</h2>
-              <span className="badge-mode">
-                Chế độ: {mode === 'luyen-thi' ? 'Luyện thi' : 'Thi thử (60 phút)'}
-              </span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap', marginTop: '8px' }}>
+                <span className="badge-mode" style={{ marginTop: 0 }}>
+                  Chế độ: {mode === 'luyen-thi' ? 'Luyện thi' : 'Thi thử (60 phút)'}
+                </span>
+                <button
+                  type="button"
+                  className="btn btn-secondary btn-sm-switch"
+                  onClick={() => setMode(mode === 'luyen-thi' ? 'thi-thu' : 'luyen-thi')}
+                  style={{
+                    padding: '6px 14px',
+                    fontSize: '0.75rem',
+                    fontWeight: 700,
+                    border: '1px solid rgba(255,255,255,0.3)',
+                    color: '#ffffff',
+                    background: 'rgba(255,255,255,0.15)',
+                    borderRadius: '20px',
+                    cursor: 'pointer',
+                    transition: 'all 0.2s ease'
+                  }}
+                >
+                  🔄 Đổi sang {mode === 'luyen-thi' ? 'Thi thử' : 'Luyện thi'}
+                </button>
+              </div>
             </div>
             <div className="dashboard-meta">
               <div className="meta-item">
@@ -458,38 +596,54 @@ export default function Home() {
       {/* SCREEN 3: EXAM PLAYING ROOM */}
       {screen === 'exam' && currentExamQuestions.length > 0 && (
         <section className="screen active">
+          {/* Back button and Exam Header */}
+          <div className="exam-nav-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', gap: '12px', flexWrap: 'wrap' }}>
+            <button
+              type="button"
+              className="btn btn-secondary"
+              style={{ padding: '8px 16px', fontSize: '0.85rem', fontWeight: 700 }}
+              onClick={() => {
+                const confirmed = window.confirm("Bạn có chắc chắn muốn thoát khỏi bài làm? Mọi tiến trình sẽ bị hủy bỏ.");
+                if (confirmed) {
+                  setScreen('dashboard');
+                }
+              }}
+            >
+              &larr; Thoát & Quay về chọn Đề / Chế độ
+            </button>
+            <span className="badge-mode-indicator" style={{
+              fontWeight: 700,
+              fontSize: '0.85rem',
+              color: 'var(--primary-color)',
+              background: 'var(--primary-light)',
+              padding: '6px 16px',
+              borderRadius: '20px',
+              border: '1px solid rgba(255, 102, 0, 0.2)'
+            }}>
+              Chế độ: {mode === 'luyen-thi' ? '📚 Luyện thi' : '⏱️ Thi thử'}
+            </span>
+          </div>
+
           <div className="test-layout">
             <div className="quiz-main">
               <div className="quiz-card">
                 <div className="quiz-meta">
                   CÂU HỎI {currentQuestionIndex + 1} / {currentExamQuestions.length}
                 </div>
-                
+
                 <div className="question-text">
                   {currentExamQuestions[currentQuestionIndex].questionText}
                 </div>
-                
+
                 <div className="options-list">
                   {currentExamQuestions[currentQuestionIndex].options.map((opt, optIdx) => {
                     const prefix = String.fromCharCode(65 + optIdx);
                     let classNames = 'option-item';
-                    
-                    const isAnswered = isQuestionAnswered[currentQuestionIndex];
-                    const selectedIdx = userAnswers[currentQuestionIndex];
-                    const correctIdx = currentExamQuestions[currentQuestionIndex].correctAnswer;
 
-                    if (mode === 'luyen-thi') {
-                      if (isAnswered) {
-                        if (optIdx === correctIdx) {
-                          classNames += ' correct';
-                        } else if (optIdx === selectedIdx) {
-                          classNames += ' incorrect';
-                        }
-                      }
-                    } else {
-                      if (selectedIdx === optIdx) {
-                        classNames += ' selected';
-                      }
+                    const selectedIdx = userAnswers[currentQuestionIndex];
+
+                    if (selectedIdx === optIdx) {
+                      classNames += ' selected';
                     }
 
                     return (
@@ -505,15 +659,6 @@ export default function Home() {
                   })}
                 </div>
 
-                {/* Explanation panel in Practice Mode */}
-                {mode === 'luyen-thi' && isQuestionAnswered[currentQuestionIndex] && (
-                  <div className="explanation-panel" style={{ display: 'block' }}>
-                    <strong>Chính xác!</strong> Đáp án đúng là <strong>
-                      {String.fromCharCode(65 + currentExamQuestions[currentQuestionIndex].correctAnswer)}
-                    </strong>: "{currentExamQuestions[currentQuestionIndex].options[currentExamQuestions[currentQuestionIndex].correctAnswer]}"
-                  </div>
-                )}
-                
                 <div className="quiz-actions">
                   <button
                     type="button"
@@ -524,42 +669,19 @@ export default function Home() {
                     &larr; Câu trước
                   </button>
 
-                  {/* Mode-specific progression logic */}
-                  {mode === 'luyen-thi' ? (
-                    // In practice mode: Show Next Question only after choosing an option
-                    isQuestionAnswered[currentQuestionIndex] && currentQuestionIndex < currentExamQuestions.length - 1 && (
-                      <button
-                        type="button"
-                        className="btn btn-primary"
-                        onClick={() => setCurrentQuestionIndex(prev => prev + 1)}
-                      >
-                        Câu tiếp &rarr;
-                      </button>
-                    )
-                  ) : (
-                    // In Mock exam mode: Advance freely
-                    currentQuestionIndex < currentExamQuestions.length - 1 && (
-                      <button
-                        type="button"
-                        className="btn btn-primary"
-                        onClick={() => setCurrentQuestionIndex(prev => prev + 1)}
-                      >
-                        Câu tiếp &rarr;
-                      </button>
-                    )
+                  {currentQuestionIndex < currentExamQuestions.length - 1 && (
+                    <button
+                      type="button"
+                      className="btn btn-primary"
+                      onClick={() => setCurrentQuestionIndex(prev => prev + 1)}
+                    >
+                      Câu tiếp &rarr;
+                    </button>
                   )}
-                  
-                  <button
-                    type="button"
-                    className="btn btn-success"
-                    onClick={() => handleSubmitExam(false)}
-                  >
-                    HOÀN THÀNH
-                  </button>
                 </div>
               </div>
             </div>
-            
+
             {/* SIDEBAR METRICS */}
             <div className="quiz-sidebar">
               {mode === 'thi-thu' && (
@@ -571,12 +693,12 @@ export default function Home() {
                   </div>
                 </div>
               )}
-              
+
               <div className="sidebar-card">
                 <div className="sidebar-title">
                   <span>Bản Đồ Câu Hỏi</span>
                 </div>
-                
+
                 <div className="question-grid">
                   {currentExamQuestions.map((_, idx) => (
                     <div
@@ -588,7 +710,7 @@ export default function Home() {
                     </div>
                   ))}
                 </div>
-                
+
                 <div className="progress-bar-container">
                   <div
                     className="progress-bar-fill"
@@ -597,9 +719,46 @@ export default function Home() {
                     }}
                   />
                 </div>
-                <span className="progress-text">
+                <span className="progress-text" style={{ marginBottom: '16px' }}>
                   Đã làm: {Object.keys(userAnswers).length} / {currentExamQuestions.length} câu
                 </span>
+
+                {/* Status Legend modeled after BTC */}
+                <div className="grid-legend" style={{
+                  borderTop: '1px solid var(--border-color)',
+                  paddingTop: '12px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '8px'
+                }}>
+                  <div style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--text-main)', marginBottom: '4px' }}>
+                    Trạng thái câu hỏi (BTC):
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.75rem' }}>
+                    <span className="legend-dot answered-mock" style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#334155', display: 'inline-block' }}></span>
+                    <span>Đã trả lời</span>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.75rem' }}>
+                    <span className="legend-dot viewed-unanswered" style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#fef08a', border: '1px solid #eab308', display: 'inline-block' }}></span>
+                    <span>Đã xem, chưa làm</span>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.75rem' }}>
+                    <span className="legend-dot unviewed" style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#f8fafc', border: '1px solid #cbd5e1', display: 'inline-block' }}></span>
+                    <span>Chưa xem</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Separate HOÀN THÀNH button */}
+              <div className="sidebar-card submit-card" style={{ padding: '16px' }}>
+                <button
+                  type="button"
+                  className="btn btn-success"
+                  style={{ width: '100%', padding: '14px 20px', fontSize: '1rem', fontWeight: 700, borderRadius: 'var(--radius-sm)' }}
+                  onClick={() => handleSubmitExam(false)}
+                >
+                  🏁 HOÀN THÀNH BÀI THI
+                </button>
               </div>
             </div>
           </div>
@@ -619,11 +778,11 @@ export default function Home() {
             <div className="result-score-summary">
               {scoreCorrectCount}<span>/{currentExamQuestions.length}</span>
             </div>
-            
+
             <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', marginTop: '10px' }}>
               (Điểm đạt yêu cầu từ 35 câu đúng trở lên)
             </p>
-            
+
             <div className="result-detail-grid">
               <div className="result-detail-item">
                 <span className="result-detail-val">{name}</span>
@@ -644,7 +803,7 @@ export default function Home() {
                 <span className="result-detail-lbl">Thời gian thực hiện</span>
               </div>
             </div>
-            
+
             <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', marginBottom: '30px' }}>
               <button
                 type="button"
@@ -661,15 +820,126 @@ export default function Home() {
                 Về trang chủ
               </button>
             </div>
-            
+
+            {/* BTC Question Grid Overview (for Mock Exam) */}
+            {mode === 'thi-thu' && (
+              <div className="result-grid-section" style={{ marginBottom: '32px', textAlign: 'left', background: 'var(--bg-body)', padding: '24px', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-color)' }}>
+                <h3 className="review-answers-title" style={{ borderBottom: '2px solid var(--border-color)', paddingBottom: '8px', marginBottom: '16px' }}>
+                  Bản Đồ Kết Quả Bài Thi (BTC)
+                </h3>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(10, 1fr)', gap: '8px', margin: '16px 0' }}>
+                  {currentExamQuestions.map((q, idx) => {
+                    const userChoiceIdx = userAnswers[idx];
+                    const isCorrect = userChoiceIdx === q.correctAnswer;
+                    let bgColor = '#cbd5e1'; // Gray (Unanswered)
+                    let text = '#1e293b';
+                    if (userChoiceIdx !== undefined) {
+                      bgColor = isCorrect ? 'var(--success-color)' : 'var(--error-color)';
+                      text = 'white';
+                    }
+                    return (
+                      <div
+                        key={idx}
+                        style={{
+                          aspectRatio: '1',
+                          borderRadius: '8px',
+                          background: bgColor,
+                          color: text,
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          fontSize: '0.95rem',
+                          fontWeight: 700,
+                          boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.1)'
+                        }}
+                      >
+                        {idx + 1}
+                      </div>
+                    );
+                  })}
+                </div>
+                <div style={{ display: 'flex', gap: '16px', fontSize: '0.85rem', justifyContent: 'center', marginTop: '16px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <span style={{ width: '14px', height: '14px', borderRadius: '3px', background: 'var(--success-color)', display: 'inline-block' }}></span>
+                    <span style={{ fontWeight: 600 }}>Câu đúng</span>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <span style={{ width: '14px', height: '14px', borderRadius: '3px', background: 'var(--error-color)', display: 'inline-block' }}></span>
+                    <span style={{ fontWeight: 600 }}>Câu sai</span>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <span style={{ width: '14px', height: '14px', borderRadius: '3px', background: '#cbd5e1', display: 'inline-block' }}></span>
+                    <span style={{ fontWeight: 600 }}>Chưa trả lời</span>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* BTC Styled Answer Sheet Table (for Mock Exam) */}
+            {mode === 'thi-thu' && (
+              <div className="result-table-section" style={{ marginBottom: '32px', textAlign: 'left', background: 'white', padding: '24px', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-color)', boxShadow: 'var(--shadow-sm)' }}>
+                <h3 className="review-answers-title" style={{ borderBottom: '2px solid var(--border-color)', paddingBottom: '8px', marginBottom: '16px' }}>
+                  Bảng Đáp Án Chi Tiết (Mô phỏng BTC)
+                </h3>
+                <div style={{ overflowX: 'auto' }}>
+                  <table className="btc-result-table" style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.9rem' }}>
+                    <thead>
+                      <tr style={{ background: '#f8fafc', borderBottom: '2px solid #cbd5e1' }}>
+                        <th style={{ padding: '12px 10px', textAlign: 'center', border: '1px solid #e2e8f0', fontWeight: 700 }}>STT</th>
+                        <th style={{ padding: '12px 10px', textAlign: 'left', border: '1px solid #e2e8f0', fontWeight: 700 }}>Nội dung câu hỏi</th>
+                        <th style={{ padding: '12px 10px', textAlign: 'center', border: '1px solid #e2e8f0', fontWeight: 700, width: '100px' }}>Đáp án đã chọn</th>
+                        <th style={{ padding: '12px 10px', textAlign: 'center', border: '1px solid #e2e8f0', fontWeight: 700, width: '100px' }}>Đáp án đúng</th>
+                        <th style={{ padding: '12px 10px', textAlign: 'center', border: '1px solid #e2e8f0', fontWeight: 700, width: '120px' }}>Kết quả</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {currentExamQuestions.map((q, idx) => {
+                        const userChoiceIdx = userAnswers[idx];
+                        const isCorrect = userChoiceIdx === q.correctAnswer;
+                        const userLetter = userChoiceIdx !== undefined ? String.fromCharCode(65 + userChoiceIdx) : '-';
+                        const correctLetter = String.fromCharCode(65 + q.correctAnswer);
+
+                        let statusText = 'Chưa làm';
+                        let statusColor = '#64748b';
+                        if (userChoiceIdx !== undefined) {
+                          statusText = isCorrect ? 'Đúng' : 'Sai';
+                          statusColor = isCorrect ? 'var(--success-color)' : 'var(--error-color)';
+                        }
+
+                        return (
+                          <tr key={idx} style={{ borderBottom: '1px solid #e2e8f0', background: idx % 2 === 0 ? '#ffffff' : '#f8fafc' }}>
+                            <td style={{ padding: '10px', textAlign: 'center', fontWeight: 'bold', border: '1px solid #e2e8f0' }}>{idx + 1}</td>
+                            <td style={{ padding: '10px', border: '1px solid #e2e8f0', maxWidth: '300px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                              {q.questionText}
+                            </td>
+                            <td style={{ padding: '10px', textAlign: 'center', fontWeight: 800, color: userChoiceIdx !== undefined ? (isCorrect ? 'var(--success-color)' : 'var(--error-color)') : '#64748b', border: '1px solid #e2e8f0' }}>
+                              {userLetter}
+                            </td>
+                            <td style={{ padding: '10px', textAlign: 'center', fontWeight: 800, color: 'var(--success-color)', border: '1px solid #e2e8f0' }}>
+                              {correctLetter}
+                            </td>
+                            <td style={{ padding: '10px', textAlign: 'center', fontWeight: 700, color: statusColor, border: '1px solid #e2e8f0' }}>
+                              {statusText === 'Đúng' ? '✅ Đúng' : statusText === 'Sai' ? '❌ Sai' : '⚪ Chưa trả lời'}
+                            </td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            )}
+
             {/* Detailed Question Review */}
             <div className="review-answers-section">
-              <h3 className="review-answers-title">Chi Tiết Kết Quả Từng Câu Hỏi</h3>
+              <h3 className="review-answers-title">
+                {mode === 'thi-thu' ? 'Chi Tiết Nội Dung Từng Câu Hỏi' : 'Chi Tiết Kết Quả Từng Câu Hỏi'}
+              </h3>
               <div className="review-list">
                 {currentExamQuestions.map((q, idx) => {
                   const userChoiceIdx = userAnswers[idx];
                   const isCorrect = userChoiceIdx === q.correctAnswer;
-                  
+
                   return (
                     <div
                       key={q.id}
@@ -679,13 +949,13 @@ export default function Home() {
                       {q.options.map((opt, optIdx) => {
                         const prefix = String.fromCharCode(65 + optIdx);
                         let classes = 'review-opt';
-                        
+
                         if (optIdx === q.correctAnswer) {
                           classes += ' correct-select';
                         } else if (optIdx === userChoiceIdx) {
                           classes += ' user-select';
                         }
-                        
+
                         return (
                           <div key={optIdx} className={classes}>
                             <strong>{prefix}.</strong> {opt}
@@ -727,6 +997,47 @@ export default function Home() {
                 onClick={() => handleSubmitExam(true)}
               >
                 Xác nhận nộp
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* INSTRUCTIONS POPUP MODAL */}
+      {showInstructionsModal && (
+        <div className="modal-overlay">
+          <div className="modal-card" style={{ maxWidth: '600px', textAlign: 'left' }}>
+            <div className="modal-icon" style={{ textAlign: 'center', color: '#0284c7' }}>📋</div>
+            <h3 className="modal-title" style={{ textAlign: 'center', color: 'var(--secondary-color)' }}>Hướng Dẫn Làm Bài Thi ĐLBH</h3>
+            <div className="modal-desc" style={{ color: 'var(--text-main)', fontSize: '0.9rem', maxHeight: '300px', overflowY: 'auto', paddingRight: '8px', lineHeight: '1.6' }}>
+              <p style={{ marginBottom: '8px' }}><strong>1. Chọn tính năng:</strong></p>
+              <ul style={{ marginLeft: '20px', marginBottom: '12px' }}>
+                <li><strong>Luyện Thi:</strong> Phù hợp khi ôn tập tự luyện, không giới hạn thời gian làm bài, được đổi đáp án tự do.</li>
+                <li><strong>Thi Thử:</strong> Mô phỏng phòng thi thật với thời gian đếm ngược 60 phút, tự động nộp bài khi hết giờ.</li>
+              </ul>
+
+              <p style={{ marginBottom: '8px' }}><strong>2. Quy chế đánh giá:</strong></p>
+              <ul style={{ marginLeft: '20px', marginBottom: '12px' }}>
+                <li>Mỗi đề thi gồm <strong>40 câu hỏi</strong> trắc nghiệm.</li>
+                <li>Bạn cần trả lời đúng từ <strong>35/40 câu</strong> trở lên để được hệ thống đánh giá <strong>ĐẠT YÊU CẦU</strong>.</li>
+              </ul>
+
+              <p style={{ marginBottom: '8px' }}><strong>3. Các phím màu sắc trên Bản đồ câu hỏi (BTC):</strong></p>
+              <ul style={{ marginLeft: '20px', marginBottom: '12px' }}>
+                <li>Ô màu <strong>Xám nhạt:</strong> Câu hỏi chưa xem qua.</li>
+                <li>Ô màu <strong>Vàng nhạt:</strong> Câu hỏi đã xem nhưng chưa chọn đáp án trả lời.</li>
+                <li>Ô màu <strong>Xám sẫm:</strong> Câu hỏi đã làm/chọn đáp án.</li>
+                <li>Ô có <strong>viền Cam nổi bật:</strong> Câu hỏi hiện tại bạn đang xem để làm bài.</li>
+              </ul>
+            </div>
+            <div className="modal-actions" style={{ justifyContent: 'center', marginTop: '16px' }}>
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={() => setShowInstructionsModal(false)}
+                style={{ background: '#0284c7', border: 'none', color: 'white' }}
+              >
+                Đóng hướng dẫn
               </button>
             </div>
           </div>
