@@ -1,0 +1,346 @@
+[
+  {
+    "id": 1,
+    "question": "Theo pháp luật Việt Nam về kinh doanh bảo hiểm, thời gian chờ trong bảo hiểm sức khỏe được hiểu là:",
+    "options": [
+      "Khoảng thời gian mà các sự kiện bảo hiểm xảy ra sẽ được doanh nghiệp bảo hiểm chi trả đối với một số quyền lợi bảo hiểm sức khỏe.",
+      "Khoảng thời gian mà các sự kiện bảo hiểm xảy ra sẽ không được doanh nghiệp bảo hiểm chi trả đối với một số quyền lợi bảo hiểm sức khỏe.",
+      "Khoảng thời gian mà các sự kiện bảo hiểm xảy ra sẽ có thể được doanh nghiệp bảo hiểm chi trả đối với một số quyền lợi bảo hiểm sức khỏe.",
+      "Khoảng thời gian mà hợp đồng bảo hiểm chưa có hiệu lực.",
+      "B, D đúng."
+    ],
+    "answer": 1
+  },
+  {
+    "id": 2,
+    "question": "Ngày 10/11/2010, chị C tham gia hợp đồng bảo hiểm hỗn hợp thời hạn 15 năm với số tiền bảo hiểm là 500 triệu đồng cho chính mình, phí bảo hiểm định kỳ hàng năm là 40 triệu đồng. Quyền lợi tử vong là 100% số tiền bảo hiểm. Quyền lợi đáo hạn là 120% số tiền bảo hiểm, quyền lợi tiền mặt định kỳ được trả vào ngày kỷ niệm năm của các năm hợp đồng nếu người được bảo hiểm còn sống là: Năm hợp đồng thứ 12: 25% số tiền bảo hiểm. Năm hợp đồng thứ 13: 25% số tiền bảo hiểm. Năm hợp đồng thứ 14: 25% số tiền bảo hiểm. Ngày 25/02/2023, chị C không may tử vong do tai nạn. Trong trường hợp này, tổng giá trị các quyền lợi mà công ty bảo hiểm chi trả cho hợp đồng bảo hiểm này là:",
+    "options": [
+      "500 triệu đồng.",
+      "750 triệu đồng.",
+      "975 triệu đồng.",
+      "625 triệu đồng."
+    ],
+    "answer": 3
+  },
+  {
+    "id": 3,
+    "question": "Ngày 30/6/2010, ông A tham gia hợp đồng bảo hiểm tử kỳ với số tiền bảo hiểm là 1 tỷ đồng, thời hạn hợp đồng là 20 năm, phí bảo hiểm đóng định kỳ hàng năm là 3,5 triệu đồng. Do khó khăn trong kinh doanh vì đại dịch Covid 19, đến ngày 30/6/2020, ông A không nộp phí đóng định kỳ cho công ty bảo hiểm. Ngày 03/8/2020, ông A không may tử vong do tai nạn xe máy. Trong trường hợp này:",
+    "options": [
+      "Công ty bảo hiểm không thanh toán quyền lợi bảo hiểm do hợp đồng bảo hiểm đã bị mất hiệu lực từ ngày 30/6/2020.",
+      "Công ty bảo hiểm thanh toán 1 tỷ đồng.",
+      "Công ty bảo hiểm thanh toán 2 tỷ đồng.",
+      "Công ty bảo hiểm thanh toán 996,5 triệu đồng."
+    ],
+    "answer": 3
+  },
+  {
+    "id": 4,
+    "question": "Ngày 28/02/2000, chị C tham gia hợp đồng bảo hiểm liên kết chung có thời hạn 50 năm với số phí đóng định kỳ hàng năm là 100 triệu đồng, phí đóng thêm năm đầu là 100 triệu đồng. Ngày 30/12/2000, chị C nộp thêm phí đóng thêm vào hợp đồng 600 triệu đồng. Hợp đồng bảo hiểm liên kết chung tỷ lệ phí ban đầu quy định như sau: Tỷ lệ phí ban đầu/phí bảo hiểm cơ bản năm theo năm đóng phí lần lượt là: năm 1 là 50%, năm 2 là 30%, năm 3 là 20%, năm 4 là 10%, từ năm thứ 5 đến năm thứ 10 là 2%. Tỷ lệ phí ban đầu/phí đóng thêm theo năm đóng phí lần lượt là: từ năm thứ nhất đến năm thứ 4 là 2%, từ năm thứ 5 đến năm thứ 10 là 0%. Tổng số phí bảo hiểm đã được phân bổ vào giá trị tài khoản hợp đồng của chị C tại thời điểm 31/12/2000 là:",
+    "options": [
+      "344 triệu đồng.",
+      "540 triệu đồng.",
+      "800 triệu đồng.",
+      "736 triệu đồng."
+    ],
+    "answer": 1
+  },
+  {
+    "id": 5,
+    "question": "Năm 2015, ông A tham gia hợp đồng bảo hiểm sinh kỳ thời hạn 10 năm đóng phí định kỳ với số phí đóng định kỳ là 100 triệu đồng, số tiền bảo hiểm là 1,2 tỷ đồng. Năm 2023, ông A bị tử vong do tai nạn. Số tiền bảo hiểm mà ông A nhận được là:",
+    "options": [
+      "1,2 tỷ đồng.",
+      "800 triệu đồng.",
+      "2 tỷ đồng.",
+      "Không nhận được gì."
+    ],
+    "answer": 3
+  },
+  {
+    "id": 6,
+    "question": "Ngày 10/11/2020, anh A tham gia hợp đồng bảo hiểm tử kỳ có thể tái tục với số tiền bảo hiểm là 1 tỷ đồng, số phí bảo hiểm là 5 triệu đồng/năm, thời hạn hợp đồng là 10 năm. Đến thời điểm đáo hạn hợp đồng và không xảy ra sự kiện bảo hiểm. Phương án nào dưới đây là đúng:",
+    "options": [
+      "Anh A nhận được 50 triệu đồng phí đã đóng.",
+      "Anh A nhận được 1 tỷ đồng.",
+      "Anh A có thể tiếp tục tham gia hợp đồng tử kỳ mới với số tiền bảo hiểm và số phí không đổi mà không cần thẩm định lại sức khỏe.",
+      "Anh A có thể tiếp tục tham gia hợp đồng bảo hiểm mới với số tiền bảo hiểm không vượt quá 1 tỷ đồng và mức phí bảo hiểm xác định theo độ tuổi mới mà không cần thẩm định lại sức khỏe."
+    ],
+    "answer": 3
+  },
+  {
+    "id": 7,
+    "question": "Theo pháp luật Việt Nam về kinh doanh bảo hiểm, trong bảo hiểm sức khỏe, thời gian chờ được tính từ ngày nào?",
+    "options": [
+      "Từ ngày bắt đầu thời hạn bảo hiểm hoặc ngày khôi phục hiệu lực gần nhất.",
+      "Từ khi có sự kiện bảo hiểm xảy ra.",
+      "Từ khi bên mua bảo hiểm đóng phí bảo hiểm.",
+      "Từ khi bên mua bảo hiểm nộp đầy đủ hồ sơ yêu cầu đòi bồi thường."
+    ],
+    "answer": 0
+  },
+  {
+    "id": 8,
+    "question": "Ngày 10/11/2010, chị C tham gia hợp đồng bảo hiểm hỗn hợp thời hạn 15 năm với số tiền bảo hiểm là 500 triệu đồng cho con trai là người được bảo hiểm, phí bảo hiểm định kỳ hàng năm là 40 triệu đồng. Quyền lợi tử vong là 100% số tiền bảo hiểm. Quyền lợi tử vong do tai nạn là 200% số tiền bảo hiểm. Quyền lợi đáo hạn là 150% số tiền bảo hiểm, quyền lợi tiền mặt định kỳ được trả vào ngày kỷ niệm năm của các năm hợp đồng nếu người được bảo hiểm còn sống là: Năm hợp đồng thứ 12: 25% số tiền bảo hiểm. Năm hợp đồng thứ 13: 25% số tiền bảo hiểm. Năm hợp đồng thứ 14: 25% số tiền bảo hiểm. Ngày 25/01/2022, chị C không may tử vong do tai nạn. Giá trị quyền lợi tử vong công ty bảo hiểm chi trả trong trường hợp này là:",
+    "options": [
+      "1 tỷ đồng.",
+      "1,125 tỷ đồng.",
+      "500 triệu đồng.",
+      "Không chi trả gì."
+    ],
+    "answer": 3
+  },
+  {
+    "id": 9,
+    "question": "Theo pháp luật Việt Nam về kinh doanh bảo hiểm, trong bảo hiểm sức khỏe, trường hợp doanh nghiệp bảo hiểm bổ sung thêm các dấu hiệu, triệu chứng đặc thù của bệnh có sẵn trong các điều kiện, điều khoản bảo hiểm thì chỉ được xem xét đến các dấu hiệu, triệu chứng khởi phát trong vòng bao nhiêu tháng trước ngày hiệu lực hoặc ngày khôi phục hiệu lực (gần nhất) của hợp đồng bảo hiểm?",
+    "options": [
+      "12 tháng.",
+      "24 tháng.",
+      "36 tháng.",
+      "60 tháng."
+    ],
+    "answer": 2
+  },
+  {
+    "id": 10,
+    "question": "Chọn phương án đúng nhất: Theo Luật Kinh doanh bảo hiểm, trong bảo hiểm sức khỏe, hợp đồng bảo hiểm nhóm được hiểu như thế nào?",
+    "options": [
+      "Là sự thỏa thuận giữa bên mua bảo hiểm và doanh nghiệp bảo hiểm để bảo hiểm cho những người được bảo hiểm thuộc nhóm tham gia bảo hiểm trong cùng một hợp đồng bảo hiểm.",
+      "Nhóm tham gia hợp đồng bảo hiểm phải là nhóm đã được hình thành không phải vì mục đích tham gia bảo hiểm.",
+      "Nhóm tham gia hợp đồng bảo hiểm phải là nhóm đã được hình thành vì mục đích tham gia bảo hiểm.",
+      "A, B đúng.",
+      "A, C đúng."
+    ],
+    "answer": 3
+  },
+  {
+    "id": 11,
+    "question": "Theo Luật Kinh doanh bảo hiểm, trong bảo hiểm sức khỏe, điều kiện về nhóm tham gia hợp đồng bảo hiểm nhóm phải là nhóm như thế nào?",
+    "options": [
+      "Là nhóm đã được hình thành không phải vì mục đích tham gia bảo hiểm.",
+      "Là nhóm đã được hình thành vì mục đích tham gia bảo hiểm.",
+      "Là nhóm đã được hình thành không phải vì lợi ích chung của các thành viên.",
+      "Là nhóm đã được hình thành mà các thành viên phải là người trong gia đình."
+    ],
+    "answer": 0
+  },
+  {
+    "id": 12,
+    "question": "Chọn phương án đúng nhất: Theo Luật Kinh doanh bảo hiểm, đối với bảo hiểm sức khỏe, trong trường hợp nào bên mua bảo hiểm và doanh nghiệp bảo hiểm có quyền sửa đổi, bổ sung hợp đồng bảo hiểm nhóm?",
+    "options": [
+      "Khi có ít nhất một người được bảo hiểm không còn là thành viên của nhóm.",
+      "Phí bảo hiểm tính cho từng người được bảo hiểm không được đóng theo thỏa thuận trong hợp đồng bảo hiểm.",
+      "Phí bảo hiểm tính cho cả nhóm không được đóng theo thỏa thuận trong hợp đồng bảo hiểm.",
+      "A, B đúng.",
+      "A, C đúng."
+    ],
+    "answer": 3
+  },
+  {
+    "id": 13,
+    "question": "Chọn phương án đúng nhất: Trong bảo hiểm sức khỏe, ngoài các nội dung của hợp đồng bảo hiểm theo quy định chung của Luật Kinh doanh bảo hiểm, hợp đồng bảo hiểm nhóm phải có nội dung nào sau đây:",
+    "options": [
+      "Điều kiện tham gia bảo hiểm đối với người được bảo hiểm.",
+      "Điều kiện, thủ tục chuyển đổi thành hợp đồng bảo hiểm cá nhân.",
+      "Điều kiện, thủ tục chuyển đổi thành hợp đồng bảo hiểm nhóm khác.",
+      "A, B đúng.",
+      "A, B, C đúng."
+    ],
+    "answer": 3
+  },
+  {
+    "id": 14,
+    "question": "Theo Luật Kinh doanh bảo hiểm, phát biểu nào sau đây đúng về điều khoản loại trừ trách nhiệm bảo hiểm:",
+    "options": [
+      "Điều khoản loại trừ trách nhiệm bảo hiểm quy định các trường hợp doanh nghiệp bảo hiểm, chi nhánh doanh nghiệp bảo hiểm phi nhân thọ nước ngoài không phải bồi thường, trả tiền bảo hiểm.",
+      "Điều khoản loại trừ trách nhiệm bảo hiểm quy định trường hợp doanh nghiệp bảo hiểm không phải trả tiền cho người thứ 3 khi người được bảo hiểm gây thiệt hại cho người thứ 3.",
+      "Điều khoản loại trừ trách nhiệm bảo hiểm được quy định theo thông lệ quốc tế, không cần có trong hợp đồng bảo hiểm.",
+      "A, B đúng."
+    ],
+    "answer": 0
+  },
+  {
+    "id": 15,
+    "question": "Theo pháp luật Việt Nam về kinh doanh bảo hiểm, trường hợp quy tắc, điều kiện, điều khoản của hợp đồng bảo hiểm sức khỏe có quy định về quyền lợi thương tật toàn bộ vĩnh viễn, trường hợp người được bảo hiểm bị tổn thương cơ thể từ 81% trở lên phải theo xác nhận của cơ quan nào?",
+    "options": [
+      "Bất kỳ tổ chức nào có chức năng giám định y tế hợp pháp.",
+      "Cơ quan y tế hoặc Hội đồng giám định Y khoa cấp tỉnh, thành phố trực thuộc trung ương hoặc tổ chức giám định y tế hợp pháp.",
+      "Cơ quan y tế hoặc Hội đồng giám định Y khoa cấp quận, huyện trở lên hoặc tổ chức giám định y tế hợp pháp được doanh nghiệp bảo hiểm, chi nhánh doanh nghiệp bảo hiểm phi nhân thọ nước ngoài chấp thuận.",
+      "Cơ quan y tế hoặc Hội đồng giám định Y khoa cấp tỉnh, thành phố trực thuộc trung ương hoặc tổ chức giám định y tế hợp pháp được doanh nghiệp bảo hiểm, chi nhánh doanh nghiệp bảo hiểm phi nhân thọ nước ngoài chấp thuận."
+    ],
+    "answer": 3
+  },
+  {
+    "id": 16,
+    "question": "Theo Luật Kinh doanh bảo hiểm, doanh nghiệp bảo hiểm không có quyền đơn phương chấm dứt thực hiện hợp đồng bảo hiểm (đồng thời phải thông báo ngay bằng văn bản cho bên mua bảo hiểm) trong trường hợp nào dưới đây:",
+    "options": [
+      "Khi có sự thay đổi những yếu tố làm cơ sở để tính phí bảo hiểm dẫn đến tăng các rủi ro được bảo hiểm, doanh nghiệp bảo hiểm tính lại phí bảo hiểm cho thời gian còn lại của hợp đồng bảo hiểm nhưng bên mua bảo hiểm không chấp nhận.",
+      "Bên mua bảo hiểm không thực hiện các biện pháp bảo đảm an toàn cho đối tượng bảo hiểm trong thời hạn mà doanh nghiệp bảo hiểm đã ấn định để bên mua bảo hiểm thực hiện các biện pháp đó",
+      "Bên mua bảo hiểm không đóng đủ phí bảo hiểm trong thời gian gia hạn đóng phí",
+      "Bên mua bảo hiểm không đồng ý chuyển giao danh mục hợp đồng bảo hiểm theo quy định tại Luật Kinh doanh bảo hiểm"
+    ],
+    "answer": 2
+  },
+  {
+    "id": 17,
+    "question": "Ông A mua hợp đồng bảo hiểm vật chất xe cho ô tô của mình. Trong thời hạn bảo hiểm, ông A bán xe ô tô cho ông B và có văn bản đề nghị doanh nghiệp bảo hiểm chuyển giao hợp đồng bảo hiểm này cho ông B và doanh nghiệp bảo hiểm chấp nhận. Việc chuyển giao hợp đồng bảo hiểm như trên thực hiện theo nguyên tắc cơ bản nào của bảo hiểm:",
+    "options": [
+      "Nguyên tắc thế quyền.",
+      "Nguyên tắc trung thực tuyệt đối.",
+      "Nguyên tắc quyền lợi có thể được bảo hiểm.",
+      "Nguyên tắc bồi thường."
+    ],
+    "answer": 2
+  },
+  {
+    "id": 18,
+    "question": "Ông A dự kiến bay từ Hà Nội vào Thành phố Hồ Chí Minh vào ngày 01/03/2024. Tuy nhiên vào ngày 01/03/2024 theo dự báo thời tiết sẽ có bão to. Vì vậy ông A lùi lịch bay sang ngày 03/03/2024. Lựa chọn này của ông A là biện pháp phòng tránh rủi ro nào sau đây:",
+    "options": [
+      "Né tránh rủi ro.",
+      "Kiểm soát rủi ro.",
+      "Chấp nhận rủi ro.",
+      "Đánh giá rủi ro."
+    ],
+    "answer": 0
+  },
+  {
+    "id": 19,
+    "question": "Nguyên tắc nào không phải là nguyên tắc cơ bản của bảo hiểm:",
+    "options": [
+      "Quyền lợi có thể được bảo hiểm.",
+      "Nguyên tắc thế quyền.",
+      "Nguyên tắc phân tán rủi ro.",
+      "Nguyên tắc trung thực tuyệt đối."
+    ],
+    "answer": 2
+  },
+  {
+    "id": 20,
+    "question": "Theo pháp luật Việt Nam về kinh doanh bảo hiểm, trường hợp quy tắc, điều kiện, điều khoản bảo hiểm trong hợp đồng bảo hiểm sức khỏe có quy định thời gian chờ, đối với trường hợp bệnh, thời gian chờ được quy định như thế nào?",
+    "options": [
+      "Tối đa không vượt quá 90 ngày. Đối với trường hợp doanh nghiệp bảo hiểm chấp thuận bảo hiểm cho các bệnh có sẵn, thời gian chờ tối đa là 1 năm.",
+      "Tối đa không vượt quá 180 ngày. Đối với trường hợp doanh nghiệp bảo hiểm chấp thuận bảo hiểm cho các bệnh có sẵn, thời gian chờ tối đa là 1 năm.",
+      "Tối đa không vượt quá 270 ngày. Đối với trường hợp doanh nghiệp bảo hiểm chấp thuận bảo hiểm cho các bệnh có sẵn, thời gian chờ tối đa là 1 năm.",
+      "Tối đa không vượt quá 1 năm."
+    ],
+    "answer": 0
+  },
+  {
+    "id": 21,
+    "question": "Ngày 30/01/2010, ông A tham gia hợp đồng bảo hiểm tử kỳ với số tiền bảo hiểm tăng dần. Số tiền bảo hiểm là 1 tỷ đồng, thời hạn bảo hiểm là 20 năm. Theo điều khoản sản phẩm, số tiền bảo hiểm tại mỗi ngày kỷ niệm hợp đồng sẽ tự động cộng thêm 5% số tiền bảo hiểm ban đầu (tại thời điểm ký hợp đồng). Số tiền bảo hiểm mà ông A nhận được khi kết thúc thời hạn bảo hiểm là:",
+    "options": [
+      "2 tỷ đồng.",
+      "2,65 tỷ đồng.",
+      "Không nhận được gì nếu không xảy ra sự kiện bảo hiểm."
+    ],
+    "answer": 2
+  },
+  {
+    "id": 22,
+    "question": "Ngày 10/11/2010, anh A tham gia hợp đồng bảo hiểm hỗn hợp thời hạn 15 năm với số tiền bảo hiểm là 500 triệu đồng cho chính mình, phí bảo hiểm định kỳ hàng năm là 40 triệu đồng. Quyền lợi tử vong là 100% số tiền bảo hiểm. Quyền lợi bệnh hiểm nghèo là 100% số tiền bảo hiểm. Quyền lợi đáo hạn được chi trả nếu người được bảo hiểm còn sống tại thời điểm đáo hạn là 150% số tiền bảo hiểm. Sản phẩm cung cấp quyền lợi miễn thu phí trong trường hợp người được bảo hiểm bị bệnh hiểm nghèo. Ngày 20/6/2020, anh A bị mắc bệnh hiểm nghèo thuộc phạm vi được bảo hiểm. Trong trường hợp này, tổng số phí bảo hiểm mà anh A phải đóng cho hợp đồng bảo hiểm là:",
+    "options": [
+      "400 triệu đồng.",
+      "360 triệu đồng.",
+      "200 triệu đồng.",
+      "Được miễn toàn bộ phí."
+    ],
+    "answer": 0
+  },
+  {
+    "id": 23,
+    "question": "Ngày 28/02/2000, chị C tham gia hợp đồng bảo hiểm liên kết chung có thời hạn 50 năm với số phí đóng định kỳ hàng năm là 100 triệu đồng, phí đóng thêm năm đầu là 300 triệu đồng. Ngày 30/12/2000, chị C nộp thêm phí đóng thêm vào hợp đồng 100 triệu đồng. Ngày 28/02/2001, chị C nộp 100 triệu đồng phí cơ bản và 600 triệu đồng phí đóng thêm. Hợp đồng bảo hiểm liên kết chung tỷ lệ phí ban đầu quy định như sau: Tỷ lệ phí ban đầu/phí bảo hiểm cơ bản năm theo năm đóng phí lần lượt là: năm 1 là 50%, năm 2 là 30%, năm 3 là 20%, năm 4 là 10%, từ năm thứ 5 đến năm thứ 10 là 2%. Tỷ lệ phí ban đầu/phí đóng thêm theo năm đóng phí lần lượt là: từ năm thứ nhất đến năm thứ 4 là 2%, từ năm thứ 5 đến năm thứ 10 là 0%. Tổng số phí bảo hiểm đã được phân bổ vào giá trị tài khoản hợp đồng của chị C tại thời điểm 31/12/2001 là:",
+    "options": [
+      "806 triệu đồng.",
+      "1 tỷ đồng.",
+      "1,002 tỷ đồng.",
+      "1,1 tỷ đồng."
+    ],
+    "answer": 2
+  },
+  {
+    "id": 24,
+    "question": "Ngày 28/02/2000, chị C tham gia hợp đồng bảo hiểm liên kết chung có thời hạn 50 năm với số phí đóng định kỳ hàng năm là 100 triệu đồng, phí đóng thêm năm đầu là 500 triệu đồng. Ngày 01/3/2000, chị C đóng thêm 100 triệu đồng phí đóng thêm. Hợp đồng bảo hiểm liên kết chung có tỷ lệ phí ban đầu quy định như sau: Tỷ lệ phí ban đầu/phí bảo hiểm cơ bản năm theo năm đóng phí lần lượt là: năm 1 là 50%, năm 2 là 30%, năm 3 là 20%, năm 4 là 10%, từ năm thứ 5 đến năm thứ 10 là 2%. Tỷ lệ phí ban đầu/phí đóng thêm theo năm đóng phí lần lượt là: từ năm thứ nhất đến năm thứ 4 là 2%, từ năm thứ 5 đến năm thứ 10 là 0%. Phí bảo hiểm rủi ro của hợp đồng là 260 nghìn đồng/tháng. Phí quản lý hợp đồng là 40 nghìn đồng/tháng (các khoản phí được khấu trừ vào ngày hiệu lực hợp đồng và ngày kỷ niệm tháng hợp đồng). Lãi suất đầu tư của quỹ liên kết chung được công ty công bố cho Quý 1 năm 2000 là 12%/năm. Giá trị tài khoản hợp đồng của chị C tại ngày 02/4/2000 là:",
+    "options": [
+      "540 triệu đồng.",
+      "700 triệu đồng.",
+      "544,797 triệu đồng.",
+      "637,66 triệu đồng."
+    ],
+    "answer": 2
+  },
+  {
+    "id": 25,
+    "question": "Ngày 16/5/2015, chị C tham gia hợp đồng bảo hiểm tử kỳ với số tiền bảo hiểm giảm dần. Số tiền bảo hiểm ban đầu là 1 tỷ đồng, thời hạn bảo hiểm là 15 năm. Tại mỗi ngày kỷ niệm hợp đồng, số tiền bảo hiểm sẽ tự động trừ thêm 5% số tiền bảo hiểm ban đầu (tại thời điểm ký hợp đồng). Tỷ lệ phí bảo hiểm hàng năm của chị C là 0,4% số tiền bảo hiểm. Ngày 16/5/2020, chị C quên nộp phí bảo hiểm. Ngày 01/6/2020, chị C bị tử vong do tai nạn. Số tiền bảo hiểm mà người thụ hưởng sẽ nhận được là:",
+    "options": [
+      "1 tỷ đồng.",
+      "750 triệu đồng.",
+      "747 triệu đồng.",
+      "700 triệu đồng."
+    ],
+    "answer": 2
+  },
+  {
+    "id": 26,
+    "question": "Ngày 10/11/2020, chị C tham gia hợp đồng bảo hiểm tử kỳ có hoàn phí thời hạn 15 năm với số tiền bảo hiểm là 15 triệu đồng, phí bảo hiểm định kỳ hàng năm là 300 nghìn đồng. Ngày 15/3/2024, chị C bị tử vong do tai nạn. Số tiền bảo hiểm mà chị C nhận được là:",
+    "options": [
+      "15 triệu đồng.",
+      "16,2 triệu đồng.",
+      "15,9 triệu đồng.",
+      "Không nhận được gì."
+    ],
+    "answer": 0
+  },
+  {
+    "id": 27,
+    "question": "Năm 2010, bà C tham gia hợp đồng bảo hiểm sinh kỳ thời hạn 15 năm, đóng phí một lần, số tiền bảo hiểm khi đáo hạn là 1,5 tỷ đồng. Năm 2021, bà C nằm viện do tai nạn, chi phí nằm viện hết 30 triệu đồng. Trong trường hợp này, công ty bảo hiểm sẽ thanh toán cho bà C số tiền là:",
+    "options": [
+      "30 triệu đồng.",
+      "Số tiền chênh lệch giữa 30 triệu đồng và chi phí mà bảo hiểm y tế bắt buộc đã thanh toán.",
+      "30 triệu đồng và trừ vào số tiền đáo hạn mà bà C sẽ nhận được khi đáo hạn hợp đồng.",
+      "Không thanh toán gì."
+    ],
+    "answer": 3
+  },
+  {
+    "id": 28,
+    "question": "Ngày 30/6/2010, ông A tham gia hợp đồng bảo hiểm tử kỳ với số tiền bảo hiểm là 1 tỷ đồng, thời hạn hợp đồng là 20 năm, phí bảo hiểm đóng định kỳ hàng năm là 3,5 triệu đồng. Đến ngày 30/6/2020, ông A không nộp phí đóng định kỳ cho công ty bảo hiểm. Ngày 03/8/2020, ông A không may bị tai nạn nằm viện hết 50 triệu đồng. Trong trường hợp này:",
+    "options": [
+      "Công ty bảo hiểm không thanh toán quyền lợi bảo hiểm do hợp đồng bảo hiểm đã bị mất hiệu lực từ ngày 30/6/2020.",
+      "Công ty bảo hiểm không thanh toán.",
+      "Công ty bảo hiểm thanh toán 50 triệu đồng.",
+      "Công ty bảo hiểm thanh toán 996,5 triệu đồng."
+    ],
+    "answer": 1
+  },
+  {
+    "id": 29,
+    "question": "Theo pháp luật Việt Nam về kinh doanh bảo hiểm, phát biểu nào sau đây là đúng nhất về căn cứ xác định phí bảo hiểm của sản phẩm bảo hiểm sức khỏe?",
+    "options": [
+      "Tuổi, giới tính của người được bảo hiểm.",
+      "Tuổi, giới tính, tình trạng sức khỏe của người được bảo hiểm.",
+      "Tuổi, giới tính, tình trạng sức khỏe của bên mua bảo hiểm, phù hợp với đặc trưng của từng sản phẩm.",
+      "Tuổi, giới tính, tình trạng sức khỏe và các đặc điểm khác của người được bảo hiểm, phù hợp với đặc trưng của từng sản phẩm."
+    ],
+    "answer": 3
+  },
+  {
+    "id": 30,
+    "question": "Theo Luật Kinh doanh bảo hiểm, chọn phương án đúng nhất về bảo hiểm sức khỏe:",
+    "options": [
+      "Bảo hiểm sức khỏe là loại hình bảo hiểm cho trường hợp người được bảo hiểm bị thương tật, tai nạn, ốm đau, bệnh tật hoặc chăm sóc sức khỏe.",
+      "Bảo hiểm sức khỏe là loại hình bảo hiểm cho tính mạng của người được bảo hiểm và chi phí y tế.",
+      "Bảo hiểm sức khỏe là loại hình bảo hiểm cho trường hợp người được bảo hiểm bị ốm đau, bệnh tật hoặc chăm sóc sức khỏe",
+      "Không đáp án nào đúng."
+    ],
+    "answer": 0
+  },
+  {
+    "id": 31,
+    "question": "Theo Luật Kinh doanh bảo hiểm, đối với hợp đồng bảo hiểm sức khỏe, bên mua bảo hiểm không có quyền lợi có thể được bảo hiểm đối với trường hợp nào dưới đây?",
+    "options": [
+      "Người có quyền lợi về tài chính hoặc quan hệ lao động với bên mua bảo hiểm.",
+      "Anh ruột, chị ruột, em ruột hoặc người khác có quan hệ nuôi dưỡng, cấp dưỡng với bên mua bảo hiểm.",
+      "Người được bảo hiểm đồng ý bằng văn bản cho bên mua bảo hiểm mua bảo hiểm sức khỏe cho mình.",
+      "Ông/bà của bên mua bảo hiểm."
+    ],
+    "answer": 3
+  }
+]

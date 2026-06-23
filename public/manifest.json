@@ -1,0 +1,18 @@
+{
+  "short_name": "Hanwha Life",
+  "name": "Luyện Thi Chứng Chỉ Bảo Hiểm Hanwha Life",
+  "description": "Ứng dụng luyện thi & thi thử chứng chỉ đại lý bảo hiểm nhân thọ cơ bản Hanwha Life.",
+  "icons": [
+    {
+      "src": "/logo.svg",
+      "type": "image/svg+xml",
+      "sizes": "512x512 192x192 any",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#ffffff",
+  "theme_color": "#ff6600",
+  "display": "standalone",
+  "orientation": "portrait"
+}

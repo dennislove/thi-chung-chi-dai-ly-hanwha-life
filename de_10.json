@@ -1,0 +1,437 @@
+[
+  {
+    "id": 1,
+    "question": "Theo Luật Kinh doanh bảo hiểm, trường hợp hợp đồng bảo hiểm có điều khoản không rõ ràng dẫn đến có cách hiểu khác nhau thì điều khoản đó được giải thích theo hướng có lợi cho:",
+    "options": [
+      "Bên mua bảo hiểm.",
+      "Doanh nghiệp bảo hiểm.",
+      "A, B đúng.",
+      "A, B sai."
+    ],
+    "answer": 0
+  },
+  {
+    "id": 2,
+    "question": "Theo Luật Kinh doanh bảo hiểm, chọn phương án đúng nhất về “Nguyên tắc bồi thường”:",
+    "options": [
+      "Số tiền bồi thường mà người được bảo hiểm nhận được không vượt quá thiệt hại thực tế trong sự kiện bảo hiểm, trừ trường hợp có thỏa thuận khác trong hợp đồng bảo hiểm.",
+      "Số tiền bồi thường mà người được bảo hiểm nhận được có thể lớn hơn thiệt hại thực tế trong sự kiện bảo hiểm.",
+      "Số tiền bồi thường mà người được bảo hiểm nhận được tùy thuộc vào thỏa thuận giữa doanh nghiệp bảo hiểm và người được bảo hiểm trong hợp đồng bảo hiểm.",
+      "B, C đúng."
+    ],
+    "answer": 0
+  },
+  {
+    "id": 3,
+    "question": "Theo pháp luật Việt Nam về kinh doanh bảo hiểm, khi bên mua bảo hiểm giao kết hợp đồng bảo hiểm nhân thọ cho trường hợp chết của người khác thì:",
+    "options": [
+      "Phải được người đó đồng ý bằng văn bản, trong đó ghi rõ số tiền bảo hiểm và người được bảo hiểm.",
+      "Phải được người đó đồng ý bằng văn bản, trong đó ghi rõ phí bảo hiểm và người thụ hưởng.",
+      "Phải được người đó đồng ý bằng văn bản, trong đó ghi rõ số tiền bảo hiểm và người thụ hưởng.",
+      "Phải được người đó đồng ý bằng văn bản, trong đó ghi rõ số tiền bảo hiểm và bên mua bảo hiểm."
+    ],
+    "answer": 2
+  },
+  {
+    "id": 4,
+    "question": "Theo Luật Kinh doanh bảo hiểm, theo yêu cầu của doanh nghiệp bảo hiểm, bên mua bảo hiểm có nghĩa vụ kê khai đầy đủ, trung thực mọi thông tin có liên quan đến:",
+    "options": [
+      "Đối tượng bảo hiểm.",
+      "Hợp đồng bảo hiểm.",
+      "A, B đúng."
+    ],
+    "answer": 1
+  },
+  {
+    "id": 5,
+    "question": "Theo Luật Kinh doanh bảo hiểm, doanh nghiệp bảo hiểm có nghĩa vụ cung cấp cho bên mua bảo hiểm (chọn phương án đúng nhất):",
+    "options": [
+      "Bản yêu cầu bảo hiểm, bảng câu hỏi liên quan đến rủi ro được bảo hiểm, đối tượng bảo hiểm, quy tắc, điều kiện, điều khoản bảo hiểm.",
+      "Mọi thông tin liên quan đến hợp đồng bảo hiểm.",
+      "A, B đúng."
+    ],
+    "answer": 0
+  },
+  {
+    "id": 6,
+    "question": "Theo Luật Kinh doanh bảo hiểm, hoạt động thuê ngoài là việc doanh nghiệp bảo hiểm, doanh nghiệp tái bảo hiểm, chi nhánh nước ngoài tại Việt Nam (gọi chung là doanh nghiệp bảo hiểm) thỏa thuận giao kết hợp đồng thuê ngoài với tổ chức, cá nhân khác để thực hiện một phần quy trình, hoạt động. Doanh nghiệp bảo hiểm được thuê ngoài các hoạt động nào sau đây:",
+    "options": [
+      "Quản trị rủi ro.",
+      "B. Tư vấn, giới thiệu, chào bán sản phẩm bảo hiểm, thu xếp việc giao kết hợp đồng bảo hiểm.",
+      "A, B đúng.",
+      "A, B sai."
+    ],
+    "answer": 3
+  },
+  {
+    "id": 7,
+    "question": "Tiêu chí nào sau đây là tiêu chí đánh giá rủi ro:",
+    "options": [
+      "Mức độ rủi ro và kiểm soát rủi ro.",
+      "Mức độ rủi ro và nguy cơ rủi ro.",
+      "Nguy cơ rủi ro và kiểm soát rủi ro.",
+      "A, B, C đúng."
+    ],
+    "answer": 1
+  },
+  {
+    "id": 8,
+    "question": "Khái niệm bảo hiểm có thể được hiểu là:",
+    "options": [
+      "Biện pháp chuyển giao rủi ro.",
+      "Biện pháp né tránh rủi ro.",
+      "Được thực hiện thông qua hợp đồng bảo hiểm.",
+      "A, C đúng.",
+      "B, C đúng."
+    ],
+    "answer": 3
+  },
+  {
+    "id": 9,
+    "question": "Chọn phương án đúng nhất: Theo pháp luật Việt Nam về kinh doanh bảo hiểm, trong hợp đồng bảo hiểm nhân thọ, doanh nghiệp bảo hiểm không phải trả tiền bảo hiểm trong trường hợp sau đây:",
+    "options": [
+      "Người được bảo hiểm chết do tự tử trong thời hạn 02 năm kể từ ngày nộp khoản phí bảo hiểm đầu tiên hoặc kể từ ngày hợp đồng bảo hiểm khôi phục hiệu lực.",
+      "Người được bảo hiểm chết do lỗi của bên mua bảo hiểm hoặc lỗi của người thụ hưởng (trường hợp hợp đồng bảo hiểm có một người thụ hưởng)",
+      "Người được bảo hiểm chết do bị thi hành án tử hình.",
+      "A, C đúng.",
+      "A, B, C đúng."
+    ],
+    "answer": 3
+  },
+  {
+    "id": 10,
+    "question": "Trong bảo hiểm sức khỏe, không áp dụng thời gian chờ đối với mọi trường hợp điều trị thai sản?",
+    "options": [
+      "Đúng",
+      "Sai"
+    ],
+    "answer": 1
+  },
+  {
+    "id": 11,
+    "question": "Trong sản phẩm bảo hiểm sức khỏe với quyền lợi bảo hiểm tai nạn, tai nạn được hiểu là:",
+    "options": [
+      "Tai nạn do một sự kiện bất ngờ, ngoài ý muốn của người được bảo hiểm, từ bên ngoài tác động lên thân thể người được bảo hiểm, là nguyên nhân trực tiếp khiến cho người được bảo hiểm bị chết hoặc thương tật thân thể.",
+      "Tai nạn do một sự kiện bất ngờ, ngoài ý muốn của người được bảo hiểm, từ bên ngoài tác động lên thân thể người được bảo hiểm, là nguyên nhân gián tiếp khiến cho người được bảo hiểm bị chết hoặc thương tật thân thể.",
+      "Tai nạn do một sự kiện bất ngờ, ngoài ý muốn của người được bảo hiểm, từ bên ngoài tác động lên thân thể người được bảo hiểm, là nguyên nhân trực tiếp hoặc gián tiếp khiến cho người được bảo hiểm bị chết hoặc thương tật thân thể."
+    ],
+    "answer": 0
+  },
+  {
+    "id": 12,
+    "question": "Ngày 01/10/2012, ông A tham gia hợp đồng bảo hiểm sinh kỳ thời hạn 10 năm đóng phí định kỳ với số phí đóng định kỳ là 100 triệu đồng, số tiền bảo hiểm là 1,2 tỷ đồng. Ngày 01/11/2022, ông A bị tai nạn nằm viện hết 50 triệu đồng. Số tiền bảo hiểm mà ông A nhận được từ hợp đồng bảo hiểm sinh kỳ nêu trên là:",
+    "options": [
+      "1,2 tỷ đồng.",
+      "1,25 tỷ đồng."
+    ],
+    "answer": 0
+  },
+  {
+    "id": 13,
+    "question": "Ngày 10/11/2020, chị C tham gia hợp đồng bảo hiểm hỗn hợp thời hạn 15 năm với số tiền bảo hiểm là 500 triệu đồng, phí bảo hiểm định kỳ hàng năm là 40 triệu đồng. Quyền lợi đáo hạn là 120% số tiền bảo hiểm, quyền lợi tiền mặt định kỳ được trả vào ngày kỷ niệm năm của các năm hợp đồng là: Năm hợp đồng thứ 12: 25% số tiền bảo hiểm. Năm hợp đồng thứ 13: 25% số tiền bảo hiểm. Năm hợp đồng thứ 14: 25% số tiền bảo hiểm. Nếu không xảy ra sự kiện bảo hiểm thì đến hết thời hạn hợp đồng, tổng giá trị các quyền lợi mà chị C đã nhận được từ hợp đồng bảo hiểm là:",
+    "options": [
+      "500 triệu đồng.",
+      "600 triệu đồng.",
+      "975 triệu đồng.",
+      "1.050 triệu đồng."
+    ],
+    "answer": 2
+  },
+  {
+    "id": 14,
+    "question": "Ngày 30/01/2010, ông A tham gia hợp đồng bảo hiểm tử kỳ với số tiền bảo hiểm tăng dần. Số tiền bảo hiểm là 1 tỷ đồng, thời hạn bảo hiểm là 20 năm, phí bảo hiểm đóng định kỳ là 10 triệu đồng. Theo điều khoản sản phẩm, số tiền bảo hiểm tại mỗi ngày kỷ niệm hợp đồng sẽ tự động cộng thêm 5% số tiền bảo hiểm ban đầu (tại thời điểm ký hợp đồng). Ngày 30/01/2015, ông A quên không đóng phí bảo hiểm định kỳ. Ngày 30/6/2015 ông A không may qua đời do tai nạn. Số tiền bảo hiểm mà gia đình ông A nhận được là:",
+    "options": [
+      "1,25 tỷ đồng.",
+      "1,24 tỷ đồng.",
+      "Không nhận được gì.",
+      "1 tỷ đồng."
+    ],
+    "answer": 2
+  },
+  {
+    "id": 15,
+    "question": "Ngày 30/01/2010, ông A tham gia hợp đồng bảo hiểm tử kỳ với số tiền bảo hiểm tăng dần. Số tiền bảo hiểm là 1 tỷ đồng, thời hạn bảo hiểm là 20 năm. Theo điều khoản sản phẩm, số tiền bảo hiểm tại mỗi ngày kỷ niệm hợp đồng sẽ tự động cộng thêm 5% số tiền bảo hiểm ban đầu (tại thời điểm ký hợp đồng). Ngày 30/6/2015, ông A không may qua đời. Số tiền bảo hiểm mà gia đình ông A nhận được là:",
+    "options": [
+      "1 tỷ đồng.",
+      "1,25 tỷ đồng.",
+      "1,34 tỷ đồng.",
+      "Không nhận được gì."
+    ],
+    "answer": 1
+  },
+  {
+    "id": 16,
+    "question": "Ngày 28/02/2000, chị C tham gia hợp đồng bảo hiểm liên kết chung có thời hạn 50 năm với số phí đóng định kỳ hàng năm là 100 triệu đồng, phí đóng thêm năm đầu là 500 triệu đồng. Ngày 28/02/2001, chị C nộp 100 triệu đồng phí cơ bản và 200 triệu đồng phí đóng thêm. Hợp đồng bảo hiểm liên kết chung tỷ lệ phí ban đầu quy định như sau: Tỷ lệ phí ban đầu/phí bảo hiểm cơ bản năm theo năm đóng phí lần lượt là: năm 1 là 50%, năm 2 là 30%, năm 3 là 20%, năm 4 là 10%, từ năm thứ 5 đến năm thứ 10 là 2%. Tỷ lệ phí ban đầu/phí đóng thêm theo năm đóng phí lần lượt là: từ năm thứ nhất đến năm thứ 4 là 2%, từ năm thứ 5 đến năm thứ 10 là 0%. Tổng số phí bảo hiểm đã được phân bổ vào giá trị tài khoản hợp đồng của chị C tại thời điểm 31/12/2001 là:",
+    "options": [
+      "700 triệu đồng.",
+      "806 triệu đồng.",
+      "900 triệu đồng.",
+      "736 triệu đồng."
+    ],
+    "answer": 1
+  },
+  {
+    "id": 17,
+    "question": "Ngày 28/02/2000, chị C tham gia hợp đồng bảo hiểm liên kết chung có thời hạn 50 năm với số phí đóng định kỳ hàng năm là 100 triệu đồng, phí đóng thêm năm đầu là 100 triệu đồng. Ngày 30/12/2000, chị C nộp thêm phí đóng thêm vào hợp đồng 200 triệu đồng. Hợp đồng bảo hiểm liên kết chung tỷ lệ phí ban đầu quy định như sau: Tỷ lệ phí ban đầu/phí bảo hiểm cơ bản năm theo năm đóng phí lần lượt là: năm 1 là 50%, năm 2 là 30%, năm 3 là 20%, năm 4 là 10%, từ năm thứ 5 đến năm thứ 10 là 2%. Tỷ lệ phí ban đầu/phí đóng thêm theo năm đóng phí lần lượt là: từ năm thứ nhất đến năm thứ 4 là 2%, từ năm thứ 5 đến năm thứ 10 là 0%. Tổng số phí bảo hiểm đã được phân bổ vào giá trị tài khoản hợp đồng của chị C tại thời điểm 31/12/2000 là:",
+    "options": [
+      "344 triệu đồng.",
+      "400 triệu đồng.",
+      "350 triệu đồng.",
+      "348 triệu đồng."
+    ],
+    "answer": 0
+  },
+  {
+    "id": 18,
+    "question": "Ngày 15/6/2015, chị C tham gia hợp đồng bảo hiểm tử kỳ với số tiền bảo hiểm giảm dần. Số tiền bảo hiểm ban đầu là 1 tỷ đồng, thời hạn bảo hiểm là 15 năm. Tại mỗi ngày kỷ niệm hợp đồng, số tiền bảo hiểm sẽ tự động trừ thêm 5% số tiền bảo hiểm ban đầu (tại thời điểm ký hợp đồng). Tỷ lệ phí bảo hiểm hàng năm của chị C là 0,4% số tiền bảo hiểm. Số phí bảo hiểm mà chị C phải nộp tại ngày kỷ niệm hợp đồng năm 2020 là:",
+    "options": [
+      "4 triệu đồng.",
+      "3,5 triệu đồng.",
+      "3 triệu đồng.",
+      "3,9 triệu đồng."
+    ],
+    "answer": 2
+  },
+  {
+    "id": 19,
+    "question": "Theo pháp luật Việt Nam về kinh doanh bảo hiểm, vốn điều lệ tối thiểu của doanh nghiệp kinh doanh bảo hiểm nhân thọ và bảo hiểm sức khỏe là:",
+    "options": [
+      "400 tỷ đồng Việt Nam",
+      "750 tỷ đồng Việt Nam.",
+      "1.000 tỷ đồng Việt Nam.",
+      "1.300 tỷ đồng Việt Nam."
+    ],
+    "answer": 3
+  },
+  {
+    "id": 20,
+    "question": "Ngày 15/6/2015, chị C tham gia hợp đồng bảo hiểm tử kỳ với số tiền bảo hiểm giảm dần. Số tiền bảo hiểm ban đầu là 1 tỷ đồng, thời hạn bảo hiểm là 15 năm. Tại mỗi ngày kỷ niệm hợp đồng, số tiền bảo hiểm sẽ tự động trừ thêm 5% số tiền bảo hiểm ban đầu (tại thời điểm ký hợp đồng). Ngày 01/6/2025, chị C không may bị tử vong. Số tiền bảo hiểm mà người thụ hưởng sẽ nhận được là:",
+    "options": [
+      "500 triệu đồng.",
+      "550 triệu đồng.",
+      "1 tỷ đồng.",
+      "Không nhận được gì."
+    ],
+    "answer": 1
+  },
+  {
+    "id": 21,
+    "question": "Chọn phương án đúng nhất: Theo pháp luật Việt Nam về kinh doanh bảo hiểm, phát biểu nào sau đây đúng liên quan đến dự phòng nghiệp vụ đối với bảo hiểm nhân thọ:",
+    "options": [
+      "Doanh nghiệp bảo hiểm nhân thọ phải trích lập dự phòng nghiệp vụ cho từng loại nghiệp vụ bảo hiểm tương ứng với phần trách nhiệm đã cam kết theo thỏa thuận trong hợp đồng bảo hiểm và phải được chuyên gia tính toán của doanh nghiệp xác nhận.",
+      "Dự phòng nghiệp vụ đối với bảo hiểm nhân thọ bao gồm: dự phòng phí chưa được hưởng, dự phòng bồi thường, dự phòng bồi thường cho các dao động lớn về tổn thất.",
+      "Doanh nghiệp bảo hiểm nhân thọ phải trích lập dự phòng nghiệp vụ cho từng hợp đồng bảo hiểm tương ứng với phần trách nhiệm đã cam kết theo thỏa thuận trong hợp đồng bảo hiểm và phải được chuyên gia tính toán của doanh nghiệp xác nhận.",
+      "A, B đúng."
+    ],
+    "answer": 2
+  },
+  {
+    "id": 22,
+    "question": "Chọn phương án đúng nhất: Theo pháp luật Việt Nam về kinh doanh bảo hiểm, trong hợp đồng bảo hiểm nhân thọ, việc chứng nhận người được bảo hiểm bị mất hoàn toàn bộ phận cơ thể (tay, chân hoặc mắt) có thể được thực hiện:",
+    "options": [
+      "Ngay sau khi sự kiện bảo hiểm xảy ra.",
+      "Ngay sau khi kết thúc việc điều trị.",
+      "Không sớm hơn 180 ngày kể từ ngày xảy ra sự kiện bảo hiểm.",
+      "A, B đúng.",
+      "B, C đúng."
+    ],
+    "answer": 3
+  },
+  {
+    "id": 23,
+    "question": "Theo pháp luật Việt Nam về kinh doanh bảo hiểm, các loại nghiệp vụ của bảo hiểm sức khỏe bao gồm:",
+    "options": [
+      "Bảo hiểm y tế; bảo hiểm sức khỏe.",
+      "Bảo hiểm sức khỏe, thân thể; bảo hiểm chi phí y tế.",
+      "Bảo hiểm chi phí y tế; bảo hiểm thương tật, tai nạn.",
+      "Bảo hiểm y tế; bảo hiểm sức khỏe, thân thể; bảo hiểm chi phí y tế; bảo hiểm thương tật, tai nạn."
+    ],
+    "answer": 1
+  },
+  {
+    "id": 24,
+    "question": "Chọn phương án đúng nhất: Theo pháp luật Việt Nam về kinh doanh bảo hiểm, dự phòng nghiệp vụ đối với bảo hiểm sức khỏe bao gồm:",
+    "options": [
+      "Dự phòng toán học; dự phòng bảo đảm cân đối.",
+      "Dự phòng phí chưa được hưởng; dự phòng bồi thường.",
+      "Dự phòng bồi thường cho các dao động lớn về tổn thất.",
+      "A, B đúng.",
+      "A, B, C đúng."
+    ],
+    "answer": 3
+  },
+  {
+    "id": 25,
+    "question": "Theo pháp luật Việt Nam về kinh doanh bảo hiểm, người được bảo hiểm của hợp đồng bảo hiểm sức khỏe là:",
+    "options": [
+      "Người có sức khỏe được bảo hiểm theo hợp đồng bảo hiểm.",
+      "Người có tính mạng, sức khỏe, tuổi thọ được bảo hiểm theo hợp đồng bảo hiểm.",
+      "Người có sức khỏe, tuổi thọ được bảo hiểm theo hợp đồng bảo hiểm.",
+      "A, B, C đúng."
+    ],
+    "answer": 0
+  },
+  {
+    "id": 26,
+    "question": "Theo Luật Kinh doanh bảo hiểm, việc giao kết và thực hiện hợp đồng bảo hiểm sức khỏe phải tuân thủ các nguyên tắc cơ bản của pháp luật dân sự và các nào nguyên tắc sau đây:",
+    "options": [
+      "Nguyên tắc trung thực tuyệt đối, nguyên tắc quyền lợi có thể được bảo hiểm, nguyên tắc bồi thường, nguyên tắc thế quyền, nguyên tắc rủi ro ngẫu nhiên.",
+      "Nguyên tắc trung thực tuyệt đối, nguyên tắc bồi thường, nguyên tắc thế quyền, nguyên tắc rủi ro ngẫu nhiên.",
+      "Nguyên tắc trung thực tuyệt đối, nguyên tắc bồi thường, nguyên tắc thế quyền.",
+      "Nguyên tắc trung thực tuyệt đối, nguyên tắc quyền lợi có thể được bảo hiểm, nguyên tắc bồi thường, nguyên tắc rủi ro ngẫu nhiên."
+    ],
+    "answer": 3
+  },
+  {
+    "id": 27,
+    "question": "Theo pháp luật Việt Nam về kinh doanh bảo hiểm, trước khi triển khai sản phẩm bảo hiểm sức khỏe, doanh nghiệp bảo hiểm, chi nhánh doanh nghiệp bảo hiểm phi nhân thọ nước ngoài phải thực hiện thủ tục:",
+    "options": [
+      "Đăng ký và được Bộ Tài chính chấp thuận biểu phí của các sản phẩm bảo hiểm thuộc nghiệp vụ bảo hiểm sức khỏe trước khi triển khai.",
+      "Đăng ký và được Bộ Tài chính chấp thuận phương pháp, cơ sở tính phí bảo hiểm của các sản phẩm bảo hiểm thuộc nghiệp vụ bảo hiểm sức khỏe trước khi triển khai.",
+      "Đăng ký và được Bộ Tài chính chấp thuận quy tắc, điều khoản, biểu phí các sản phẩm bảo hiểm thuộc nghiệp vụ bảo hiểm sức khỏe trước khi triển khai.",
+      "Thông báo với Bộ Tài chính về phương pháp, cơ sở tính phí bảo hiểm của các sản phẩm bảo hiểm thuộc nghiệp vụ bảo hiểm sức khỏe trước khi triển khai."
+    ],
+    "answer": 1
+  },
+  {
+    "id": 28,
+    "question": "Theo Luật Kinh doanh bảo hiểm, đại lý bảo hiểm không có các nghĩa vụ sau đây:",
+    "options": [
+      "Thực hiện cam kết trong hợp đồng bảo hiểm được ký giữa bên mua bảo hiểm và doanh nghiệp bảo hiểm",
+      "Ký quỹ hoặc thế chấp tài sản cho doanh nghiệp bảo hiểm nếu có thỏa thuận trong hợp đồng đại lý bảo hiểm",
+      "Chịu sự kiểm tra, giám sát của doanh nghiệp bảo hiểm",
+      "Tham dự các khóa đào tạo, cập nhật kiến thức do doanh nghiệp bảo hiểm tổ chức"
+    ],
+    "answer": 0
+  },
+  {
+    "id": 29,
+    "question": "Theo Luật Kinh doanh bảo hiểm, doanh nghiệp bảo hiểm, chi nhánh doanh nghiệp bảo hiểm phi nhân thọ nước ngoài phải đăng ký và được Bộ Tài chính chấp thuận phương pháp, cơ sở tính phí bảo hiểm của các sản phẩm bảo hiểm thuộc nghiệp vụ bảo hiểm sau:",
+    "options": [
+      "Bảo hiểm trách nhiệm dân sự của chủ xe cơ giới.",
+      "Bảo hiểm sức khoẻ.",
+      "Bảo hiểm cháy, nổ.",
+      "A, C đúng."
+    ],
+    "answer": 1
+  },
+  {
+    "id": 30,
+    "question": "Theo Luật Kinh doanh bảo hiểm, phương án nào dưới đây là đúng nhất về phương thức giải quyết tranh chấp về hợp đồng bảo hiểm?",
+    "options": [
+      "Tranh chấp về hợp đồng bảo hiểm được giải quyết thông qua thương lượng giữa các bên. Trường hợp không thương lượng được thì tranh chấp được giải quyết thông qua hòa giải hoặc Trọng tài hoặc Tòa án theo thỏa thuận trong hợp đồng bảo hiểm và quy định của pháp luật.",
+      "Tranh chấp về hợp đồng bảo hiểm được giải quyết thông qua thương lượng giữa các bên. Trường hợp không thương lượng được thì tranh chấp được giải quyết thông qua hòa giải hoặc Trọng tài theo thỏa thuận trong hợp đồng bảo hiểm và quy định của pháp luật.",
+      "Tranh chấp về hợp đồng bảo hiểm được giải quyết thông qua thương lượng giữa các bên. Trường hợp không thương lượng được thì tranh chấp được giải quyết thông qua hòa giải hoặc Tòa án theo thỏa thuận trong hợp đồng bảo hiểm và quy định của pháp luật.",
+      "Tranh chấp về hợp đồng bảo hiểm được giải quyết thông qua thương lượng giữa các bên. Trường hợp không thương lượng được thì tranh chấp được giải quyết thông qua Trọng tài hoặc Tòa án theo thỏa thuận trong hợp đồng bảo hiểm và quy định của pháp luật."
+    ],
+    "answer": 0
+  },
+  {
+    "id": 31,
+    "question": "Theo Luật Kinh doanh bảo hiểm, nhận định nào dưới đây là đúng nhất về điều khoản loại trừ trách nhiệm bảo hiểm:",
+    "options": [
+      "Trường hợp có điều khoản loại trừ trách nhiệm bảo hiểm, doanh nghiệp bảo hiểm phải quy định rõ trong hợp đồng bảo hiểm, phải giải thích rõ ràng, đầy đủ và không cần có bằng chứng xác nhận về việc bên mua bảo hiểm đã được doanh nghiệp bảo hiểm giải thích đầy đủ và hiểu rõ nội dung này khi giao kết hợp đồng bảo hiểm.",
+      "Trường hợp có sự kiện bất khả kháng hoặc trở ngại khách quan dẫn đến bên mua bảo hiểm chậm thông báo sự kiện bảo hiểm thì doanh nghiệp bảo hiểm không được áp dụng điều khoản loại trừ trách nhiệm bảo hiểm về việc chậm thông báo.",
+      "Trường hợp có sự kiện bất khả kháng hoặc trở ngại khách quan dẫn đến bên mua bảo hiểm chậm thông báo sự kiện bảo hiểm thì doanh nghiệp bảo hiểm được áp dụng điều khoản loại trừ trách nhiệm bảo hiểm về việc chậm thông báo.",
+      "A, B, C đúng."
+    ],
+    "answer": 1
+  },
+  {
+    "id": 32,
+    "question": "Theo Luật Kinh doanh bảo hiểm, bảo hiểm bắt buộc là sản phẩm bảo hiểm nhằm mục đích:",
+    "options": [
+      "Bảo vệ lợi ích của người tham gia bảo hiểm.",
+      "Bảo vệ lợi ích công cộng, môi trường và an toàn xã hội.",
+      "Bảo vệ lợi ích của doanh nghiệp bảo hiểm.",
+      "A, B, C đúng."
+    ],
+    "answer": 1
+  },
+  {
+    "id": 33,
+    "question": "Theo pháp luật Việt Nam về kinh doanh bảo hiểm, đối với các hợp đồng bảo hiểm sức khỏe tỷ lệ hoa hồng đại lý bảo hiểm tối đa là bao nhiêu %?",
+    "options": [
+      "15%.",
+      "20%.",
+      "25%.",
+      "30%."
+    ],
+    "answer": 1
+  },
+  {
+    "id": 34,
+    "question": "Theo Luật Kinh doanh bảo hiểm, trừ trường hợp có thỏa thuận trong hợp đồng bảo hiểm, thời hạn bồi thường, trả tiền bảo hiểm là:",
+    "options": [
+      "21 ngày kể từ ngày nhận được đầy đủ hồ sơ hợp lệ về yêu cầu bồi thường.",
+      "15 ngày kể từ ngày nhận được đầy đủ hồ sơ hợp lệ về yêu cầu bồi thường.",
+      "30 ngày kể từ ngày nhận được đầy đủ hồ sơ hợp lệ về yêu cầu bồi thường.",
+      "1 năm kể từ ngày nhận được đầy đủ hồ sơ hợp lệ về yêu cầu bồi thường."
+    ],
+    "answer": 1
+  },
+  {
+    "id": 35,
+    "question": "Theo Luật Kinh doanh bảo hiểm, phát biểu nào sau đây đúng về kinh doanh tái bảo hiểm:",
+    "options": [
+      "Hoạt động của doanh nghiệp bảo hiểm nhằm mục đích sinh lợi, trên cơ sở bên mua bảo hiểm đóng phí bảo hiểm để doanh nghiệp bảo hiểm bồi thường, trả tiền bảo hiểm khi xảy ra sự kiện bảo hiểm.",
+      "Hoạt động của doanh nghiệp bảo hiểm nhận một khoản phí tái bảo hiểm của doanh nghiệp bảo hiểm để cam kết bồi thường cho các trách nhiệm đã nhận bảo hiểm.",
+      "A, B đúng"
+    ],
+    "answer": 1
+  },
+  {
+    "id": 36,
+    "question": "Theo Luật Kinh doanh bảo hiểm, đối tượng nào sau đây chỉ định người thụ hưởng để nhận tiền bảo hiểm theo thỏa thuận trong hợp đồng bảo hiểm:",
+    "options": [
+      "Bên mua bảo hiểm",
+      "Người được bảo hiểm",
+      "A, B đúng",
+      "A, B sai"
+    ],
+    "answer": 2
+  },
+  {
+    "id": 37,
+    "question": "Theo Luật Kinh doanh bảo hiểm, phát biểu nào dưới đây đúng nhất:",
+    "options": [
+      "Người được bảo hiểm là tổ chức, cá nhân giao kết hợp đồng bảo hiểm với doanh nghiệp bảo hiểm và đóng phí bảo hiểm",
+      "Người thụ hưởng là tổ chức, cá nhân được bên mua bảo hiểm hoặc người được bảo hiểm chỉ định để nhận tiền bảo hiểm theo thỏa thuận trong hợp đồng bảo hiểm",
+      "A, B đúng"
+    ],
+    "answer": 1
+  },
+  {
+    "id": 38,
+    "question": "Chọn phương án đúng nhất: Phạm vi bảo hiểm là:",
+    "options": [
+      "Phạm vi giới hạn những rủi ro, tổn thất và chi phí phát sinh mà theo đó người bảo hiểm sẽ chịu trách nhiệm nếu xảy ra sự kiện bảo hiểm.",
+      "Phạm vi giới hạn những rủi ro, tổn thất và chi phí phát sinh mà theo đó người được bảo hiểm và người bảo hiểm cùng chịu trách nhiệm nếu xảy ra sự kiện bảo hiểm.",
+      "Phạm vi giới hạn những rủi ro, tổn thất và chi phí phát sinh theo yêu cầu của người được bảo hiểm nếu xảy ra sự kiện bảo hiểm.",
+      "Tổn thất bảo hiểm."
+    ],
+    "answer": 0
+  },
+  {
+    "id": 39,
+    "question": "Mức miễn thường là:",
+    "options": [
+      "Phần tổn thất và/hoặc chi phí do doanh nghiệp bảo hiểm chịu.",
+      "Phần tổn thất và/hoặc chi phí phát sinh liên quan đến tổn thất thuộc phạm vi bảo hiểm do người được bảo hiểm tự gánh chịu.",
+      "Phần tổn thất và/hoặc chi phí do đại lý chịu.",
+      "Phần tổn thất và/hoặc chi phí do doanh nghiệp môi giới bảo hiểm chịu."
+    ],
+    "answer": 1
+  },
+  {
+    "id": 40,
+    "question": "Số tiền bồi thường mà người được bảo hiểm nhận được không lớn hơn thiệt hại của họ trong sự kiện bảo hiểm (trừ trường hợp có thỏa thuận khác trong hợp đồng bảo hiểm) để tuân thủ nguyên tắc nào trong giao kết và thực hiện hợp đồng bảo hiểm:",
+    "options": [
+      "Nguyên tắc trung thực tuyệt đối.",
+      "Nguyên tắc thế quyền.",
+      "Nguyên tắc bồi thường.",
+      "Nguyên tắc quyền lợi có thể được bảo hiểm."
+    ],
+    "answer": 2
+  }
+]

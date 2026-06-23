@@ -1,0 +1,433 @@
+[
+  {
+    "id": 1,
+    "question": "Chọn đáp án đúng về tuổi bảo hiểm:",
+    "options": [
+      "Là tuổi của người được bảo hiểm tính theo ngày sinh nhật gần nhất trước ngày có hiệu lực hợp đồng bảo hiểm hoặc ngày kỷ niệm hợp đồng trong các năm hợp đồng tiếp theo.",
+      "Là tuổi của người được bảo hiểm tính theo ngày sinh nhật gần nhất sau ngày có hiệu lực hợp đồng bảo hiểm hoặc ngày kỷ niệm hợp đồng trong các năm hợp đồng tiếp theo.",
+      "A, B sai."
+    ],
+    "answer": 0
+  },
+  {
+    "id": 2,
+    "question": "Chọn phương án đúng về nguyên tắc \"miễn truy xét\" trong hợp đồng bảo hiểm nhân thọ:",
+    "options": [
+      "Sau một khoảng thời gian nhất định kể từ thời điểm hiệu lực hợp đồng bảo hiểm, doanh nghiệp bảo hiểm không còn quyền từ chối nghĩa vụ chi trả quyền lợi bảo hiểm, nếu các nội dung kê khai không trung thực, đầy đủ của bên mua bảo hiểm không ảnh hưởng đến quyết định chấp nhận bảo hiểm của doanh nghiệp bảo hiểm.",
+      "Sau một khoảng thời gian nhất định kể từ thời điểm hiệu lực hợp đồng bảo hiểm, doanh nghiệp bảo hiểm vẫn có quyền từ chối nghĩa vụ chi trả quyền lợi bảo hiểm, nếu các nội dung kê khai không trung thực của bên mua bảo hiểm không ảnh hưởng đến quyết định chấp nhận bảo hiểm của doanh nghiệp bảo hiểm."
+    ],
+    "answer": 0
+  },
+  {
+    "id": 3,
+    "question": "Mức vốn điều lệ của Doanh nghiệp Bảo hiểm Nhân thọ, Kinh doanh Bảo hiểm Nhân thọ (bao gồm cả Bảo hiểm Liên kết đơn vị, Bảo hiểm Hưu trí) và bảo hiểm sức khỏe là:",
+    "options": [
+      "400 tỷ đồng Việt Nam",
+      "750 tỷ đồng Việt Nam",
+      "1.000 tỷ đồng Việt Nam",
+      "1.300 tỷ đồng Việt Nam"
+    ],
+    "answer": 3
+  },
+  {
+    "id": 4,
+    "question": "Khi giao kết hợp đồng bảo hiểm, doanh nghiệp bảo hiểm có quyền và nghĩa vụ:",
+    "options": [
+      "Có quyền yêu cầu bên mua bảo hiểm cung cấp đầy đủ, trung thực mọi thông tin có liên quan đến việc giao kết hợp đồng bảo hiểm.",
+      "Có quyền thu phí bảo hiểm theo thỏa thuận trong hợp đồng bảo hiểm.",
+      "Có nghĩa vụ giải thích rõ ràng, đầy đủ cho bên mua bảo hiểm về quyền lợi bảo hiểm, điều khoản loại trừ trách nhiệm bảo hiểm, quyền và nghĩa vụ của bên mua bảo hiểm khi giao kết hợp đồng bảo hiểm.",
+      "A, B, C đúng."
+    ],
+    "answer": 3
+  },
+  {
+    "id": 5,
+    "question": "Theo Luật Kinh doanh bảo hiểm, trong trường hợp đại lý bảo hiểm vi phạm hợp đồng đại lý bảo hiểm, gây thiệt hại đến quyền, lợi ích hợp pháp của người được bảo hiểm thì:",
+    "options": [
+      "Doanh nghiệp bảo hiểm vẫn phải chịu trách nhiệm thực hiện các nghĩa vụ theo thỏa thuận trong hợp đồng bảo hiểm do đại lý bảo hiểm thu xếp giao kết",
+      "Hợp đồng đại lý bảo hiểm tự động chấm dứt",
+      "Đại lý bảo hiểm phải bồi hoàn cho doanh nghiệp bảo hiểm các khoản tiền mà doanh nghiệp bảo hiểm đã bồi thường cho người được bảo hiểm, bên mua bảo hiểm",
+      "A, C đúng"
+    ],
+    "answer": 3
+  },
+  {
+    "id": 6,
+    "question": "Theo Luật Kinh doanh bảo hiểm, trong hợp đồng bảo hiểm nhân thọ, doanh nghiệp bảo hiểm không phải bồi thường, trả tiền bảo hiểm trong các trường hợp nào sau đây:",
+    "options": [
+      "Người được bảo hiểm chết do tự tử trong thời hạn 02 năm kể từ ngày nộp khoản phí bảo hiểm đầu tiên hoặc kể từ ngày hợp đồng bảo hiểm khôi phục hiệu lực.",
+      "Người được bảo hiểm chết do tự tử trong thời hạn 03 năm kể từ ngày nộp khoản phí bảo hiểm đầu tiên hoặc kể từ ngày hợp đồng bảo hiểm khôi phục hiệu lực.",
+      "Người được bảo hiểm chết do tự tử trong thời hạn 04 năm kể từ ngày nộp khoản phí bảo hiểm đầu tiên hoặc kể từ ngày hợp đồng bảo hiểm khôi phục hiệu lực."
+    ],
+    "answer": 0
+  },
+  {
+    "id": 7,
+    "question": "Luật kinh doanh bảo hiểm phân loại hợp đồng bảo hiểm theo:",
+    "options": [
+      "Hình thức bảo hiểm.",
+      "Đối tượng bảo hiểm.",
+      "Số tiền bảo hiểm.",
+      "Thời hạn bảo hiểm."
+    ],
+    "answer": 1
+  },
+  {
+    "id": 8,
+    "question": "Theo Luật Kinh doanh bảo hiểm, tổ chức, cá nhân tại Việt Nam có nhu cầu tham gia bảo hiểm (trừ trường hợp sử dụng dịch vụ bảo hiểm qua biên giới theo điều ước Quốc tế mà nước CHXHCN Việt Nam là thành viên) thì phương án nào sau đây đúng nhất:",
+    "options": [
+      "Được tham gia bảo hiểm tại doanh nghiệp bảo hiểm được cấp giấy phép thành lập và hoạt động tại Việt Nam.",
+      "Được tham gia bảo hiểm tại chi nhánh doanh nghiệp bảo hiểm phi nhân thọ nước ngoài được cấp giấy phép thành lập và hoạt động tại Việt Nam.",
+      "Được tham gia bảo hiểm tại tổ chức tương hỗ cung cấp bảo hiểm vi mô được cấp giấy phép thành lập và hoạt động tại Việt Nam",
+      "A, B, C đúng."
+    ],
+    "answer": 3
+  },
+  {
+    "id": 9,
+    "question": "Hợp đồng bảo hiểm nhân thọ cá nhân là:",
+    "options": [
+      "Hợp đồng bảo hiểm đóng, trong đó quy tắc, điều khoản được doanh nghiệp bảo hiểm soạn thảo sẵn.",
+      "Hợp đồng bảo hiểm mở, trong đó khách hàng có thể thỏa thận với doanh nghiệp bảo hiểm về quy tắc, điều khoản."
+    ],
+    "answer": 0
+  },
+  {
+    "id": 10,
+    "question": "Theo Luật Kinh doanh bảo hiểm, chọn phương án sai về người thụ hưởng:",
+    "options": [
+      "Người thụ hưởng là tổ chức, cá nhân được bên mua bảo hiểm chỉ định để nhận tiền bảo hiểm theo thỏa thuận trong hợp đồng bảo hiểm.",
+      "Người thụ hưởng là tổ chức, cá nhân được người được bảo hiểm chỉ định để nhận tiền bảo hiểm theo thỏa thuận trong hợp đồng bảo hiểm.",
+      "Người thụ hưởng là tổ chức, cá nhân được doanh nghiệp bảo hiểm chỉ định để nhận tiền bảo hiểm theo thỏa thuận trong hợp đồng bảo hiểm.",
+      "A, B đúng."
+    ],
+    "answer": 2
+  },
+  {
+    "id": 11,
+    "question": "Trong bảo hiểm nhân thọ, việc chứng nhận bị liệt hoàn toàn và không thể phục hồi chức năng của các bộ phận có thể được thực hiện:",
+    "options": [
+      "Ngay sau khi sự kiện bảo hiểm",
+      "Sau khi kết thúc việc điều trị",
+      "Không sớm hơn 180 ngày kể từ ngày xảy ra sự kiện bảo hiểm",
+      "A, B đúng"
+    ],
+    "answer": 2
+  },
+  {
+    "id": 12,
+    "question": "Đâu là đặc điểm của sản phẩm bảo hiểm trọn đời đóng phí vô thời hạn/liên tục:",
+    "options": [
+      "Phí bảo hiểm được đóng đến khi người được bảo hiểm tử vong.",
+      "Phí bảo hiểm được đóng đến khi NĐBH nghỉ hưu",
+      "Phí bảo hiểm được đóng trong một thời hạn nhất định.",
+      "Phí bảo hiểm cao hơn các sản phẩm bảo hiểm trọn đời có hình thức đóng phí khác."
+    ],
+    "answer": 0
+  },
+  {
+    "id": 13,
+    "question": "Chọn phương án đúng nhất về đặc trưng pháp lý của hợp đồng bảo hiểm:",
+    "options": [
+      "Hợp đồng bảo hiểm là hợp đồng song vụ, theo đó mỗi bên trong hợp đồng đều có nghĩa vụ đối với nhau.",
+      "Hợp đồng bảo hiểm là hợp đồng theo mẫu do doanh nghiệp bảo hiểm đưa ra.",
+      "Hợp đồng bảo hiểm là sự thoả thuận giữa bên mua bảo hiểm và doanh nghiệp bảo hiểm, theo đó bên mua bảo hiểm phải đóng phí bảo hiểm, doanh nghiệp bảo hiểm phải bồi thường, trả tiền bảo hiểm theo thỏa thuận trong hợp đồng.",
+      "A, C đúng.",
+      "A, B, C đúng."
+    ],
+    "answer": 4
+  },
+  {
+    "id": 14,
+    "question": "Chọn phương án đúng về thương tật toàn bộ vĩnh viễn:",
+    "options": [
+      "Người được bảo hiểm bị mất, liệt hoàn toàn và không thể phục hồi chức năng của một tay và một chân.",
+      "Người được bảo hiểm bị mất, liệt hoàn toàn và không thể phục hồi chức năng của một tay hoặc một chân.",
+      "Người được bảo hiểm bị thương tật từ 81% trở lên.",
+      "A, C đúng."
+    ],
+    "answer": 3
+  },
+  {
+    "id": 15,
+    "question": "Theo Luật Kinh doanh bảo hiểm, đại lý bảo hiểm có các nghĩa vụ nào sau đây:",
+    "options": [
+      "Hưởng hoa hồng đại lý bảo hiểm, thưởng, hỗ trợ đại lý bảo hiểm",
+      "Cung cấp thông tin khách hàng cho bên thứ ba mà không cần sự chấp thuận của khách hàng",
+      "Không được tự ý kê khai thông tin cho bên mua bảo hiểm khi chưa có sự đồng ý của bên mua bảo hiểm..",
+      "A, B, C sai"
+    ],
+    "answer": 2
+  },
+  {
+    "id": 16,
+    "question": "Theo Luật Kinh doanh bảo hiểm, phát biểu nào sau đây đúng:",
+    "options": [
+      "Luật kinh doanh bảo hiểm không áp dụng đối với bảo hiểm xã hội, bảo hiểm y tế, bảo hiểm tiền gửi và các loại bảo hiểm khác do Nhà nước thực hiện không mang tính kinh doanh.",
+      "Các bên tham gia bảo hiểm không được thỏa thuận áp dụng tập quán quốc tế trong mọi trường hợp.",
+      "A, B đúng",
+      "A, B sai"
+    ],
+    "answer": 0
+  },
+  {
+    "id": 17,
+    "question": "Theo quy định của luật kinh doanh bảo hiểm, các sản phẩm thuộc nghiệp vụ bảo hiểm nhân thọ phải được:",
+    "options": [
+      "Bộ Tài chính chấp thuận phương pháp, cơ sở tính phí bảo hiểm.",
+      "Đăng ký quy tắc, điều khoản, biểu phí với Bộ Tài chính.",
+      "Hiệp hội Bảo hiểm Việt Nam phê chuẩn quy tắc, điều khoản, biểu phí.",
+      "Đăng ký quy tắc, điều khoản, biểu phí với Hiệp hội Bảo hiểm Việt Nam."
+    ],
+    "answer": 0
+  },
+  {
+    "id": 18,
+    "question": "\"Ông A tham gia sản phẩm bảo hiểm sức khỏe có số tiền bảo hiểm là 600 triệu đồng, quyền lợi trợ cấp nằm viện là 0,1% (STBH 600k/ngày). Thời hạn hợp đồng từ 01/01/2021 đến 31/12/2021. Giới hạn số ngày nằm viện tối đa trong 1 năm của ông A là 100 ngày. Ngày 30/10/2021, Ông A bị ốm phải nằm viện điều trị 20 ngày. Trường hợp này, DNBH sẽ chi trả cho ông A quyền lợi trợ cấp nằm viện là bao nhiêu? Biết rằng, DNBH đã chi trả cho quyền lợi trợ cấp nằm viện trước đây của ông A là 50 triệu đồng.\"",
+    "options": [
+      "10 triệu",
+      "12 triệu",
+      "Không chi trả",
+      "06 triệu"
+    ],
+    "answer": 0
+  },
+  {
+    "id": 19,
+    "question": "Doanh nghiệp bảo hiểm được quyền đơn phương chấm dứt thực hiện hợp đồng bảo hiểm trong các trường hợp nào sau đây:",
+    "options": [
+      "Bên mua bảo hiểm không đóng phí bảo hiểm hoặc không đóng đủ phí sau thời gian gia hạn đóng phí",
+      "Bên mua bảo hiểm không chấp thuận mức phí bảo hiểm tăng lên do có sự thay đổi các yếu tố làm cơ sở tính phí bảo hiểm",
+      "Bên mua bảo hiểm là người chưa thành niên",
+      "A, B đúng"
+    ],
+    "answer": 3
+  },
+  {
+    "id": 20,
+    "question": "Theo Luật Kinh doanh bảo hiểm, phát biểu nào sau đây là đúng nhất về đồng bảo hiểm:",
+    "options": [
+      "Các doanh nghiệp bảo hiểm có thể đồng bảo hiểm trên cơ sở cùng thống nhất giao kết với bên mua bảo hiểm trên một hợp đồng bảo hiểm.",
+      "Các doanh nghiệp bảo hiểm, chi nhánh doanh nghiệp bảo hiểm phi nhân thọ nước ngoài nhận phí bảo hiểm.",
+      "Các doanh nghiệp bảo hiểm bồi thường, trả tiền bảo hiểm theo tỷ lệ đã thỏa thuận trong hợp đồng bảo hiểm.",
+      "A, B, C đúng."
+    ],
+    "answer": 3
+  },
+  {
+    "id": 21,
+    "question": "Chọn phương án sai về các bên trong hợp đồng bảo hiểm:",
+    "options": [
+      "Bên mua bảo hiểm.",
+      "Doanh nghiệp bảo hiểm.",
+      "Người được bảo hiểm.",
+      "Môi giới bảo hiểm."
+    ],
+    "answer": 3
+  },
+  {
+    "id": 22,
+    "question": "Trong bảo hiểm sức khỏe, ngoài các nội dung của hợp đồng bảo hiểm theo quy định, hợp đồng bảo hiểm nhóm phải có các nội dung nào sau đây:",
+    "options": [
+      "Điều kiện tham gia bảo hiểm đối với người được bảo hiểm.",
+      "Điều kiện, thủ tục chuyển đổi thành hợp đồng bảo hiểm cá nhân.",
+      "Điều kiện, thủ tục chuyển đổi thành hợp đồng bảo hiểm nhóm khác.",
+      "A, B đúng",
+      "A, B, C đúng"
+    ],
+    "answer": 3
+  },
+  {
+    "id": 23,
+    "question": "Chọn phương án đúng nhất: Theo Luật Kinh doanh bảo hiểm, hình thức tổ chức hoạt động của doanh nghiệp bảo hiểm, doanh nghiệp tái bảo hiểm là:",
+    "options": [
+      "Công ty cổ phần.",
+      "Công ty trách nhiệm hữu hạn.",
+      "Doanh nghiệp tư nhân.",
+      "A, B đúng."
+    ],
+    "answer": 3
+  },
+  {
+    "id": 24,
+    "question": "Chọn phương án đúng nhất: bảo hiểm sức khỏe có thể bảo hiểm cho các rủi ro nào sau đây?",
+    "options": [
+      "Tai nạn.",
+      "Ốm đau, bệnh tật.",
+      "Thai sản.",
+      "A, B đúng.",
+      "A, B, C đúng."
+    ],
+    "answer": 4
+  },
+  {
+    "id": 25,
+    "question": "Theo Luật Kinh doanh bảo hiểm, doanh nghiệp bảo hiểm có nghĩa vụ nào sau đây trong hoạt động đại lý bảo hiểm:",
+    "options": [
+      "Kiểm tra, giám sát việc thực hiện hợp đồng đại lý bảo hiểm, đánh giá chất lượng tư vấn, giới thiệu sản phẩm bảo hiểm của đại lý bảo hiểm và nhân viên trong tổ chức hoạt động đại lý bảo hiểm",
+      "Trường hợp đại lý bảo hiểm vi phạm hợp đồng đại lý bảo hiểm gây thiệt hại đến quyền, lợi ích hợp pháp của bên mua bảo hiểm thì doanh nghiệp bảo hiểm vẫn phải chịu trách nhiệm thực hiện các nghĩa vụ theo thỏa thuận trong hợp đồng bảo hiểm do đại lý bảo hiểm thu xếp giao kết",
+      "A, B đúng"
+    ],
+    "answer": 1
+  },
+  {
+    "id": 26,
+    "question": "Chi phí nào sau đây được coi là chi phí y tế hợp lý, hợp lệ có thể được các doanh nghiệp bảo hiểm chi trả trong bảo hiểm sức khỏe?",
+    "options": [
+      "Chi phí mua các thực phẩm chức năng hỗ trợ điều trị theo chỉ định của bác sỹ.",
+      "Chi phí phẫu thuật thẩm mĩ.",
+      "Chi phí phẫu thuật nội trú do ốm đau, bệnh tật."
+    ],
+    "answer": 2
+  },
+  {
+    "id": 27,
+    "question": "“Bảo hiểm hưu trí là nghiệp vụ bảo hiểm cho trường hợp _________đạt đến độ tuổi xác định được DNBH phải trả tiền BH theo thỏa thuận trong HĐBH”:",
+    "options": [
+      "Bên mua bảo hiểm (không đồng thời là người được bảo hiểm)",
+      "Người thụ hưởng (không đồng thời là người được bảo hiểm)",
+      "Người được bảo hiểm",
+      "Cả A, C đều đúng"
+    ],
+    "answer": 2
+  },
+  {
+    "id": 28,
+    "question": "Ông A là người được bảo hiểm của hợp đồng bảo hiểm sức khỏe với quyền lợi bảo hiểm thương tật toàn bộ vĩnh viễn do tai nạn, khi tham gia giao thông do hành vi cố ý vi phạm của ông B, ông A bị tai nạn dẫn đến thương tật toàn bộ vĩnh viễn. Trong trường hợp này, doanh nghiệp bảo hiểm sẽ giải quyết như thế nào? (Ông B không phải là người thụ hưởng của hợp đồng bảo hiểm nói trên).",
+    "options": [
+      "Không chi trả.",
+      "Chi trả 100% số tiền bảo hiểm.",
+      "Chi trả 100% số tiền bảo hiểm và yêu cầu ông B bồi hoàn."
+    ],
+    "answer": 1
+  },
+  {
+    "id": 29,
+    "question": "Khách hàng đi nước ngoài thì hợp đồng bảo hiểm nhân thọ xử lý như thế nào?",
+    "options": [
+      "Nếu trong hợp đồng không ghi rõ phạm vi được bảo hiểm, khi NĐBH ra nước ngoài sẽ không được bảo hiểm",
+      "Những trường hợp NĐBH ra nước ngoài công tác ngắn hạn hoặc dài hạn vẫn đóng phí bảo hiểm đầy đủ và không xảy ra rủi ro, khi trở về Việt Nam hợp đồng tiếp tục có hiệu lực.",
+      "Hợp đồng kết thúc",
+      "A và B đúng"
+    ],
+    "answer": 3
+  },
+  {
+    "id": 30,
+    "question": "Theo Luật Kinh doanh bảo hiểm, anh A mua một sản phẩm bảo hiểm nhân thọ tặng cháu B là con người bạn thân nhân dịp sinh nhật, doanh nghiệp bảo hiểm sẽ:",
+    "options": [
+      "Chấp thuận bảo hiểm với điều kiện tăng phí.",
+      "Không chấp thuận bảo hiểm vì anh A không có quyền lợi có thể được bảo hiểm với cháu B.",
+      "Chấp thuận bảo hiểm with điều kiện anh A đủ điều kiện tài chính đóng phí.",
+      "Chấp thuận bảo hiểm với điều kiện người thụ hưởng phải có quyền lợi có thể được bảo hiểm với anh A."
+    ],
+    "answer": 1
+  },
+  {
+    "id": 31,
+    "question": "Chọn phương án đúng về quyền và nghĩa vụ của doanh nghiệp bảo hiểm đối với hợp đồng bảo hiểm:",
+    "options": [
+      "DNBH phải kiểm tra, lưu trữ và bảo mật các tài liệu liên quan tới quá trình tư vấn của đại lý bảo hiểm hoặc nhân viên cho khách hàng trong thời gian ít nhất 5 năm kể từ ngày hợp đồng bảo hiểm do đại lý bảo hiểm đó hoặc nhân viên trong tổ chức đó thực hiện có hiệu lực.",
+      "DNBH phải kiểm tra, lưu trữ và bảo mật các tài liệu liên quan tới quá trình tư vấn của đại lý bảo hiểm hoặc nhân viên cho khách hàng trong thời gian ít nhất 3 năm kể từ ngày hợp đồng bảo hiểm do đại lý bảo hiểm đó hoặc nhân viên trong tổ chức đó thực hiện có hiệu lực.",
+      "DNBH phải kiểm tra, lưu trữ và bảo mật các tài liệu liên quan tới quá trình tư vấn của đại lý bảo hiểm hoặc nhân viên cho khách hàng trong thời gian ít nhất 1 năm kể từ ngày hợp đồng bảo hiểm do đại lý bảo hiểm đó hoặc nhân viên trong tổ chức đó thực hiện có hiệu lực.",
+      "DNBH không cần phải kiểm tra, lưu trữ và bảo mật các tài liệu liên quan tới quá trình tư vấn của đại lý bảo hiểm hoặc nhân viên cho khách hàng."
+    ],
+    "answer": 0
+  },
+  {
+    "id": 32,
+    "question": "Theo Luật Kinh doanh bảo hiểm, trường hợp người được bảo hiểm hoặc người thụ hưởng chứng minh được rằng không biết thời điểm xảy ra sự kiện bảo hiểm thì thời hạn nộp hồ sơ yêu cầu bồi thường, trả tiền bảo hiểm là:",
+    "options": [
+      "01 năm kể từ ngày xảy ra sự kiện bảo hiểm.",
+      "02 năm kể từ ngày xảy ra sự kiện bảo hiểm.",
+      "01 năm tính từ ngày người được bảo hiểm hoặc người thụ hưởng biết việc xảy ra sự kiện bảo hiểm đó.",
+      "02 năm tính từ ngày người được bảo hiểm hoặc người thụ hưởng biết việc xảy ra sự kiện bảo hiểm đó."
+    ],
+    "answer": 2
+  },
+  {
+    "id": 33,
+    "question": "Theo Luật Kinh doanh bảo hiểm, bên mua bảo hiểm là:",
+    "options": [
+      "Tổ chức, cá nhân giao kết hợp đồng bảo hiểm với doanh nghiệp bảo hiểm và đóng phí bảo hiểm.",
+      "Tổ chức, cá nhân giao kết hợp đồng bảo hiểm với đại lý bảo hiểm và đóng phí bảo hiểm.",
+      "Tổ chức, cá nhân giao kết hợp đồng bảo hiểm với doanh nghiệp môi giới bảo hiểm và đóng phí bảo hiểm.",
+      "Tổ chức, cá nhân giao kết hợp đồng bảo hiểm với doanh nghiệp tái bảo hiểm và đóng phí bảo hiểm."
+    ],
+    "answer": 0
+  },
+  {
+    "id": 34,
+    "question": "Chọn một phương án đúng về đặc thù của nghiệp vụ bảo hiểm hỗn hợp:",
+    "options": [
+      "Là nghiệp vụ bảo hiểm kết hợp bảo hiểm sinh kỳ và bảo hiểm tử kỳ.",
+      "Doanh nghiệp bảo hiểm chi trả tiền bảo hiểm cả khi người được bảo hiểm còn sống đến hết thời hạn bảo hiểm hoặc tử vong trong thời hạn bảo hiểm.",
+      "Là nghiệp vụ bảo hiểm chỉ có yếu tố bảo vệ.",
+      "A, B đúng."
+    ],
+    "answer": 3
+  },
+  {
+    "id": 35,
+    "question": "Quyền lợi miễn thu phí trong hợp đồng bảo hiểm nhân thọ là quyền lợi bảo hiểm, theo đó:",
+    "options": [
+      "Doanh nghiệp bảo hiểm miễn toàn bộ nghĩa vụ nộp phí còn lại của hợp đồng bảo hiểm cho bên mua bảo hiểm khi sự kiện bảo hiểm xảy ra.",
+      "Trong thời gian miễn thu phí, hợp đồng bảo hiểm vẫn có hiệu lực và bên mua bảo hiểm vẫn được hưởng các quyền lợi bảo hiểm theo đúng thỏa thuận tại hợp đồng bảo hiểm.",
+      "Doanh nghiệp bảo hiểm miễn một phần nghĩa vụ nộp phí còn lại của hợp đồng bảo hiểm cho bên mua bảo hiểm khi sự kiện bảo hiểm xảy ra.",
+      "A, B đúng."
+    ],
+    "answer": 3
+  },
+  {
+    "id": 36,
+    "question": "Theo Luật Kinh doanh bảo hiểm, trường hợp doanh nghiệp bảo hiểm cố ý không thực hiện nghĩa vụ cung cấp thông tin hoặc cung cấp thông tin sai sự thật nhằm giao kết hợp đồng bảo hiểm thì:",
+    "options": [
+      "Bên mua bảo hiểm có quyền hủy bỏ hợp đồng bảo hiểm; Doanh nghiệp bảo hiểm không phải bồi thường thiệt hại phát sinh cho bên mua bảo hiểm do cung cấp thông tin sai sự thật.",
+      "Bên mua bảo hiểm có quyền hủy bỏ hợp đồng bảo hiểm; Doanh nghiệp bảo hiểm phải bồi thường thiệt hại phát sinh cho bên mua bảo hiểm do cung cấp thông tin sai sự thật",
+      "Bên mua bảo hiểm không có quyền hủy bỏ hợp đồng bảo hiểm; Doanh nghiệp bảo hiểm phải bồi thường thiệt hại phát sinh cho bên mua bảo hiểm do cung cấp thông tin sai sự thật",
+      "Bên mua bảo hiểm không có quyền hủy bỏ hợp đồng bảo hiểm; Doanh nghiệp bảo hiểm không phải bồi thường thiệt hại phát sinh cho bên mua bảo hiểm do cung cấp thông tin sai sự thật"
+    ],
+    "answer": 1
+  },
+  {
+    "id": 37,
+    "question": "Theo Luật Kinh doanh bảo hiểm, đại lý bảo hiểm có thể lựa chọn và ký kết hợp đồng đại lý bảo hiểm với:",
+    "options": [
+      "Tổ chức tương hỗ cung cấp bảo hiểm vi mô theo quy định của pháp luật..",
+      "Văn phòng đại diện doanh nghiệp bảo hiểm nước ngoài tại Việt Nam",
+      "Doanh nghiệp môi giới bảo hiểm",
+      "Chi nhánh doanh nghiệp bảo hiểm nhân thọ nước ngoài"
+    ],
+    "answer": 0
+  },
+  {
+    "id": 38,
+    "question": "Năm 2018, ông A mua bảo hiểm nhân thọ cho bản thân mình. Năm 2019, vì lý do tài chính khó khăn, ông A tự tử. Trường hợp này doanh nghiệp bảo hiểm sẽ:",
+    "options": [
+      "Phải bồi thường, trả tiền bảo hiểm theo thỏa thuận tại hợp đồng bảo hiểm.",
+      "Không phải bồi thường, trả tiền bảo hiểm."
+    ],
+    "answer": 1
+  },
+  {
+    "id": 39,
+    "question": "Theo Luật Kinh doanh bảo hiểm, hoạt động của doanh nghiệp bảo hiểm nhận một khoản phí tái bảo hiểm của doanh nghiệp bảo hiểm khác để cam kết bồi thường cho các trách nhiệm đã nhận bảo hiểm là:",
+    "options": [
+      "Kinh doanh bảo hiểm",
+      "Kinh doanh tái bảo hiểm",
+      "Nhượng tái bảo hiểm"
+    ],
+    "answer": 1
+  },
+  {
+    "id": 40,
+    "question": "Theo Luật Kinh doanh bảo hiểm, chọn phương án đúng nhất:",
+    "options": [
+      "Doanh nghiệp bảo hiểm được quyết định mức chi trả hoa hồng đại lý bảo hiểm",
+      "Doanh nghiệp bảo hiểm được quyết định mức chi trả hoa hồng đại lý bảo hiểm, thưởng, hỗ trợ đại lý bảo hiểm và quyền lợi khác trong hợp đồng đại lý bảo hiểm không vượt quá mức tối đa theo quy định của Bộ trưởng Bộ Tài chính",
+      "Doanh nghiệp bảo hiểm được quyết định mức chi trả thưởng, hỗ trợ đại lý bảo hiểm",
+      "Doanh nghiệp bảo hiểm được quyết định mức chi trả quyền lợi khác trong hợp đồng đại lý bảo hiểm"
+    ],
+    "answer": 1
+  }
+]
