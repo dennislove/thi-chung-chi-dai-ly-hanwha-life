@@ -4,8 +4,8 @@
   "description": "Ứng dụng luyện thi & thi thử chứng chỉ đại lý bảo hiểm nhân thọ cơ bản Hanwha Life.",
   "icons": [
     {
-      "src": "/logo.svg",
-      "type": "image/svg+xml",
+      "src": "/logo.png",
+      "type": "image/png",
       "sizes": "512x512 192x192 any",
       "purpose": "any maskable"
     }

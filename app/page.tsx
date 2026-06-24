@@ -347,7 +347,7 @@ export default function Home() {
                 justifyContent: 'center',
                 boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
               }}>
-                <img src="/logo.svg" alt="Hanwha Logo" style={{ height: '24px', objectFit: 'contain' }} />
+                <img src="/logo.png" alt="Hanwha Logo" style={{ height: '36px', objectFit: 'contain' }} />
               </div>
             </div>
 
@@ -366,14 +366,16 @@ export default function Home() {
               </p>
               <h2 style={{
                 fontFamily: 'var(--font-title)',
-                fontSize: 'clamp(1.2rem, 4.5vw, 2.25rem)',
+                fontSize: 'clamp(1rem, 3vw, 1.5rem)',
                 fontWeight: 850,
                 textTransform: 'uppercase',
                 letterSpacing: '1px',
                 lineHeight: 1.2,
                 textShadow: '0 2px 4px rgba(0,0,0,0.15)'
               }}>
-                BỘ PHẬN HUẤN LUYỆN - KÊNH ĐẠI LÝ HANWHA LIFE VIỆT NAM
+                BỘ PHẬN HUẤN LUYỆN - KÊNH ĐẠI LÝ
+                <br />
+                HANWHA LIFE VIỆT NAM
               </h2>
             </div>
           </div>
