@@ -206,6 +206,10 @@ export default function Home() {
 
   // Select Option Handler
   const handleSelectOption = (qIdx: number, optIdx: number) => {
+    // Under Practice Mode, candidate cannot change answer once selected
+    if (mode === 'luyen-thi' && userAnswers[qIdx] !== undefined) {
+      return;
+    }
     setUserAnswers(prev => ({ ...prev, [qIdx]: optIdx }));
     setIsQuestionAnswered(prev => ({ ...prev, [qIdx]: true }));
   };
@@ -216,16 +220,11 @@ export default function Home() {
     if (currentQuestionIndex === idx) base += ' active';
 
     if (userAnswers[idx] !== undefined) {
-      if (mode === 'luyen-thi') {
-        const isCorrect = userAnswers[idx] === currentExamQuestions[idx].correctAnswer;
-        base += isCorrect ? ' correct' : ' incorrect';
-      } else {
-        base += ' answered-mock';
-      }
+      base += ' answered-mock'; // Green cell for all answered questions in both modes
     } else if (viewedQuestions[idx]) {
-      base += ' viewed-unanswered';
+      base += ' viewed-unanswered'; // Red cell for viewed but unanswered questions
     } else {
-      base += ' unviewed';
+      base += ' unviewed'; // Gray cell for unviewed questions
     }
     return base;
   };
@@ -478,7 +477,7 @@ export default function Home() {
                 </div>
 
                 <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '16px', textAlign: 'left', borderLeft: '3px solid var(--primary-color)', paddingLeft: '8px' }}>
-                  (*) Đăng nhập bằng tài khoản/mật khẩu: <strong>88888888</strong>.
+                  (*) Đăng nhập bằng tài khoản/mật khẩu: <strong>88888888 (8 số 8)</strong>.
                 </p>
 
                 <div className="auth-actions" style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginTop: '12px' }}>
@@ -651,7 +650,13 @@ export default function Home() {
                   </div>
                 </div>
 
-                <div className="options-list" style={{ marginTop: '12px' }}>
+                <div 
+                  className="options-list" 
+                  style={{ 
+                    marginTop: '12px',
+                    pointerEvents: mode === 'luyen-thi' && userAnswers[currentQuestionIndex] !== undefined ? 'none' : 'auto'
+                  }}
+                >
                   {currentExamQuestions[currentQuestionIndex].options.map((opt, optIdx) => {
                     const prefix = String.fromCharCode(65 + optIdx);
                     let classNames = 'option-item';
@@ -684,15 +689,14 @@ export default function Home() {
                           type="radio"
                           checked={selectedIdx === optIdx}
                           readOnly
-                          className={`radio-input-custom ${
-                            mode === 'luyen-thi' && isAnswered
+                          className={`radio-input-custom ${mode === 'luyen-thi' && isAnswered
                               ? optIdx === currentExamQuestions[currentQuestionIndex].correctAnswer
                                 ? 'radio-correct'
                                 : selectedIdx === optIdx
-                                ? 'radio-incorrect'
-                                : ''
+                                  ? 'radio-incorrect'
+                                  : ''
                               : ''
-                          }`}
+                            }`}
                         />
                         <div className="option-text">
                           <strong>{prefix}/</strong> {opt}
@@ -826,11 +830,11 @@ export default function Home() {
               </button>
             </div>
 
-            {/* BTC Question Grid Overview (for Mock Exam) */}
+            {/* TTT Question Grid Overview (for Mock Exam) */}
             {mode === 'thi-thu' && (
               <div className="result-grid-section" style={{ marginBottom: '32px', textAlign: 'left', background: 'var(--bg-body)', padding: '24px', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-color)' }}>
                 <h3 className="review-answers-title" style={{ borderBottom: '2px solid var(--border-color)', paddingBottom: '8px', marginBottom: '16px' }}>
-                  Bản Đồ Kết Quả Bài Thi (BTC)
+                  Bản Đồ Kết Quả Bài Thi (TTT)
                 </h3>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(10, 1fr)', gap: '8px', margin: '16px 0' }}>
                   {currentExamQuestions.map((q, idx) => {
@@ -880,14 +884,14 @@ export default function Home() {
               </div>
             )}
 
-            {/* BTC Styled Answer Sheet Table (for Mock Exam) */}
+            {/* TTT Styled Answer Sheet Table (for Mock Exam) */}
             {mode === 'thi-thu' && (
               <div className="result-table-section" style={{ marginBottom: '32px', textAlign: 'left', background: 'white', padding: '24px', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-color)', boxShadow: 'var(--shadow-sm)' }}>
                 <h3 className="review-answers-title" style={{ borderBottom: '2px solid var(--border-color)', paddingBottom: '8px', marginBottom: '16px' }}>
-                  Bảng Đáp Án Chi Tiết (Mô phỏng BTC)
+                  Bảng Đáp Án Chi Tiết (Mô phỏng TTT)
                 </h3>
                 <div style={{ overflowX: 'auto' }}>
-                  <table className="btc-result-table" style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.9rem' }}>
+                  <table className="TTT-result-table" style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.9rem' }}>
                     <thead>
                       <tr style={{ background: '#f8fafc', borderBottom: '2px solid #cbd5e1' }}>
                         <th style={{ padding: '12px 10px', textAlign: 'center', border: '1px solid #e2e8f0', fontWeight: 700 }}>STT</th>
@@ -1017,8 +1021,8 @@ export default function Home() {
             <div className="modal-desc" style={{ color: 'var(--text-main)', fontSize: '0.9rem', maxHeight: '300px', overflowY: 'auto', paddingRight: '8px', lineHeight: '1.6' }}>
               <p style={{ marginBottom: '8px' }}><strong>1. Chọn tính năng:</strong></p>
               <ul style={{ marginLeft: '20px', marginBottom: '12px' }}>
-                <li><strong>Luyện Thi:</strong> Phù hợp khi ôn tập tự luyện, không giới hạn thời gian làm bài, được đổi đáp án tự do.</li>
-                <li><strong>Thi Thử:</strong> Mô phỏng phòng thi thật với thời gian đếm ngược 60 phút, tự động nộp bài khi hết giờ.</li>
+                <li><strong>Luyện Thi:</strong> Phù hợp khi ôn tập tự luyện, không giới hạn thời gian làm bài. Chọn đáp án biết ngay kết quả đúng/sai để đọc và ghi nhớ ngay.</li>
+                <li><strong>Thi Thử:</strong> Mô phỏng phòng thi thật với thời gian đếm ngược 60 phút, được đổi đáp án trong quá trình làm bài thi, tự động nộp bài khi hết giờ.</li>
               </ul>
 
               <p style={{ marginBottom: '8px' }}><strong>2. Quy chế đánh giá:</strong></p>
@@ -1027,11 +1031,11 @@ export default function Home() {
                 <li>Bạn cần trả lời đúng từ <strong>35/40 câu</strong> trở lên để được hệ thống đánh giá <strong>ĐẠT YÊU CẦU</strong>.</li>
               </ul>
 
-              <p style={{ marginBottom: '8px' }}><strong>3. Các phím màu sắc trên Bản đồ câu hỏi (BTC):</strong></p>
+              <p style={{ marginBottom: '8px' }}><strong>3. Các phím màu sắc trên Bản đồ câu hỏi (TTT):</strong></p>
               <ul style={{ marginLeft: '20px', marginBottom: '12px' }}>
                 <li>Ô màu <strong>Xám nhạt:</strong> Câu hỏi chưa xem qua.</li>
-                <li>Ô màu <strong>Vàng nhạt:</strong> Câu hỏi đã xem nhưng chưa chọn đáp án trả lời.</li>
-                <li>Ô màu <strong>Xám sẫm:</strong> Câu hỏi đã làm/chọn đáp án.</li>
+                <li>Ô màu <strong>Đỏ:</strong> Câu hỏi đã xem nhưng chưa chọn đáp án trả lời.</li>
+                <li>Ô màu <strong>Xanh lá cây:</strong> Câu hỏi đã làm/chọn đáp án.</li>
                 <li>Ô có <strong>viền Cam nổi bật:</strong> Câu hỏi hiện tại bạn đang xem để làm bài.</li>
               </ul>
             </div>

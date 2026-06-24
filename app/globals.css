@@ -17,18 +17,18 @@
   --error-light: #fef2f2;
   --info-color: #3b82f6;
   --info-light: #eff6ff;
-  
+
   --font-title: var(--font-outfit), var(--font-inter), sans-serif;
   --font-body: var(--font-inter), sans-serif;
-  
+
   --radius-sm: 8px;
   --radius-md: 16px;
   --radius-lg: 24px;
-  
+
   --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
   --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.05);
   --shadow-lg: 0 20px 40px rgba(255, 102, 0, 0.08);
-  
+
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -68,7 +68,7 @@ body {
   width: 50vw;
   height: 50vw;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255,102,0,0.08) 0%, rgba(255,255,255,0) 70%);
+  background: radial-gradient(circle, rgba(255, 102, 0, 0.08) 0%, rgba(255, 255, 255, 0) 70%);
   filter: blur(50px);
 }
 
@@ -80,7 +80,7 @@ body {
   width: 40vw;
   height: 40vw;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255,102,0,0.04) 0%, rgba(255,255,255,0) 70%);
+  background: radial-gradient(circle, rgba(255, 102, 0, 0.04) 0%, rgba(255, 255, 255, 0) 70%);
   filter: blur(40px);
 }
 
@@ -568,9 +568,11 @@ header {
 }
 
 /* NO HOVER HIGHLIGHTS */
-.option-item:hover {
-  background-color: transparent;
-  border-color: transparent;
+.option-item:hover:not(.selected):not(.correct):not(.incorrect) {
+  background-color: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  outline: none !important;
 }
 
 .option-text {
@@ -628,6 +630,13 @@ header {
   accent-color: var(--error-color);
 }
 
+.option-item:focus,
+.radio-input-custom:focus,
+.radio-input-custom:hover {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
 /* Gray End Exam Button */
 .btn-ket-thuc {
   background-color: #f1f5f9;
@@ -660,8 +669,15 @@ header {
 }
 
 @keyframes slideDown {
-  from { opacity: 0; transform: translateY(-8px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .quiz-actions {
@@ -791,15 +807,15 @@ header {
   transform: scale(1.02);
 }
 
-/* BTC Result Table Styles */
-.btc-result-table {
+/* TTT Result Table Styles */
+.TTT-result-table {
   width: 100%;
   border-collapse: collapse;
   border-radius: var(--radius-sm);
   overflow: hidden;
 }
 
-.btc-result-table th {
+.TTT-result-table th {
   background-color: #f8fafc;
   color: #1e293b;
   font-weight: 700;
@@ -810,14 +826,14 @@ header {
   letter-spacing: 0.5px;
 }
 
-.btc-result-table td {
+.TTT-result-table td {
   padding: 12px 10px;
   border: 1px solid #cbd5e1;
   font-size: 0.9rem;
   transition: background-color 0.2s ease;
 }
 
-.btc-result-table tr:hover td {
+.TTT-result-table tr:hover td {
   background-color: rgba(241, 245, 249, 0.5);
 }
 
@@ -1089,8 +1105,15 @@ footer a:hover {
 }
 
 @keyframes confettiFall {
-  0% { transform: translateY(-50px) rotate(0deg); opacity: 1; }
-  100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+  0% {
+    transform: translateY(-50px) rotate(0deg);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
 }
 
 /* VIDI Landing Page Grid Layout */
@@ -1107,11 +1130,11 @@ footer a:hover {
   .landing-grid {
     grid-template-columns: 1fr !important;
   }
-  
+
   .vidi-portal-banner {
     padding: 80px 16px 30px !important;
   }
-  
+
   .vidi-banner-header {
     position: static !important;
     justify-content: center;
@@ -1154,7 +1177,7 @@ footer a:hover {
 .landing-card-icon {
   font-size: 3.5rem;
   margin: 16px 0;
-  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.05));
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.05));
   transition: transform 0.3s ease;
 }
 
