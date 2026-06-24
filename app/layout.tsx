@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Outfit } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
@@ -8,14 +8,8 @@ const inter = Inter({
   display: "swap",
 });
 
-const outfit = Outfit({
-  subsets: ["latin", "latin-ext"],
-  variable: "--font-outfit",
-  display: "swap",
-});
-
 export const metadata: Metadata = {
-  title: "Luyện Thi Chứng Chỉ Bảo Hiểm Nhân Thọ Cơ Bản | Hanwha Life Việt Nam",
+  title: "BỘ PHẬN HUẤN LUYỆN - KÊNH ĐẠI LÝ HANWHA LIFE VIỆT NAM",
   description: "Hệ thống ôn luyện thi thử trực tuyến chứng chỉ bảo hiểm nhân thọ cơ bản dành riêng cho đại lý Hanwha Life Việt Nam. Hỗ trợ chạy offline.",
 };
 
@@ -31,7 +25,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="vi" className={`${inter.variable} ${outfit.variable}`}>
+    <html lang="vi" className={`${inter.variable}`}>
       <head>
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />

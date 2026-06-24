@@ -18,7 +18,7 @@
   --info-color: #3b82f6;
   --info-light: #eff6ff;
 
-  --font-title: var(--font-outfit), var(--font-inter), sans-serif;
+  --font-title: var(--font-inter), sans-serif;
   --font-body: var(--font-inter), sans-serif;
 
   --radius-sm: 8px;

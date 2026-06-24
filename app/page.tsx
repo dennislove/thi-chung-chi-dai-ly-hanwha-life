@@ -296,52 +296,7 @@ export default function Home() {
 
   return (
     <div className="app-container">
-      {/* BRAND HEADER */}
-      {/* BRAND HEADER (VIDI STYLE IN ORANGE-WHITE) */}
-      <header style={{
-        background: 'rgba(255, 255, 255, 0.85)',
-        backdropFilter: 'blur(12px)',
-        WebkitBackdropFilter: 'blur(12px)',
-        border: '1px solid rgba(255, 102, 0, 0.15)',
-        borderRadius: 'var(--radius-md)',
-        padding: '16px 24px',
-        boxShadow: 'var(--shadow-sm)',
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        marginBottom: '24px'
-      }}>
-        <div className="logo-container" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <div className="vidi-logo-badge" style={{
-            background: 'var(--primary-color)',
-            border: '2px solid white',
-            borderRadius: '6px',
-            padding: '2px 8px',
-            fontWeight: 800,
-            fontSize: '1.1rem',
-            color: 'white',
-            fontFamily: 'var(--font-title)',
-            boxShadow: '0 2px 4px rgba(255, 102, 0, 0.2)'
-          }}>
-            VIDI
-          </div>
 
-        </div>
-        {screen !== 'auth' && (
-          <div className="user-badge" style={{
-            background: 'var(--primary-light)',
-            border: '1px solid rgba(255, 102, 0, 0.15)',
-            padding: '8px 16px',
-            borderRadius: 'var(--radius-sm)',
-            textAlign: 'right',
-            display: 'flex',
-            flexDirection: 'column'
-          }}>
-            <span className="user-badge-name" style={{ color: 'var(--primary-color)', fontWeight: 700, fontSize: '0.9rem' }}>{name}</span>
-            <span className="user-badge-code" style={{ color: 'var(--text-muted)', fontSize: '0.75rem' }}>Mã: {code || 'CHƯA CÓ'}</span>
-          </div>
-        )}
-      </header>
 
       {/* CONFETTI ANIMATION PANELS */}
       {confettiList.map(item => (
@@ -358,10 +313,10 @@ export default function Home() {
         />
       ))}
 
-      {/* SCREEN 1: LOGIN / SELECT MODE (VIDI PORTAL STYLE IN ORANGE-WHITE) */}
+
       {screen === 'auth' && (
         <main className="screen active" style={{ display: 'flex', flexDirection: 'column', gap: '24px', width: '100%' }}>
-          {/* Orange VIDI Portal Banner */}
+
           <div className="vidi-portal-banner" style={{
             background: 'linear-gradient(135deg, var(--primary-color) 0%, #ff8833 100%)',
             borderRadius: 'var(--radius-md)',
@@ -373,6 +328,7 @@ export default function Home() {
             overflow: 'hidden',
             border: '1px solid rgba(255, 255, 255, 0.1)'
           }}>
+
             {/* Corner Logo Badge */}
             <div style={{
               display: 'flex',
@@ -383,22 +339,15 @@ export default function Home() {
               left: '20px'
             }} className="vidi-banner-header">
               <div style={{
-                background: 'var(--primary-color)',
-                border: '2px solid white',
+                background: 'white',
                 borderRadius: '8px',
-                padding: '4px 12px',
-                fontWeight: 900,
-                fontSize: '1.25rem',
-                color: 'white',
+                padding: '6px 12px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
                 boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
               }}>
-                VIDI
-              </div>
-              <div style={{ textAlign: 'left', display: 'flex', flexDirection: 'column' }}>
-
-                <span style={{ fontSize: '0.65rem', color: 'rgba(255,255,255,0.85)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                  Viện Phát Triển Bảo Hiểm Việt Nam
-                </span>
+                <img src="/logo.svg" alt="Hanwha Logo" style={{ height: '24px', objectFit: 'contain' }} />
               </div>
             </div>
 
@@ -424,7 +373,7 @@ export default function Home() {
                 lineHeight: 1.2,
                 textShadow: '0 2px 4px rgba(0,0,0,0.15)'
               }}>
-                Thi Chứng Chỉ Đại Lý Bảo Hiểm
+                BỘ PHẬN HUẤN LUYỆN - KÊNH ĐẠI LÝ HANWHA LIFE VIỆT NAM
               </h2>
             </div>
           </div>
@@ -650,9 +599,9 @@ export default function Home() {
                   </div>
                 </div>
 
-                <div 
-                  className="options-list" 
-                  style={{ 
+                <div
+                  className="options-list"
+                  style={{
                     marginTop: '12px',
                     pointerEvents: mode === 'luyen-thi' && userAnswers[currentQuestionIndex] !== undefined ? 'none' : 'auto'
                   }}
@@ -690,12 +639,12 @@ export default function Home() {
                           checked={selectedIdx === optIdx}
                           readOnly
                           className={`radio-input-custom ${mode === 'luyen-thi' && isAnswered
-                              ? optIdx === currentExamQuestions[currentQuestionIndex].correctAnswer
-                                ? 'radio-correct'
-                                : selectedIdx === optIdx
-                                  ? 'radio-incorrect'
-                                  : ''
-                              : ''
+                            ? optIdx === currentExamQuestions[currentQuestionIndex].correctAnswer
+                              ? 'radio-correct'
+                              : selectedIdx === optIdx
+                                ? 'radio-incorrect'
+                                : ''
+                            : ''
                             }`}
                         />
                         <div className="option-text">
