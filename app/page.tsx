@@ -216,7 +216,12 @@ export default function Home() {
     if (currentQuestionIndex === idx) base += ' active';
 
     if (userAnswers[idx] !== undefined) {
-      base += ' answered-mock';
+      if (mode === 'luyen-thi') {
+        const isCorrect = userAnswers[idx] === currentExamQuestions[idx].correctAnswer;
+        base += isCorrect ? ' correct' : ' incorrect';
+      } else {
+        base += ' answered-mock';
+      }
     } else if (viewedQuestions[idx]) {
       base += ' viewed-unanswered';
     } else {
@@ -497,17 +502,7 @@ export default function Home() {
               </form>
             </div>
 
-            {/* Column 3: QUẢN LÝ THI */}
-            <div className="landing-card locked-card">
-              <h3 className="landing-card-title">QUẢN LÝ THI</h3>
-              <div className="landing-card-icon">🔒</div>
-              <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', fontWeight: 700, margin: '8px 0' }}>
-                DÀNH CHO HỘI ĐỒNG THI
-              </p>
-              <p className="landing-card-desc">
-                Khu vực dành cho giám thị coi thi, cán bộ kích hoạt đề thi và quản lý hội đồng chấm thi của Bộ Tài Chính.
-              </p>
-            </div>
+
           </div>
         </main>
       )}
@@ -596,54 +591,87 @@ export default function Home() {
       {/* SCREEN 3: EXAM PLAYING ROOM */}
       {screen === 'exam' && currentExamQuestions.length > 0 && (
         <section className="screen active">
-          {/* Back button and Exam Header */}
-          <div className="exam-nav-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', gap: '12px', flexWrap: 'wrap' }}>
-            <button
-              type="button"
-              className="btn btn-secondary"
-              style={{ padding: '8px 16px', fontSize: '0.85rem', fontWeight: 700 }}
-              onClick={() => {
-                const confirmed = window.confirm("Bạn có chắc chắn muốn thoát khỏi bài làm? Mọi tiến trình sẽ bị hủy bỏ.");
-                if (confirmed) {
-                  setScreen('dashboard');
-                }
-              }}
-            >
-              &larr; Thoát & Quay về chọn Đề / Chế độ
-            </button>
-            <span className="badge-mode-indicator" style={{
-              fontWeight: 700,
-              fontSize: '0.85rem',
-              color: 'var(--primary-color)',
-              background: 'var(--primary-light)',
-              padding: '6px 16px',
-              borderRadius: '20px',
-              border: '1px solid rgba(255, 102, 0, 0.2)'
-            }}>
-              Chế độ: {mode === 'luyen-thi' ? '📚 Luyện thi' : '⏱️ Thi thử'}
-            </span>
+          {/* Top Bar with legends and countdown timer */}
+          <div className="exam-top-bar" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', gap: '16px', flexWrap: 'wrap', background: 'white', padding: '16px', borderRadius: '8px', border: '1px solid var(--border-color)' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
+              <button
+                type="button"
+                className="btn btn-secondary"
+                style={{ padding: '6px 12px', fontSize: '0.8rem', fontWeight: 700 }}
+                onClick={() => {
+                  const confirmed = window.confirm("Bạn có chắc chắn muốn thoát khỏi bài làm? Mọi tiến trình sẽ bị hủy bỏ.");
+                  if (confirmed) {
+                    setScreen('dashboard');
+                  }
+                }}
+              >
+                &larr; Thoát
+              </button>
+              <span style={{ fontWeight: 700, color: 'var(--text-main)', fontSize: '0.9rem', marginLeft: '8px' }}>Chú ý:</span>
+              <span style={{ padding: '4px 10px', background: '#f8fafc', border: '1px solid #cbd5e1', color: '#1e293b', borderRadius: '4px', fontSize: '0.8rem' }}>Chưa xem</span>
+              <span style={{ padding: '4px 10px', background: '#008000', color: 'white', borderRadius: '4px', fontSize: '0.8rem', fontWeight: 600 }}>Đã trả lời</span>
+              <span style={{ padding: '4px 10px', background: '#ef4444', color: 'white', borderRadius: '4px', fontSize: '0.8rem', fontWeight: 600 }}>Đã xem chưa trả lời</span>
+            </div>
+
+            <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+              <span className="badge-mode-indicator" style={{
+                fontWeight: 700,
+                fontSize: '0.85rem',
+                color: 'var(--primary-color)',
+                background: 'var(--primary-light)',
+                padding: '6px 12px',
+                borderRadius: '4px',
+                border: '1px solid rgba(255, 102, 0, 0.2)'
+              }}>
+                Chế độ: {mode === 'luyen-thi' ? '📚 Luyện thi' : '⏱️ Thi thử'}
+              </span>
+              {mode === 'thi-thu' && (
+                <div style={{ textAlign: 'right', lineHeight: 1.2 }}>
+                  <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Thời gian còn lại:</div>
+                  <div style={{ fontSize: '1.25rem', fontWeight: 800, color: 'red' }}>
+                    {Math.floor(timeLeft / 3600)}:{String(Math.floor((timeLeft % 3600) / 60)).padStart(2, '0')}:{String(timeLeft % 60).padStart(2, '0')}
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
 
           <div className="test-layout">
             <div className="quiz-main">
-              <div className="quiz-card">
-                <div className="quiz-meta">
-                  CÂU HỎI {currentQuestionIndex + 1} / {currentExamQuestions.length}
+              <div className="quiz-card" style={{ border: '1px solid #a3b8cc', padding: '24px', background: 'white', borderRadius: '6px' }}>
+                <div className="question-block" style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                  <div style={{ fontSize: '1.2rem', fontWeight: 800, color: '#e65c00' }}>
+                    Câu {String(currentQuestionIndex + 1).padStart(2, '0')}
+                  </div>
+                  <div style={{ fontSize: '1.1rem', color: '#000000', lineHeight: '1.6', fontWeight: 500 }}>
+                    {currentExamQuestions[currentQuestionIndex].questionText}
+                  </div>
+                  <div style={{ fontSize: '1.2rem', fontWeight: 800, color: '#e65c00', marginTop: '16px' }}>
+                    Câu trả lời
+                  </div>
                 </div>
 
-                <div className="question-text">
-                  {currentExamQuestions[currentQuestionIndex].questionText}
-                </div>
-
-                <div className="options-list">
+                <div className="options-list" style={{ marginTop: '12px' }}>
                   {currentExamQuestions[currentQuestionIndex].options.map((opt, optIdx) => {
                     const prefix = String.fromCharCode(65 + optIdx);
                     let classNames = 'option-item';
 
                     const selectedIdx = userAnswers[currentQuestionIndex];
+                    const isAnswered = selectedIdx !== undefined;
 
                     if (selectedIdx === optIdx) {
                       classNames += ' selected';
+                    }
+
+                    if (mode === 'luyen-thi' && isAnswered) {
+                      const isCorrectOpt = optIdx === currentExamQuestions[currentQuestionIndex].correctAnswer;
+                      const isUserChoice = selectedIdx === optIdx;
+
+                      if (isCorrectOpt) {
+                        classNames += ' correct';
+                      } else if (isUserChoice) {
+                        classNames += ' incorrect';
+                      }
                     }
 
                     return (
@@ -652,19 +680,35 @@ export default function Home() {
                         className={classNames}
                         onClick={() => handleSelectOption(currentQuestionIndex, optIdx)}
                       >
-                        <div className="option-prefix">{prefix}</div>
-                        <div className="option-text">{opt}</div>
+                        <input
+                          type="radio"
+                          checked={selectedIdx === optIdx}
+                          readOnly
+                          className={`radio-input-custom ${
+                            mode === 'luyen-thi' && isAnswered
+                              ? optIdx === currentExamQuestions[currentQuestionIndex].correctAnswer
+                                ? 'radio-correct'
+                                : selectedIdx === optIdx
+                                ? 'radio-incorrect'
+                                : ''
+                              : ''
+                          }`}
+                        />
+                        <div className="option-text">
+                          <strong>{prefix}/</strong> {opt}
+                        </div>
                       </div>
                     );
                   })}
                 </div>
 
-                <div className="quiz-actions">
+                <div className="quiz-actions" style={{ marginTop: '24px', borderTop: '1px solid var(--border-color)', paddingTop: '16px' }}>
                   <button
                     type="button"
                     className="btn btn-secondary"
                     disabled={currentQuestionIndex === 0}
                     onClick={() => setCurrentQuestionIndex(prev => prev - 1)}
+                    style={{ padding: '8px 20px', fontSize: '0.9rem' }}
                   >
                     &larr; Câu trước
                   </button>
@@ -674,27 +718,29 @@ export default function Home() {
                       type="button"
                       className="btn btn-primary"
                       onClick={() => setCurrentQuestionIndex(prev => prev + 1)}
+                      style={{ padding: '8px 20px', fontSize: '0.9rem' }}
                     >
                       Câu tiếp &rarr;
                     </button>
                   )}
                 </div>
               </div>
+
+              {/* Center-aligned 'Kết thúc bài thi' button */}
+              <div style={{ display: 'flex', justifyContent: 'center', marginTop: '16px' }}>
+                <button
+                  type="button"
+                  className="btn-ket-thuc"
+                  onClick={() => handleSubmitExam(false)}
+                >
+                  Kết thúc bài thi
+                </button>
+              </div>
             </div>
 
             {/* SIDEBAR METRICS */}
             <div className="quiz-sidebar">
-              {mode === 'thi-thu' && (
-                <div className={`sidebar-card timer-container ${timeLeft < 300 ? 'timer-warning' : ''}`}>
-                  <div className="timer-icon">⏱️</div>
-                  <div className="timer-value">
-                    {String(Math.floor(timeLeft / 60)).padStart(2, '0')}:
-                    {String(timeLeft % 60).padStart(2, '0')}
-                  </div>
-                </div>
-              )}
-
-              <div className="sidebar-card">
+              <div className="sidebar-card" style={{ padding: '16px', background: 'white', border: '1px solid var(--border-color)' }}>
                 <div className="sidebar-title">
                   <span>Bản Đồ Câu Hỏi</span>
                 </div>
@@ -706,12 +752,12 @@ export default function Home() {
                       className={getGridItemClass(idx)}
                       onClick={() => setCurrentQuestionIndex(idx)}
                     >
-                      {idx + 1}
+                      Câu {String(idx + 1).padStart(2, '0')}
                     </div>
                   ))}
                 </div>
 
-                <div className="progress-bar-container">
+                <div className="progress-bar-container" style={{ marginTop: '16px' }}>
                   <div
                     className="progress-bar-fill"
                     style={{
@@ -719,46 +765,9 @@ export default function Home() {
                     }}
                   />
                 </div>
-                <span className="progress-text" style={{ marginBottom: '16px' }}>
+                <span className="progress-text" style={{ marginBottom: '8px' }}>
                   Đã làm: {Object.keys(userAnswers).length} / {currentExamQuestions.length} câu
                 </span>
-
-                {/* Status Legend modeled after BTC */}
-                <div className="grid-legend" style={{
-                  borderTop: '1px solid var(--border-color)',
-                  paddingTop: '12px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '8px'
-                }}>
-                  <div style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--text-main)', marginBottom: '4px' }}>
-                    Trạng thái câu hỏi (BTC):
-                  </div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.75rem' }}>
-                    <span className="legend-dot answered-mock" style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#334155', display: 'inline-block' }}></span>
-                    <span>Đã trả lời</span>
-                  </div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.75rem' }}>
-                    <span className="legend-dot viewed-unanswered" style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#fef08a', border: '1px solid #eab308', display: 'inline-block' }}></span>
-                    <span>Đã xem, chưa làm</span>
-                  </div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.75rem' }}>
-                    <span className="legend-dot unviewed" style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#f8fafc', border: '1px solid #cbd5e1', display: 'inline-block' }}></span>
-                    <span>Chưa xem</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Separate HOÀN THÀNH button */}
-              <div className="sidebar-card submit-card" style={{ padding: '16px' }}>
-                <button
-                  type="button"
-                  className="btn btn-success"
-                  style={{ width: '100%', padding: '14px 20px', fontSize: '1rem', fontWeight: 700, borderRadius: 'var(--radius-sm)' }}
-                  onClick={() => handleSubmitExam(false)}
-                >
-                  🏁 HOÀN THÀNH BÀI THI
-                </button>
               </div>
             </div>
           </div>
@@ -789,14 +798,10 @@ export default function Home() {
                 <span className="result-detail-lbl">Học viên</span>
               </div>
               <div className="result-detail-item">
-                <span className="result-detail-val">{phone}</span>
-                <span className="result-detail-lbl">Số điện thoại</span>
-              </div>
-              <div className="result-detail-item">
                 <span className="result-detail-val">{mode === 'luyen-thi' ? 'Luyện tập' : 'Thi thử'}</span>
                 <span className="result-detail-lbl">Chế độ</span>
               </div>
-              <div className="result-detail-item" style={{ gridColumn: 'span 3', borderTop: '1px solid var(--border-color)', paddingTop: '12px', marginTop: '4px' }}>
+              <div className="result-detail-item" style={{ gridColumn: 'span 2', borderTop: '1px solid var(--border-color)', paddingTop: '12px', marginTop: '4px' }}>
                 <span className="result-detail-val">
                   {Math.floor(timeSpent / 60)} phút {timeSpent % 60} giây
                 </span>

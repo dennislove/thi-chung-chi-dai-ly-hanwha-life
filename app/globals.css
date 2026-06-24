@@ -558,59 +558,35 @@ header {
 .option-item {
   display: flex;
   align-items: flex-start;
-  padding: 16px 20px;
-  background-color: var(--bg-body);
-  border: 1px solid var(--border-color);
+  padding: 8px 12px;
+  background-color: transparent;
+  border: 1px solid transparent;
   border-radius: var(--radius-sm);
   cursor: pointer;
-  transition: var(--transition);
-  position: relative;
+  margin-bottom: 6px;
   text-align: left;
 }
 
+/* NO HOVER HIGHLIGHTS */
 .option-item:hover {
-  border-color: var(--primary-color);
-  background-color: var(--primary-light);
-}
-
-.option-prefix {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: white;
-  border: 1px solid var(--border-color);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  font-size: 0.85rem;
-  margin-right: 12px;
-  flex-shrink: 0;
-  transition: var(--transition);
-}
-
-.option-item:hover .option-prefix {
-  border-color: var(--primary-color);
-  background: var(--primary-color);
-  color: white;
+  background-color: transparent;
+  border-color: transparent;
 }
 
 .option-text {
   font-size: 0.95rem;
   color: var(--text-main);
-  padding-top: 2px;
+  line-height: 1.5;
 }
 
 .option-item.selected {
   border-color: var(--primary-color);
   background-color: var(--primary-light);
-  box-shadow: 0 0 0 2px var(--primary-glow);
 }
 
-.option-item.selected .option-prefix {
-  background: var(--primary-color);
-  color: white;
-  border-color: var(--primary-color);
+.option-item.selected .option-text {
+  color: var(--primary-color);
+  font-weight: 600;
 }
 
 .option-item.correct {
@@ -618,22 +594,9 @@ header {
   background-color: var(--success-light);
 }
 
-.option-item.correct .option-prefix {
-  background: var(--success-color);
-  color: white;
-  border-color: var(--success-color);
-}
-
-.option-item.correct:hover {
-  border-color: var(--success-color) !important;
-  background-color: var(--success-light) !important;
-  cursor: default;
-}
-
-.option-item.correct:hover .option-prefix {
-  background: var(--success-color) !important;
-  border-color: var(--success-color) !important;
-  color: white !important;
+.option-item.correct .option-text {
+  color: var(--success-color);
+  font-weight: 600;
 }
 
 .option-item.incorrect {
@@ -641,22 +604,48 @@ header {
   background-color: var(--error-light);
 }
 
-.option-item.incorrect .option-prefix {
-  background: var(--error-color);
-  color: white;
-  border-color: var(--error-color);
+.option-item.incorrect .option-text {
+  color: var(--error-color);
+  font-weight: 600;
 }
 
-.option-item.incorrect:hover {
-  border-color: var(--error-color) !important;
-  background-color: var(--error-light) !important;
-  cursor: default;
+/* Radio button styles */
+.radio-input-custom {
+  margin-right: 12px;
+  margin-top: 4px;
+  cursor: pointer;
+  accent-color: var(--primary-color);
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
 }
 
-.option-item.incorrect:hover .option-prefix {
-  background: var(--error-color) !important;
-  border-color: var(--error-color) !important;
-  color: white !important;
+.radio-input-custom.radio-correct {
+  accent-color: var(--success-color);
+}
+
+.radio-input-custom.radio-incorrect {
+  accent-color: var(--error-color);
+}
+
+/* Gray End Exam Button */
+.btn-ket-thuc {
+  background-color: #f1f5f9;
+  border: 1px solid #94a3b8;
+  color: #334155;
+  padding: 10px 32px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  font-family: var(--font-body);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-ket-thuc:hover {
+  background-color: #cbd5e1;
+  color: #1e293b;
+  border-color: #64748b;
 }
 
 .explanation-panel {
@@ -739,22 +728,24 @@ header {
 
 .question-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 8px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
 }
 
 .grid-item {
-  aspect-ratio: 1;
+  padding: 6px 4px;
   background: var(--bg-body);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-sm);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 600;
   cursor: pointer;
   transition: var(--transition);
+  aspect-ratio: auto;
+  min-height: 36px;
 }
 
 .grid-item:hover {
@@ -764,40 +755,40 @@ header {
 }
 
 .grid-item.answered-mock {
-  background-color: #334155;
-  border-color: #1e293b;
+  background-color: #008000;
+  border-color: #006400;
   color: white;
 }
 
 .grid-item.viewed-unanswered {
-  background-color: #fef08a;
-  border-color: #eab308;
-  color: #854d0e;
+  background-color: #ef4444;
+  border-color: #b91c1c;
+  color: white;
 }
 
 .grid-item.unviewed {
   background-color: #f8fafc;
   border-color: #cbd5e1;
-  color: #64748b;
+  color: #1e293b;
 }
 
 .grid-item.correct {
-  background-color: var(--success-color);
-  border-color: var(--success-color);
+  background-color: #008000;
+  border-color: #006400;
   color: white;
 }
 
 .grid-item.incorrect {
-  background-color: var(--error-color);
-  border-color: var(--error-color);
+  background-color: #ef4444;
+  border-color: #b91c1c;
   color: white;
 }
 
 .grid-item.active {
-  outline: 3px solid var(--primary-color) !important;
-  outline-offset: -3px;
-  box-shadow: 0 0 10px rgba(255, 102, 0, 0.5);
-  transform: scale(1.05);
+  outline: 3px solid #ff6600 !important;
+  outline-offset: -2px;
+  box-shadow: 0 0 8px rgba(255, 102, 0, 0.4);
+  transform: scale(1.02);
 }
 
 /* BTC Result Table Styles */
@@ -922,7 +913,7 @@ header {
 
 .result-detail-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 16px;
   margin: 32px 0;
   background: var(--bg-body);
@@ -1105,9 +1096,11 @@ footer a:hover {
 /* VIDI Landing Page Grid Layout */
 .landing-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 24px;
   width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 @media (max-width: 900px) {
