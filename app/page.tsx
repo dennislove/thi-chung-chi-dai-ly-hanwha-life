@@ -366,7 +366,7 @@ export default function Home() {
               </p>
               <h2 style={{
                 fontFamily: 'var(--font-title)',
-                fontSize: '2.25rem',
+                fontSize: 'clamp(1.2rem, 4.5vw, 2.25rem)',
                 fontWeight: 850,
                 textTransform: 'uppercase',
                 letterSpacing: '1px',
