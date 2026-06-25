@@ -151,6 +151,7 @@ export default function Home() {
   // Track viewed questions
   useEffect(() => {
     if (screen === 'exam' && currentExamQuestions.length > 0) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setViewedQuestions(prev => ({ ...prev, [currentQuestionIndex]: true }));
     }
   }, [currentQuestionIndex, screen, currentExamQuestions]);
@@ -230,7 +231,7 @@ export default function Home() {
   };
 
   // Submit and evaluate exam
-  const handleSubmitExam = (force = false) => {
+  function handleSubmitExam(force = false) {
     if (!force) {
       setShowConfirmModal(true);
       return;
@@ -256,7 +257,7 @@ export default function Home() {
     }
 
     setScreen('result');
-  };
+  }
 
   // Confetti triggering mechanism
   const triggerFireworks = () => {
@@ -353,26 +354,10 @@ export default function Home() {
 
             {/* Portal Titles */}
             <div style={{ marginTop: '30px' }}>
-              <p style={{
-                fontSize: '1.25rem',
-                fontWeight: 700,
-                color: 'rgba(255, 255, 255, 0.9)',
-                textTransform: 'uppercase',
-                letterSpacing: '1.5px',
-                marginBottom: '8px',
-                textShadow: '0 1px 2px rgba(0,0,0,0.1)'
-              }}>
-                Hệ Thống Quản Lý
+              <p className="vidi-portal-subtitle">
+                Hệ thống ôn luyện thi chứng chỉ BHNT cơ bản
               </p>
-              <h2 style={{
-                fontFamily: 'var(--font-title)',
-                fontSize: 'clamp(1rem, 3vw, 1.5rem)',
-                fontWeight: 850,
-                textTransform: 'uppercase',
-                letterSpacing: '1px',
-                lineHeight: 1.2,
-                textShadow: '0 2px 4px rgba(0,0,0,0.15)'
-              }}>
+              <h2 className="vidi-portal-title">
                 BỘ PHẬN HUẤN LUYỆN - KÊNH ĐẠI LÝ
                 <br />
                 HANWHA LIFE VIỆT NAM
@@ -731,200 +716,207 @@ export default function Home() {
 
       {/* SCREEN 4: RESULTS */}
       {screen === 'result' && (
-        <section className="screen active">
-          <div className="results-card">
-            <div className={`status-circle ${isPassed ? 'pass' : 'fail'}`}>
-              {isPassed ? '🏆' : '❌'}
-            </div>
-            <h2 className={`result-status-title ${isPassed ? 'pass' : 'fail'}`}>
-              {isPassed ? 'ĐẠT YÊU CẦU' : 'KHÔNG ĐẠT'}
-            </h2>
-            <div className="result-score-summary">
-              {scoreCorrectCount}<span>/{currentExamQuestions.length}</span>
-            </div>
-
-            <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', marginTop: '10px' }}>
-              (Điểm đạt yêu cầu từ 35 câu đúng trở lên)
-            </p>
-
-            <div className="result-detail-grid">
-              <div className="result-detail-item">
-                <span className="result-detail-val">{name}</span>
-                <span className="result-detail-lbl">Học viên</span>
+        <section className="screen active" style={{ maxWidth: '100%' }}>
+          <div className="results-layout-container">
+            {/* Left Column: Score Card */}
+            <div className="results-card results-score-panel">
+              <div className={`status-circle ${isPassed ? 'pass' : 'fail'}`}>
+                {isPassed ? '🏆' : '❌'}
               </div>
-              <div className="result-detail-item">
-                <span className="result-detail-val">{mode === 'luyen-thi' ? 'Luyện tập' : 'Thi thử'}</span>
-                <span className="result-detail-lbl">Chế độ</span>
+              <h2 className={`result-status-title ${isPassed ? 'pass' : 'fail'}`}>
+                {isPassed ? 'ĐẠT YÊU CẦU' : 'KHÔNG ĐẠT'}
+              </h2>
+              <div className="result-score-summary">
+                {scoreCorrectCount}<span>/{currentExamQuestions.length}</span>
               </div>
-              <div className="result-detail-item" style={{ gridColumn: 'span 2', borderTop: '1px solid var(--border-color)', paddingTop: '12px', marginTop: '4px' }}>
-                <span className="result-detail-val">
-                  {Math.floor(timeSpent / 60)} phút {timeSpent % 60} giây
-                </span>
-                <span className="result-detail-lbl">Thời gian thực hiện</span>
+
+              <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', marginTop: '10px' }}>
+                (Điểm đạt yêu cầu từ 35 câu đúng trở lên)
+              </p>
+
+              {/* DYNAMIC FEEDBACK MESSAGE */}
+              <div style={{
+                margin: '20px auto 0',
+                padding: '16px 20px',
+                borderRadius: 'var(--radius-sm)',
+                borderWidth: '1px',
+                borderStyle: 'solid',
+                fontSize: '1.05rem',
+                fontWeight: '600',
+                lineHeight: '1.5',
+                maxWidth: '570px',
+                textAlign: 'center',
+                backgroundColor: scoreCorrectCount >= 35
+                  ? 'var(--success-light)'
+                  : scoreCorrectCount >= 30
+                    ? '#fffbeb'
+                    : 'var(--error-light)',
+                borderColor: scoreCorrectCount >= 35
+                  ? 'var(--success-color)'
+                  : scoreCorrectCount >= 30
+                    ? '#f59e0b'
+                    : 'var(--error-color)',
+                color: scoreCorrectCount >= 35
+                  ? 'var(--success-color)'
+                  : scoreCorrectCount >= 30
+                    ? '#d97706'
+                    : 'var(--error-color)',
+              }}>
+                {scoreCorrectCount >= 35 && "🏆 Chúc mừng bạn đã xuất sắc hoàn thành bài thi!!"}
+                {scoreCorrectCount >= 30 && scoreCorrectCount < 35 && "⚡ Bạn chỉ cần cố gắng thêm chút nữa sẽ đạt!! Cố lên!"}
+                {scoreCorrectCount < 30 && "📚 Bạn hãy dành nhiều thời gian ôn luyện để cải thiện kết quả"}
               </div>
-            </div>
 
-            <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', marginBottom: '30px' }}>
-              <button
-                type="button"
-                className="btn btn-primary"
-                onClick={handleStartExam}
-              >
-                Làm lại đề này
-              </button>
-              <button
-                type="button"
-                className="btn btn-secondary"
-                onClick={() => setScreen('dashboard')}
-              >
-                Về trang chủ
-              </button>
-            </div>
-
-            {/* TTT Question Grid Overview (for Mock Exam) */}
-            {mode === 'thi-thu' && (
-              <div className="result-grid-section" style={{ marginBottom: '32px', textAlign: 'left', background: 'var(--bg-body)', padding: '24px', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-color)' }}>
-                <h3 className="review-answers-title" style={{ borderBottom: '2px solid var(--border-color)', paddingBottom: '8px', marginBottom: '16px' }}>
-                  Bản Đồ Kết Quả Bài Thi (TTT)
-                </h3>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(10, 1fr)', gap: '8px', margin: '16px 0' }}>
-                  {currentExamQuestions.map((q, idx) => {
-                    const userChoiceIdx = userAnswers[idx];
-                    const isCorrect = userChoiceIdx === q.correctAnswer;
-                    let bgColor = '#cbd5e1'; // Gray (Unanswered)
-                    let text = '#1e293b';
-                    if (userChoiceIdx !== undefined) {
-                      bgColor = isCorrect ? 'var(--success-color)' : 'var(--error-color)';
-                      text = 'white';
-                    }
-                    return (
-                      <div
-                        key={idx}
-                        style={{
-                          aspectRatio: '1',
-                          borderRadius: '8px',
-                          background: bgColor,
-                          color: text,
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          fontSize: '0.95rem',
-                          fontWeight: 700,
-                          boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.1)'
-                        }}
-                      >
-                        {idx + 1}
-                      </div>
-                    );
-                  })}
+              <div className="result-detail-grid">
+                <div className="result-detail-item">
+                  <span className="result-detail-val">{name}</span>
+                  <span className="result-detail-lbl">Học viên</span>
                 </div>
-                <div style={{ display: 'flex', gap: '16px', fontSize: '0.85rem', justifyContent: 'center', marginTop: '16px' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <span style={{ width: '14px', height: '14px', borderRadius: '3px', background: 'var(--success-color)', display: 'inline-block' }}></span>
-                    <span style={{ fontWeight: 600 }}>Câu đúng</span>
-                  </div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <span style={{ width: '14px', height: '14px', borderRadius: '3px', background: 'var(--error-color)', display: 'inline-block' }}></span>
-                    <span style={{ fontWeight: 600 }}>Câu sai</span>
-                  </div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                    <span style={{ width: '14px', height: '14px', borderRadius: '3px', background: '#cbd5e1', display: 'inline-block' }}></span>
-                    <span style={{ fontWeight: 600 }}>Chưa trả lời</span>
-                  </div>
+                <div className="result-detail-item">
+                  <span className="result-detail-val">{mode === 'luyen-thi' ? 'Luyện tập' : 'Thi thử'}</span>
+                  <span className="result-detail-lbl">Chế độ</span>
+                </div>
+                <div className="result-detail-item" style={{ gridColumn: 'span 2', borderTop: '1px solid var(--border-color)', paddingTop: '12px', marginTop: '4px' }}>
+                  <span className="result-detail-val">
+                    {Math.floor(timeSpent / 60)} phút {timeSpent % 60} giây
+                  </span>
+                  <span className="result-detail-lbl">Thời gian thực hiện</span>
                 </div>
               </div>
-            )}
 
-            {/* TTT Styled Answer Sheet Table (for Mock Exam) */}
-            {mode === 'thi-thu' && (
-              <div className="result-table-section" style={{ marginBottom: '32px', textAlign: 'left', background: 'white', padding: '24px', borderRadius: 'var(--radius-md)', border: '1px solid var(--border-color)', boxShadow: 'var(--shadow-sm)' }}>
-                <h3 className="review-answers-title" style={{ borderBottom: '2px solid var(--border-color)', paddingBottom: '8px', marginBottom: '16px' }}>
-                  Bảng Đáp Án Chi Tiết (Mô phỏng TTT)
-                </h3>
-                <div style={{ overflowX: 'auto' }}>
-                  <table className="TTT-result-table" style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.9rem' }}>
-                    <thead>
-                      <tr style={{ background: '#f8fafc', borderBottom: '2px solid #cbd5e1' }}>
-                        <th style={{ padding: '12px 10px', textAlign: 'center', border: '1px solid #e2e8f0', fontWeight: 700 }}>STT</th>
-                        <th style={{ padding: '12px 10px', textAlign: 'left', border: '1px solid #e2e8f0', fontWeight: 700 }}>Nội dung câu hỏi</th>
-                        <th style={{ padding: '12px 10px', textAlign: 'center', border: '1px solid #e2e8f0', fontWeight: 700, width: '100px' }}>Đáp án đã chọn</th>
-                        <th style={{ padding: '12px 10px', textAlign: 'center', border: '1px solid #e2e8f0', fontWeight: 700, width: '100px' }}>Đáp án đúng</th>
-                        <th style={{ padding: '12px 10px', textAlign: 'center', border: '1px solid #e2e8f0', fontWeight: 700, width: '120px' }}>Kết quả</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {currentExamQuestions.map((q, idx) => {
-                        const userChoiceIdx = userAnswers[idx];
-                        const isCorrect = userChoiceIdx === q.correctAnswer;
-                        const userLetter = userChoiceIdx !== undefined ? String.fromCharCode(65 + userChoiceIdx) : '-';
-                        const correctLetter = String.fromCharCode(65 + q.correctAnswer);
+              <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', marginBottom: '10px' }}>
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={handleStartExam}
+                >
+                  Làm lại đề này
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  onClick={() => setScreen('dashboard')}
+                >
+                  Về trang chủ
+                </button>
+              </div>
+            </div>
 
-                        let statusText = 'Chưa làm';
-                        let statusColor = '#64748b';
-                        if (userChoiceIdx !== undefined) {
-                          statusText = isCorrect ? 'Đúng' : 'Sai';
-                          statusColor = isCorrect ? 'var(--success-color)' : 'var(--error-color)';
-                        }
-
-                        return (
-                          <tr key={idx} style={{ borderBottom: '1px solid #e2e8f0', background: idx % 2 === 0 ? '#ffffff' : '#f8fafc' }}>
-                            <td style={{ padding: '10px', textAlign: 'center', fontWeight: 'bold', border: '1px solid #e2e8f0' }}>{idx + 1}</td>
-                            <td style={{ padding: '10px', border: '1px solid #e2e8f0', maxWidth: '300px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                              {q.questionText}
-                            </td>
-                            <td style={{ padding: '10px', textAlign: 'center', fontWeight: 800, color: userChoiceIdx !== undefined ? (isCorrect ? 'var(--success-color)' : 'var(--error-color)') : '#64748b', border: '1px solid #e2e8f0' }}>
-                              {userLetter}
-                            </td>
-                            <td style={{ padding: '10px', textAlign: 'center', fontWeight: 800, color: 'var(--success-color)', border: '1px solid #e2e8f0' }}>
-                              {correctLetter}
-                            </td>
-                            <td style={{ padding: '10px', textAlign: 'center', fontWeight: 700, color: statusColor, border: '1px solid #e2e8f0' }}>
-                              {statusText === 'Đúng' ? '✅ Đúng' : statusText === 'Sai' ? '❌ Sai' : '⚪ Chưa trả lời'}
-                            </td>
-                          </tr>
-                        );
-                      })}
-                    </tbody>
-                  </table>
+            {/* Right Column: Custom Option Grid Table */}
+            <div className="results-grid-table-container">
+              {/* Legend Badges */}
+              <div className="results-grid-header">
+                <span className="results-grid-legend-label">Chú ý:</span>
+                <div className="results-grid-legend-badges">
+                  <span className="results-grid-legend-badge unanswered">Chưa trả lời</span>
+                  <span className="results-grid-legend-badge correct">Trả lời đúng</span>
+                  <span className="results-grid-legend-badge incorrect">Trả lời sai</span>
                 </div>
               </div>
-            )}
 
-            {/* Detailed Question Review */}
-            <div className="review-answers-section">
-              <h3 className="review-answers-title">
-                {mode === 'thi-thu' ? 'Chi Tiết Nội Dung Từng Câu Hỏi' : 'Chi Tiết Kết Quả Từng Câu Hỏi'}
-              </h3>
-              <div className="review-list">
-                {currentExamQuestions.map((q, idx) => {
-                  const userChoiceIdx = userAnswers[idx];
-                  const isCorrect = userChoiceIdx === q.correctAnswer;
+              {/* Title */}
+              <h2 className="results-grid-title">KẾT QUẢ THI</h2>
 
-                  return (
-                    <div
-                      key={q.id}
-                      className={`review-item ${isCorrect ? 'right' : 'wrong'}`}
-                    >
-                      <div className="review-q-text">Câu {idx + 1}: {q.questionText}</div>
-                      {q.options.map((opt, optIdx) => {
-                        const prefix = String.fromCharCode(65 + optIdx);
-                        let classes = 'review-opt';
+              {/* Table Block 1: Questions 1-20 */}
+              <div className="results-table-block-wrapper">
+                <table className="results-table-block">
+                  <thead>
+                    <tr>
+                      <th className="header-corner-cell">Câu hỏi</th>
+                      {Array.from({ length: 20 }).map((_, i) => (
+                        <th key={i}>{i + 1}</th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {/* Rows A, B, C, D, E based on max options in Questions 1-20 */}
+                    {Array.from({
+                      length: Math.max(4, ...currentExamQuestions.slice(0, 20).map(q => q.options.length))
+                    }).map((_, rIdx) => {
+                      const letter = String.fromCharCode(65 + rIdx);
+                      return (
+                        <tr key={letter}>
+                          <td className="row-label-cell">{letter}</td>
+                          {Array.from({ length: 20 }).map((_, colIdx) => {
+                            const qIdx = colIdx;
+                            const question = currentExamQuestions[qIdx];
+                            const userChoiceIdx = userAnswers[qIdx];
 
-                        if (optIdx === q.correctAnswer) {
-                          classes += ' correct-select';
-                        } else if (optIdx === userChoiceIdx) {
-                          classes += ' user-select';
-                        }
+                            // Check if question exists and has this option index
+                            const hasOption = question && rIdx < question.options.length;
+                            const isSelected = hasOption && userChoiceIdx === rIdx;
+                            const isCorrect = isSelected && userChoiceIdx === question.correctAnswer;
 
-                        return (
-                          <div key={optIdx} className={classes}>
-                            <strong>{prefix}.</strong> {opt}
-                          </div>
-                        );
-                      })}
-                    </div>
-                  );
-                })}
+                            let cellClass = "cell-empty";
+                            if (isSelected) {
+                              cellClass = isCorrect ? "cell-correct" : "cell-incorrect";
+                            }
+
+                            return (
+                              <td
+                                key={colIdx}
+                                className={`cell-option ${cellClass}`}
+                              >
+                                {isSelected ? letter : ""}
+                              </td>
+                            );
+                          })}
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+
+              {/* Table Block 2: Questions 21-40 */}
+              <div className="results-table-block-wrapper">
+                <table className="results-table-block">
+                  <thead>
+                    <tr>
+                      <th className="header-corner-cell">Câu hỏi</th>
+                      {Array.from({ length: 20 }).map((_, i) => (
+                        <th key={i}>{i + 21}</th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {/* Rows A, B, C, D, E based on max options in Questions 21-40 */}
+                    {Array.from({
+                      length: Math.max(4, ...currentExamQuestions.slice(20, 40).map(q => q.options.length))
+                    }).map((_, rIdx) => {
+                      const letter = String.fromCharCode(65 + rIdx);
+                      return (
+                        <tr key={letter}>
+                          <td className="row-label-cell">{letter}</td>
+                          {Array.from({ length: 20 }).map((_, colIdx) => {
+                            const qIdx = colIdx + 20;
+                            const question = currentExamQuestions[qIdx];
+                            const userChoiceIdx = userAnswers[qIdx];
+
+                            // Check if question exists and has this option index
+                            const hasOption = question && rIdx < question.options.length;
+                            const isSelected = hasOption && userChoiceIdx === rIdx;
+                            const isCorrect = isSelected && userChoiceIdx === question.correctAnswer;
+
+                            let cellClass = "cell-empty";
+                            if (isSelected) {
+                              cellClass = isCorrect ? "cell-correct" : "cell-incorrect";
+                            }
+
+                            return (
+                              <td
+                                key={colIdx}
+                                className={`cell-option ${cellClass}`}
+                              >
+                                {isSelected ? letter : ""}
+                              </td>
+                            );
+                          })}
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
@@ -987,7 +979,7 @@ export default function Home() {
                 <li>Ô màu <strong>Xám nhạt:</strong> Câu hỏi chưa xem qua.</li>
                 <li>Ô màu <strong>Đỏ:</strong> Câu hỏi đã xem nhưng chưa chọn đáp án trả lời.</li>
                 <li>Ô màu <strong>Xanh lá cây:</strong> Câu hỏi đã làm/chọn đáp án.</li>
-                <li>Ô có <strong>viền Cam nổi bật:</strong> Câu hỏi hiện tại bạn đang xem để làm bài.</li>
+
               </ul>
             </div>
             <div className="modal-actions" style={{ justifyContent: 'center', marginTop: '16px' }}>
@@ -1007,7 +999,7 @@ export default function Home() {
       {/* FOOTER */}
       <footer>
         <p>&copy; 2026 Hanwha Life Việt Nam. Phát triển cho công tác đào tạo Đại lý Bảo hiểm Nhân thọ Cơ bản.</p>
-        <p>Hệ thống hỗ trợ chạy Offline. <a href="#" onClick={(e) => { e.preventDefault(); window.location.reload(); }}>Tải lại trang</a></p>
+        <p> Soạn nội dung AT Như Tình. <a href="#" onClick={(e) => { e.preventDefault(); window.location.reload(); }}>Tải lại trang</a></p>
       </footer>
     </div>
   );
