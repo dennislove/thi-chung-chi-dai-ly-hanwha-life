@@ -717,9 +717,9 @@ export default function Home() {
       {/* SCREEN 4: RESULTS */}
       {screen === 'result' && (
         <section className="screen active" style={{ maxWidth: '100%' }}>
-          <div className="results-layout-container">
+          <div className={mode === 'luyen-thi' ? 'results-layout-single' : 'results-layout-container'}>
             {/* Left Column: Score Card */}
-            <div className="results-card results-score-panel">
+            <div className={`results-card ${mode === 'luyen-thi' ? '' : 'results-score-panel'}`}>
               <div className={`status-circle ${isPassed ? 'pass' : 'fail'}`}>
                 {isPassed ? '🏆' : '❌'}
               </div>
@@ -803,7 +803,8 @@ export default function Home() {
             </div>
 
             {/* Right Column: Custom Option Grid Table */}
-            <div className="results-grid-table-container">
+            {mode !== 'luyen-thi' && (
+              <div className="results-grid-table-container">
               {/* Legend Badges */}
               <div className="results-grid-header">
                 <span className="results-grid-legend-label">Chú ý:</span>
@@ -919,6 +920,7 @@ export default function Home() {
                 </table>
               </div>
             </div>
+            )}
           </div>
         </section>
       )}
@@ -974,7 +976,7 @@ export default function Home() {
                 <li>Bạn cần trả lời đúng từ <strong>35/40 câu</strong> trở lên để được hệ thống đánh giá <strong>ĐẠT YÊU CẦU</strong>.</li>
               </ul>
 
-              <p style={{ marginBottom: '8px' }}><strong>3. Các phím màu sắc trên Bản đồ câu hỏi (TTT):</strong></p>
+              <p style={{ marginBottom: '8px' }}><strong>3. Các phím màu sắc trên Bản đồ câu hỏi:</strong></p>
               <ul style={{ marginLeft: '20px', marginBottom: '12px' }}>
                 <li>Ô màu <strong>Xám nhạt:</strong> Câu hỏi chưa xem qua.</li>
                 <li>Ô màu <strong>Đỏ:</strong> Câu hỏi đã xem nhưng chưa chọn đáp án trả lời.</li>

@@ -1262,6 +1262,14 @@ footer a:hover {
   align-items: start;
 }
 
+.results-layout-single {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 1380px;
+  margin: 20px auto;
+}
+
 @media (max-width: 1100px) {
   .results-layout-container {
     grid-template-columns: 1fr;
