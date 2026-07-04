@@ -58,6 +58,7 @@ export default function Home() {
   const [selectedExamId, setSelectedExamId] = useState<string>('de_1');
   const [currentExamQuestions, setCurrentExamQuestions] = useState<ProcessedQuestion[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
+  const [selectedReviewQuestionIdx, setSelectedReviewQuestionIdx] = useState<number>(0);
 
   // Quiz tracking
   const [userAnswers, setUserAnswers] = useState<Record<number, number>>({});
@@ -197,6 +198,7 @@ export default function Home() {
     // Reset quiz stats
     setCurrentExamQuestions(processed);
     setCurrentQuestionIndex(0);
+    setSelectedReviewQuestionIdx(0);
     setUserAnswers({});
     setIsQuestionAnswered({});
     setViewedQuestions({ 0: true });
@@ -717,9 +719,9 @@ export default function Home() {
       {/* SCREEN 4: RESULTS */}
       {screen === 'result' && (
         <section className="screen active" style={{ maxWidth: '100%' }}>
-          <div className={mode === 'luyen-thi' ? 'results-layout-single' : 'results-layout-container'}>
+          <div className="results-layout-container">
             {/* Left Column: Score Card */}
-            <div className={`results-card ${mode === 'luyen-thi' ? '' : 'results-score-panel'}`}>
+            <div className="results-card results-score-panel">
               <div className={`status-circle ${isPassed ? 'pass' : 'fail'}`}>
                 {isPassed ? '🏆' : '❌'}
               </div>
@@ -802,124 +804,343 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Right Column: Custom Option Grid Table */}
-            {mode !== 'luyen-thi' && (
-              <div className="results-grid-table-container">
-              {/* Legend Badges */}
-              <div className="results-grid-header">
-                <span className="results-grid-legend-label">Chú ý:</span>
-                <div className="results-grid-legend-badges">
-                  <span className="results-grid-legend-badge unanswered">Chưa trả lời</span>
-                  <span className="results-grid-legend-badge correct">Trả lời đúng</span>
-                  <span className="results-grid-legend-badge incorrect">Trả lời sai</span>
+            {/* Right Column */}
+            {mode === 'luyen-thi' ? (
+              <div className="results-details-list" style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                <h2 className="results-grid-title" style={{ marginBottom: '8px', textAlign: 'left' }}>
+                  CHI TIẾT ĐÁP ÁN
+                </h2>
+                <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', fontStyle: 'italic', marginBottom: '8px' }}>
+                  💡 Xem chi tiết đáp án đúng/sai của tất cả 40 câu hỏi ôn tập dưới đây.
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', maxHeight: '80vh', overflowY: 'auto', paddingRight: '8px' }}>
+                  {currentExamQuestions.map((question, qIdx) => {
+                    const userChoiceIdx = userAnswers[qIdx];
+                    const isCorrect = userChoiceIdx === question.correctAnswer;
+                    return (
+                      <div
+                        key={qIdx}
+                        className="review-question-card"
+                        style={{
+                          padding: '16px',
+                          background: 'white',
+                          border: '1px solid var(--border-color)',
+                          borderRadius: '8px',
+                          borderLeft: isCorrect 
+                            ? '5px solid var(--success-color)' 
+                            : userChoiceIdx === undefined 
+                              ? '5px solid #94a3b8' 
+                              : '5px solid var(--error-color)',
+                          boxShadow: 'var(--shadow-sm)',
+                          textAlign: 'left'
+                        }}
+                      >
+                        <div style={{ fontWeight: 700, color: 'var(--text-main)', marginBottom: '8px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                          <span>Câu {qIdx + 1}</span>
+                          <span
+                            style={{
+                              fontSize: '0.8rem',
+                              padding: '4px 8px',
+                              borderRadius: '4px',
+                              fontWeight: 600,
+                              color: 'white',
+                              backgroundColor: isCorrect 
+                                ? 'var(--success-color)' 
+                                : userChoiceIdx === undefined 
+                                  ? '#94a3b8' 
+                                  : 'var(--error-color)'
+                            }}
+                          >
+                            {isCorrect ? 'Đúng' : userChoiceIdx === undefined ? 'Chưa trả lời' : 'Sai'}
+                          </span>
+                        </div>
+                        <p style={{ fontWeight: 600, fontSize: '0.95rem', marginBottom: '12px', color: '#1e293b', lineHeight: '1.5' }}>
+                          {question.questionText}
+                        </p>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                          {question.options.map((opt, optIdx) => {
+                            const prefix = String.fromCharCode(65 + optIdx);
+                            const isCorrectOpt = optIdx === question.correctAnswer;
+                            const isUserChoice = userChoiceIdx === optIdx;
+
+                            let optBg = 'transparent';
+                            let optBorder = '1px solid var(--border-color)';
+                            let badge = null;
+
+                            if (isCorrectOpt) {
+                              optBg = 'var(--success-light)';
+                              optBorder = '1px solid var(--success-color)';
+                              badge = (
+                                <span style={{ marginLeft: 'auto', fontSize: '0.75rem', color: 'var(--success-color)', fontWeight: 700 }}>
+                                  Đáp án đúng
+                                </span>
+                              );
+                            } else if (isUserChoice) {
+                              optBg = 'var(--error-light)';
+                              optBorder = '1px solid var(--error-color)';
+                              badge = (
+                                <span style={{ marginLeft: 'auto', fontSize: '0.75rem', color: 'var(--error-color)', fontWeight: 700 }}>
+                                  Bạn chọn (Sai)
+                                </span>
+                              );
+                            }
+
+                            return (
+                              <div
+                                key={optIdx}
+                                style={{
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  padding: '10px 12px',
+                                  borderRadius: '6px',
+                                  background: optBg,
+                                  border: optBorder,
+                                  fontSize: '0.9rem'
+                                }}
+                              >
+                                <span style={{ fontWeight: 700, marginRight: '8px' }}>{prefix}.</span>
+                                <span style={{ color: 'var(--text-main)' }}>{opt}</span>
+                                {badge}
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
+            ) : (
+              <div className="results-grid-table-container">
+                {/* Legend Badges */}
+                <div className="results-grid-header" style={{ flexDirection: 'column', alignItems: 'flex-start', gap: '8px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', width: '100%', flexWrap: 'wrap' }}>
+                    <span className="results-grid-legend-label">Chú ý:</span>
+                    <div className="results-grid-legend-badges">
+                      <span className="results-grid-legend-badge unanswered">Chưa trả lời</span>
+                      <span className="results-grid-legend-badge correct">Trả lời đúng</span>
+                      <span className="results-grid-legend-badge incorrect">Trả lời sai</span>
+                    </div>
+                  </div>
+                  <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', fontStyle: 'italic', marginTop: '4px' }}>
+                    💡 Click vào cột số câu hỏi hoặc ô trả lời trong bảng để hiển thị chi tiết câu hỏi và đáp án ở dưới.
+                  </div>
+                </div>
 
-              {/* Title */}
-              <h2 className="results-grid-title">KẾT QUẢ THI</h2>
+                {/* Title */}
+                <h2 className="results-grid-title">KẾT QUẢ THI</h2>
 
-              {/* Table Block 1: Questions 1-20 */}
-              <div className="results-table-block-wrapper">
-                <table className="results-table-block">
-                  <thead>
-                    <tr>
-                      <th className="header-corner-cell">Câu hỏi</th>
-                      {Array.from({ length: 20 }).map((_, i) => (
-                        <th key={i}>{i + 1}</th>
-                      ))}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {/* Rows A, B, C, D, E based on max options in Questions 1-20 */}
-                    {Array.from({
-                      length: Math.max(4, ...currentExamQuestions.slice(0, 20).map(q => q.options.length))
-                    }).map((_, rIdx) => {
-                      const letter = String.fromCharCode(65 + rIdx);
-                      return (
-                        <tr key={letter}>
-                          <td className="row-label-cell">{letter}</td>
-                          {Array.from({ length: 20 }).map((_, colIdx) => {
-                            const qIdx = colIdx;
-                            const question = currentExamQuestions[qIdx];
-                            const userChoiceIdx = userAnswers[qIdx];
+                {/* Table Block 1: Questions 1-20 */}
+                <div className="results-table-block-wrapper">
+                  <table className="results-table-block">
+                    <thead>
+                      <tr>
+                        <th className="header-corner-cell">Câu hỏi</th>
+                        {Array.from({ length: 20 }).map((_, i) => {
+                          const qIdx = i;
+                          const isSelectedQuestion = selectedReviewQuestionIdx === qIdx;
+                          return (
+                            <th 
+                              key={i} 
+                              onClick={() => setSelectedReviewQuestionIdx(qIdx)}
+                              className={isSelectedQuestion ? 'selected-column-header' : ''}
+                              style={{ cursor: 'pointer' }}
+                            >
+                              {i + 1}
+                            </th>
+                          );
+                        })}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {/* Rows A, B, C, D, E based on max options in Questions 1-20 */}
+                      {Array.from({
+                        length: Math.max(4, ...currentExamQuestions.slice(0, 20).map(q => q.options.length))
+                      }).map((_, rIdx) => {
+                        const letter = String.fromCharCode(65 + rIdx);
+                        return (
+                          <tr key={letter}>
+                            <td className="row-label-cell">{letter}</td>
+                            {Array.from({ length: 20 }).map((_, colIdx) => {
+                              const qIdx = colIdx;
+                              const question = currentExamQuestions[qIdx];
+                              const userChoiceIdx = userAnswers[qIdx];
 
-                            // Check if question exists and has this option index
-                            const hasOption = question && rIdx < question.options.length;
-                            const isSelected = hasOption && userChoiceIdx === rIdx;
-                            const isCorrect = isSelected && userChoiceIdx === question.correctAnswer;
+                              // Check if question exists and has this option index
+                              const hasOption = question && rIdx < question.options.length;
+                              const isSelected = hasOption && userChoiceIdx === rIdx;
+                              const isCorrect = isSelected && userChoiceIdx === question.correctAnswer;
 
-                            let cellClass = "cell-empty";
-                            if (isSelected) {
-                              cellClass = isCorrect ? "cell-correct" : "cell-incorrect";
-                            }
+                              let cellClass = "cell-empty";
+                              if (isSelected) {
+                                cellClass = isCorrect ? "cell-correct" : "cell-incorrect";
+                              }
 
-                            return (
-                              <td
-                                key={colIdx}
-                                className={`cell-option ${cellClass}`}
-                              >
-                                {isSelected ? letter : ""}
-                              </td>
-                            );
-                          })}
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
+                              const isSelectedQuestion = selectedReviewQuestionIdx === qIdx;
+
+                              return (
+                                <td
+                                  key={colIdx}
+                                  className={`cell-option ${cellClass} ${isSelectedQuestion ? 'selected-column-cell' : ''}`}
+                                  onClick={() => setSelectedReviewQuestionIdx(qIdx)}
+                                  style={{ cursor: 'pointer' }}
+                                >
+                                  {isSelected ? letter : ""}
+                                </td>
+                              );
+                            })}
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+
+                {/* Table Block 2: Questions 21-40 */}
+                <div className="results-table-block-wrapper">
+                  <table className="results-table-block">
+                    <thead>
+                      <tr>
+                        <th className="header-corner-cell">Câu hỏi</th>
+                        {Array.from({ length: 20 }).map((_, i) => {
+                          const qIdx = i + 20;
+                          const isSelectedQuestion = selectedReviewQuestionIdx === qIdx;
+                          return (
+                            <th 
+                              key={i} 
+                              onClick={() => setSelectedReviewQuestionIdx(qIdx)}
+                              className={isSelectedQuestion ? 'selected-column-header' : ''}
+                              style={{ cursor: 'pointer' }}
+                            >
+                              {i + 21}
+                            </th>
+                          );
+                        })}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {/* Rows A, B, C, D, E based on max options in Questions 21-40 */}
+                      {Array.from({
+                        length: Math.max(4, ...currentExamQuestions.slice(20, 40).map(q => q.options.length))
+                      }).map((_, rIdx) => {
+                        const letter = String.fromCharCode(65 + rIdx);
+                        return (
+                          <tr key={letter}>
+                            <td className="row-label-cell">{letter}</td>
+                            {Array.from({ length: 20 }).map((_, colIdx) => {
+                              const qIdx = colIdx + 20;
+                              const question = currentExamQuestions[qIdx];
+                              const userChoiceIdx = userAnswers[qIdx];
+
+                              // Check if question exists and has this option index
+                              const hasOption = question && rIdx < question.options.length;
+                              const isSelected = hasOption && userChoiceIdx === rIdx;
+                              const isCorrect = isSelected && userChoiceIdx === question.correctAnswer;
+
+                              let cellClass = "cell-empty";
+                              if (isSelected) {
+                                cellClass = isCorrect ? "cell-correct" : "cell-incorrect";
+                              }
+
+                              const isSelectedQuestion = selectedReviewQuestionIdx === qIdx;
+
+                              return (
+                                <td
+                                  key={colIdx}
+                                  className={`cell-option ${cellClass} ${isSelectedQuestion ? 'selected-column-cell' : ''}`}
+                                  onClick={() => setSelectedReviewQuestionIdx(qIdx)}
+                                  style={{ cursor: 'pointer' }}
+                                >
+                                  {isSelected ? letter : ""}
+                                </td>
+                              );
+                            })}
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+
+                {/* Question Detail Panel */}
+                {selectedReviewQuestionIdx !== null && currentExamQuestions[selectedReviewQuestionIdx] && (
+                  <div className="selected-question-preview" style={{
+                    marginTop: '24px',
+                    padding: '20px',
+                    background: 'white',
+                    border: '1px solid var(--border-color)',
+                    borderRadius: '8px',
+                    boxShadow: 'var(--shadow-sm)',
+                    textAlign: 'left'
+                  }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
+                      <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 800, color: 'var(--primary-color)' }}>
+                        Chi tiết câu hỏi {selectedReviewQuestionIdx + 1}
+                      </h3>
+                      <span style={{
+                        fontSize: '0.8rem',
+                        padding: '4px 10px',
+                        borderRadius: '4px',
+                        fontWeight: 700,
+                        color: 'white',
+                        backgroundColor: userAnswers[selectedReviewQuestionIdx] === currentExamQuestions[selectedReviewQuestionIdx].correctAnswer
+                          ? 'var(--success-color)'
+                          : userAnswers[selectedReviewQuestionIdx] === undefined
+                            ? '#94a3b8'
+                            : 'var(--error-color)'
+                      }}>
+                        {userAnswers[selectedReviewQuestionIdx] === currentExamQuestions[selectedReviewQuestionIdx].correctAnswer 
+                          ? 'Đúng' 
+                          : userAnswers[selectedReviewQuestionIdx] === undefined 
+                            ? 'Chưa trả lời' 
+                            : 'Sai'}
+                      </span>
+                    </div>
+                    
+                    <p style={{ fontWeight: 600, fontSize: '1rem', color: '#1e293b', marginBottom: '16px', lineHeight: '1.5' }}>
+                      {currentExamQuestions[selectedReviewQuestionIdx].questionText}
+                    </p>
+
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                      {currentExamQuestions[selectedReviewQuestionIdx].options.map((opt, optIdx) => {
+                        const prefix = String.fromCharCode(65 + optIdx);
+                        const isCorrectOpt = optIdx === currentExamQuestions[selectedReviewQuestionIdx].correctAnswer;
+                        const isUserChoice = userAnswers[selectedReviewQuestionIdx] === optIdx;
+
+                        let optBg = 'transparent';
+                        let optBorder = '1px solid var(--border-color)';
+                        let badge = null;
+
+                        if (isCorrectOpt) {
+                          optBg = 'var(--success-light)';
+                          optBorder = '1px solid var(--success-color)';
+                          badge = <span style={{ marginLeft: 'auto', fontSize: '0.75rem', color: 'var(--success-color)', fontWeight: 700 }}>Đáp án đúng</span>;
+                        } else if (isUserChoice) {
+                          optBg = 'var(--error-light)';
+                          optBorder = '1px solid var(--error-color)';
+                          badge = <span style={{ marginLeft: 'auto', fontSize: '0.75rem', color: 'var(--error-color)', fontWeight: 700 }}>Bạn chọn (Sai)</span>;
+                        }
+
+                        return (
+                          <div key={optIdx} style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            padding: '12px 14px',
+                            borderRadius: '6px',
+                            background: optBg,
+                            border: optBorder,
+                            fontSize: '0.92rem'
+                          }}>
+                            <span style={{ fontWeight: 700, marginRight: '8px' }}>{prefix}.</span>
+                            <span style={{ color: 'var(--text-main)' }}>{opt}</span>
+                            {badge}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
               </div>
-
-              {/* Table Block 2: Questions 21-40 */}
-              <div className="results-table-block-wrapper">
-                <table className="results-table-block">
-                  <thead>
-                    <tr>
-                      <th className="header-corner-cell">Câu hỏi</th>
-                      {Array.from({ length: 20 }).map((_, i) => (
-                        <th key={i}>{i + 21}</th>
-                      ))}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {/* Rows A, B, C, D, E based on max options in Questions 21-40 */}
-                    {Array.from({
-                      length: Math.max(4, ...currentExamQuestions.slice(20, 40).map(q => q.options.length))
-                    }).map((_, rIdx) => {
-                      const letter = String.fromCharCode(65 + rIdx);
-                      return (
-                        <tr key={letter}>
-                          <td className="row-label-cell">{letter}</td>
-                          {Array.from({ length: 20 }).map((_, colIdx) => {
-                            const qIdx = colIdx + 20;
-                            const question = currentExamQuestions[qIdx];
-                            const userChoiceIdx = userAnswers[qIdx];
-
-                            // Check if question exists and has this option index
-                            const hasOption = question && rIdx < question.options.length;
-                            const isSelected = hasOption && userChoiceIdx === rIdx;
-                            const isCorrect = isSelected && userChoiceIdx === question.correctAnswer;
-
-                            let cellClass = "cell-empty";
-                            if (isSelected) {
-                              cellClass = isCorrect ? "cell-correct" : "cell-incorrect";
-                            }
-
-                            return (
-                              <td
-                                key={colIdx}
-                                className={`cell-option ${cellClass}`}
-                              >
-                                {isSelected ? letter : ""}
-                              </td>
-                            );
-                          })}
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
-              </div>
-            </div>
             )}
           </div>
         </section>
@@ -1001,7 +1222,7 @@ export default function Home() {
       {/* FOOTER */}
       <footer>
         <p>&copy; 2026 Hanwha Life Việt Nam. Phát triển cho công tác đào tạo Đại lý Bảo hiểm Nhân thọ Cơ bản.</p>
-        <p> Soạn nội dung AT Như Tình. <a href="#" onClick={(e) => { e.preventDefault(); window.location.reload(); }}>Tải lại trang</a></p>
+        <p><a href="#" onClick={(e) => { e.preventDefault(); window.location.reload(); }}>Tải lại trang</a></p>
       </footer>
     </div>
   );

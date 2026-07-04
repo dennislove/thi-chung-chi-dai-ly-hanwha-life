@@ -1442,3 +1442,17 @@ footer a:hover {
   background-color: #f1f5f9;
   color: transparent;
 }
+
+/* Selected Column Header and Cell Highlights */
+.results-table-block th.selected-column-header {
+  outline: 2px solid var(--primary-color) !important;
+  outline-offset: -2px;
+  background-color: var(--primary-light) !important;
+  color: var(--primary-color) !important;
+  font-weight: 800 !important;
+}
+
+.results-table-block td.selected-column-cell {
+  outline: 2px solid var(--primary-color) !important;
+  outline-offset: -2px;
+}
