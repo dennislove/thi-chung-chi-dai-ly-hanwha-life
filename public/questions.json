@@ -2736,11 +2736,11 @@
         "3 năm",
         "5 năm"
       ],
-      "answer": 2
+      "answer": 0
     },
     {
       "id": 13,
-      "question": "[Đề số 7 - Câu 13] Doanh nghiệp bảo hiểm không được đầu tư vốn nhàn rỗi vào lĩnh vực nào sau đây?",
+      "question": "Doanh nghiệp bảo hiểm không được đầu tư vốn nhàn rỗi vào lĩnh vực nào sau đây?",
       "options": [
         "Mua công trái, trái phiếu chính phủ",
         "Kinh doanh bất động sản trực tiếp (như xây nhà để bán)",
@@ -2784,7 +2784,7 @@
     },
     {
       "id": 17,
-      "question": "[Đề số 7 - Câu 17] Thời gian cân nhắc (dùng thử) đối với hợp đồng bảo hiểm nhân thọ có thời hạn từ 20 năm trở lên thường là bao nhiêu ngày kể từ ngày nhận được hợp đồng?",
+      "question": "Thời gian cân nhắc (dùng thử) đối với hợp đồng bảo hiểm nhân thọ có thời hạn từ 20 năm trở lên thường là bao nhiêu ngày kể từ ngày nhận được hợp đồng?",
       "options": [
         "14 ngày",
         "21 ngày",
@@ -2828,7 +2828,7 @@
     },
     {
       "id": 21,
-      "question": "[Đề 7 - Câu số 21] Phí bảo hiểm là gì?",
+      "question": "Phí bảo hiểm là gì?",
       "options": [
         "Khoản tiền mà bên mua bảo hiểm phải đóng cho doanh nghiệp bảo hiểm theo thỏa thuận trong hợp đồng",
         "Khoản tiền doanh nghiệp bảo hiểm trả cho khách hàng khi nằm viện",
@@ -2872,14 +2872,14 @@
     },
     {
       "id": 25,
-      "question": "[Đề 7 - Câu số 25] Doanh nghiệp bảo hiểm có quyền đơn phương chấm dứt hợp đồng bảo hiểm trong trường hợp nào dưới đây?",
+      "question": "Doanh nghiệp bảo hiểm có quyền đơn phương chấm dứt hợp đồng bảo hiểm trong trường hợp nào dưới đây?",
       "options": [
         "Bên mua bảo hiểm cố ý cung cấp thông tin sai sự thật nhằm giao kết hợp đồng để trục lợi bảo hiểm",
         "Bên mua bảo hiểm không đóng phí bảo hiểm sau khi hết thời gian gia hạn đóng phí",
         "Khách hàng mắc bệnh hiểm nghèo sau khi hợp đồng đã có hiệu lực 5 năm",
         "Cả A và B đều đúng"
       ],
-      "answer": 3
+      "answer": 1
     },
     {
       "id": 26,
@@ -2916,7 +2916,7 @@
     },
     {
       "id": 29,
-      "question": "[Đề 7 - Câu số 29] Tuổi tối đa của người được bảo hiểm khi kết thúc hợp đồng bảo hiểm nhân thọ thường quy định thế nào?",
+      "question": "Tuổi tối đa của người được bảo hiểm khi kết thúc hợp đồng bảo hiểm nhân thọ thường quy định thế nào?",
       "options": [
         "Không giới hạn tuổi",
         "Thường là 60 tuổi hoặc 65 tuổi tùy sản phẩm",
@@ -4820,7 +4820,7 @@
         "Số tiền cố định khi bên mua bảo hiểm thực hiện đóng phí bảo hiểm",
         "Tỷ lệ % phí bảo hiểm khi bên mua bảo hiểm thực hiện đóng phí đầu tư thêm"
       ],
-      "answer": 2
+      "answer": 0
     },
     {
       "id": 11,
