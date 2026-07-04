@@ -2027,7 +2027,7 @@
         "Doanh nghiệp bảo hiểm yêu cầu người được bảo hiểm bồi thường do có hành vi gây thiệt hại cho người thứ ba trong thời hạn bảo hiểm",
         "A, B, C đúng"
       ],
-      "answer": 3
+      "answer": 0
     },
     {
       "id": 27,
@@ -4831,7 +4831,7 @@
         "Cổ phiếu (bao gồm cổ phiếu của các công ty chứng khoán, công ty tài chính, công ty cho thuê tài chính), trái phiếu doanh nghiệp không có bảo đảm, góp vốn vào các doanh nghiệp khác: tối đa 20% tổng giá trị tài sản đầu tư của quỹ hưu trí tự nguyện.",
         "Đầu tư vào cổ phiếu đã phát hành của một doanh nghiệp, trái phiếu doanh nghiệp: tối đa 5% khối lượng mỗi lần phát hành và tối đa 5% tổng giá trị tài sản đầu tư của quỹ hưu trí tự nguyện."
       ],
-      "answer": 3
+      "answer": 2
     },
     {
       "id": 12,

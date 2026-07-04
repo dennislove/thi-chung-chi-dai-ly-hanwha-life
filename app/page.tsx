@@ -37,8 +37,10 @@ const DEPENDENT_KEYWORDS = [
   /câu\s+trên/i,                     // câu trên, các câu trên
   /không\s+câu\s+nào/i,              // không câu nào đúng/sai
   /không\s+có\s+trường\s+hợp/i,      // không có trường hợp nào
-  /[a-d]\s*(?:,|và|hoặc)\s*[a-d]/i,  // A, B đúng; A,C sai; A hoặc B; A và C...
+  /\b[a-d]\b\s*(?:[,+&]|và|hoặc|and)\s*\b[a-d]\b/i,  // A, B đúng; A,C sai; A hoặc B; A và C...
   /cả\s+[a-d]/i,                     // cả A và B, cả A, B, C...
+  /cả\s+(?:hai|ba|bốn|2|3|4)\s+(?:đáp\s+án|phương\s+án|ý|câu)/i,
+  /không\s+(?:có\s+)?(?:đáp\s+án|phương\s+án|câu|trường\s+hợp)(?:\s+nào)?\s*(?:đúng|sai|nào)/i
 ];
 
 export default function Home() {
@@ -58,7 +60,7 @@ export default function Home() {
   const [selectedExamId, setSelectedExamId] = useState<string>('de_1');
   const [currentExamQuestions, setCurrentExamQuestions] = useState<ProcessedQuestion[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
-  const [selectedReviewQuestionIdx, setSelectedReviewQuestionIdx] = useState<number>(0);
+  const [selectedReviewQuestionIdx, setSelectedReviewQuestionIdx] = useState<number | null>(null);
 
   // Quiz tracking
   const [userAnswers, setUserAnswers] = useState<Record<number, number>>({});
@@ -198,7 +200,7 @@ export default function Home() {
     // Reset quiz stats
     setCurrentExamQuestions(processed);
     setCurrentQuestionIndex(0);
-    setSelectedReviewQuestionIdx(0);
+    setSelectedReviewQuestionIdx(null);
     setUserAnswers({});
     setIsQuestionAnswered({});
     setViewedQuestions({ 0: true });
@@ -911,7 +913,7 @@ export default function Home() {
                 </div>
               </div>
             ) : (
-              <div className="results-grid-table-container">
+              <div className="results-grid-table-container" style={{ position: 'relative' }}>
                 {/* Legend Badges */}
                 <div className="results-grid-header" style={{ flexDirection: 'column', alignItems: 'flex-start', gap: '8px' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px', width: '100%', flexWrap: 'wrap' }}>
@@ -1062,81 +1064,130 @@ export default function Home() {
                   </table>
                 </div>
 
-                {/* Question Detail Panel */}
+                {/* Question Detail Panel styled as Overlay */}
                 {selectedReviewQuestionIdx !== null && currentExamQuestions[selectedReviewQuestionIdx] && (
-                  <div className="selected-question-preview" style={{
-                    marginTop: '24px',
-                    padding: '20px',
-                    background: 'white',
-                    border: '1px solid var(--border-color)',
-                    borderRadius: '8px',
-                    boxShadow: 'var(--shadow-sm)',
-                    textAlign: 'left'
-                  }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
-                      <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 800, color: 'var(--primary-color)' }}>
-                        Chi tiết câu hỏi {selectedReviewQuestionIdx + 1}
-                      </h3>
-                      <span style={{
-                        fontSize: '0.8rem',
-                        padding: '4px 10px',
-                        borderRadius: '4px',
-                        fontWeight: 700,
-                        color: 'white',
-                        backgroundColor: userAnswers[selectedReviewQuestionIdx] === currentExamQuestions[selectedReviewQuestionIdx].correctAnswer
-                          ? 'var(--success-color)'
-                          : userAnswers[selectedReviewQuestionIdx] === undefined
-                            ? '#94a3b8'
-                            : 'var(--error-color)'
-                      }}>
-                        {userAnswers[selectedReviewQuestionIdx] === currentExamQuestions[selectedReviewQuestionIdx].correctAnswer 
-                          ? 'Đúng' 
-                          : userAnswers[selectedReviewQuestionIdx] === undefined 
-                            ? 'Chưa trả lời' 
-                            : 'Sai'}
-                      </span>
-                    </div>
-                    
-                    <p style={{ fontWeight: 600, fontSize: '1rem', color: '#1e293b', marginBottom: '16px', lineHeight: '1.5' }}>
-                      {currentExamQuestions[selectedReviewQuestionIdx].questionText}
-                    </p>
+                  <div 
+                    style={{
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                      bottom: 0,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      zIndex: 50,
+                      pointerEvents: 'none',
+                      backgroundColor: 'rgba(255, 255, 255, 0.45)', // translucent background, not blurred, keep table visible
+                      borderRadius: 'var(--radius-lg)',
+                    }}
+                  >
+                    <div 
+                      className="selected-question-preview" 
+                      style={{
+                        padding: '24px',
+                        background: 'white',
+                        border: '1px solid var(--border-color)',
+                        borderRadius: 'var(--radius-md)',
+                        boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
+                        textAlign: 'left',
+                        maxWidth: '90%',
+                        width: '640px',
+                        maxHeight: '90%',
+                        overflowY: 'auto',
+                        position: 'relative',
+                        pointerEvents: 'auto', // allow interactions on the card itself
+                      }}
+                    >
+                      {/* Close button */}
+                      <button
+                        type="button"
+                        onClick={() => setSelectedReviewQuestionIdx(null)}
+                        style={{
+                          position: 'absolute',
+                          top: '16px',
+                          right: '16px',
+                          background: 'none',
+                          border: 'none',
+                          fontSize: '1.6rem',
+                          fontWeight: 'bold',
+                          cursor: 'pointer',
+                          color: 'var(--text-muted)',
+                          transition: 'color 0.2s',
+                          padding: '4px',
+                          lineHeight: 1,
+                        }}
+                        onMouseEnter={(e) => e.currentTarget.style.color = 'var(--primary-color)'}
+                        onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-muted)'}
+                      >
+                        &times;
+                      </button>
 
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                      {currentExamQuestions[selectedReviewQuestionIdx].options.map((opt, optIdx) => {
-                        const prefix = String.fromCharCode(65 + optIdx);
-                        const isCorrectOpt = optIdx === currentExamQuestions[selectedReviewQuestionIdx].correctAnswer;
-                        const isUserChoice = userAnswers[selectedReviewQuestionIdx] === optIdx;
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px', paddingRight: '32px' }}>
+                        <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 800, color: 'var(--primary-color)' }}>
+                          Chi tiết câu hỏi {selectedReviewQuestionIdx + 1}
+                        </h3>
+                        <span style={{
+                          fontSize: '0.8rem',
+                          padding: '4px 10px',
+                          borderRadius: '4px',
+                          fontWeight: 700,
+                          color: 'white',
+                          backgroundColor: userAnswers[selectedReviewQuestionIdx] === currentExamQuestions[selectedReviewQuestionIdx].correctAnswer
+                            ? 'var(--success-color)'
+                            : userAnswers[selectedReviewQuestionIdx] === undefined
+                              ? '#94a3b8'
+                              : 'var(--error-color)'
+                        }}>
+                          {userAnswers[selectedReviewQuestionIdx] === currentExamQuestions[selectedReviewQuestionIdx].correctAnswer 
+                            ? 'Đúng' 
+                            : userAnswers[selectedReviewQuestionIdx] === undefined 
+                              ? 'Chưa trả lời' 
+                              : 'Sai'}
+                        </span>
+                      </div>
+                      
+                      <p style={{ fontWeight: 600, fontSize: '1rem', color: '#1e293b', marginBottom: '16px', lineHeight: '1.5' }}>
+                        {currentExamQuestions[selectedReviewQuestionIdx].questionText}
+                      </p>
 
-                        let optBg = 'transparent';
-                        let optBorder = '1px solid var(--border-color)';
-                        let badge = null;
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                        {currentExamQuestions[selectedReviewQuestionIdx].options.map((opt, optIdx) => {
+                          const prefix = String.fromCharCode(65 + optIdx);
+                          const isCorrectOpt = optIdx === currentExamQuestions[selectedReviewQuestionIdx].correctAnswer;
+                          const isUserChoice = userAnswers[selectedReviewQuestionIdx] === optIdx;
 
-                        if (isCorrectOpt) {
-                          optBg = 'var(--success-light)';
-                          optBorder = '1px solid var(--success-color)';
-                          badge = <span style={{ marginLeft: 'auto', fontSize: '0.75rem', color: 'var(--success-color)', fontWeight: 700 }}>Đáp án đúng</span>;
-                        } else if (isUserChoice) {
-                          optBg = 'var(--error-light)';
-                          optBorder = '1px solid var(--error-color)';
-                          badge = <span style={{ marginLeft: 'auto', fontSize: '0.75rem', color: 'var(--error-color)', fontWeight: 700 }}>Bạn chọn (Sai)</span>;
-                        }
+                          let optBg = 'transparent';
+                          let optBorder = '1px solid var(--border-color)';
+                          let badge = null;
 
-                        return (
-                          <div key={optIdx} style={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            padding: '12px 14px',
-                            borderRadius: '6px',
-                            background: optBg,
-                            border: optBorder,
-                            fontSize: '0.92rem'
-                          }}>
-                            <span style={{ fontWeight: 700, marginRight: '8px' }}>{prefix}.</span>
-                            <span style={{ color: 'var(--text-main)' }}>{opt}</span>
-                            {badge}
-                          </div>
-                        );
-                      })}
+                          if (isCorrectOpt) {
+                            optBg = 'var(--success-light)';
+                            optBorder = '1px solid var(--success-color)';
+                            badge = <span style={{ marginLeft: 'auto', fontSize: '0.75rem', color: 'var(--success-color)', fontWeight: 700 }}>Đáp án đúng</span>;
+                          } else if (isUserChoice) {
+                            optBg = 'var(--error-light)';
+                            optBorder = '1px solid var(--error-color)';
+                            badge = <span style={{ marginLeft: 'auto', fontSize: '0.75rem', color: 'var(--error-color)', fontWeight: 700 }}>Bạn chọn (Sai)</span>;
+                          }
+
+                          return (
+                            <div key={optIdx} style={{
+                              display: 'flex',
+                              alignItems: 'center',
+                              padding: '12px 14px',
+                              borderRadius: '6px',
+                              background: optBg,
+                              border: optBorder,
+                              fontSize: '0.92rem'
+                            }}>
+                              <span style={{ fontWeight: 700, marginRight: '8px' }}>{prefix}.</span>
+                              <span style={{ color: 'var(--text-main)' }}>{opt}</span>
+                              {badge}
+                            </div>
+                          );
+                        })}
+                      </div>
                     </div>
                   </div>
                 )}
