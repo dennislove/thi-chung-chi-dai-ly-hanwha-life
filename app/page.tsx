@@ -102,7 +102,7 @@ export default function Home() {
 
   // Fetch exam questions on load & register PWA Service Worker
   useEffect(() => {
-    fetch('/questions.json')
+    fetch('/api/questions')
       .then(res => {
         if (!res.ok) throw new Error('Failed to load questions.');
         return res.json();
