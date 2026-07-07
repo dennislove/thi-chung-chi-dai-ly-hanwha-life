@@ -294,7 +294,7 @@ export default function AdminPage() {
     if (!searchTerm.trim()) return list;
 
     const term = searchTerm.toLowerCase();
-    return list.filter(q => 
+    return list.filter(q =>
       q.question.toLowerCase().includes(term) ||
       q.options.some(opt => opt.toLowerCase().includes(term))
     );
@@ -392,8 +392,8 @@ export default function AdminPage() {
               boxShadow: '0 4px 12px rgba(255, 102, 0, 0.2)',
               transition: 'var(--transition)'
             }}
-            onMouseEnter={e => e.currentTarget.style.background = 'var(--primary-hover)'}
-            onMouseLeave={e => e.currentTarget.style.background = 'var(--primary-color)'}
+              onMouseEnter={e => e.currentTarget.style.background = 'var(--primary-hover)'}
+              onMouseLeave={e => e.currentTarget.style.background = 'var(--primary-color)'}
             >
               Đăng Nhập
             </button>
@@ -454,9 +454,7 @@ export default function AdminPage() {
           <h1 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--secondary-color)', margin: 0 }}>
             Quản trị viên <span style={{ color: 'var(--primary-color)' }}>Hanwha Life Exam</span>
           </h1>
-          <p style={{ fontSize: '0.78rem', color: 'var(--text-muted)', margin: 0, fontWeight: 600 }}>
-            Bảng điều khiển quản lý câu hỏi & đáp án (Supabase DB)
-          </p>
+
         </div>
 
         <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
@@ -468,7 +466,7 @@ export default function AdminPage() {
             color: 'var(--primary-color)',
             fontWeight: 700
           }}>
-            Đăng nhập: Admin
+            Admin
           </span>
           <button
             onClick={handleLogout}
@@ -499,7 +497,7 @@ export default function AdminPage() {
 
       {/* Main Container */}
       <main style={{ maxWidth: '1200px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '24px' }}>
-        
+
         {/* Navigation & Actions Card */}
         <div style={{
           background: '#ffffff',
@@ -889,7 +887,7 @@ export default function AdminPage() {
             {/* Scrollable Form Body */}
             <form onSubmit={handleSaveEdit} style={{ display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
               <div style={{ padding: '24px', overflowY: 'auto', flex: 1, display: 'flex', flexDirection: 'column', gap: '20px' }}>
-                
+
                 {/* Question text */}
                 <div>
                   <label style={{ fontSize: '0.85rem', fontWeight: 800, color: '#334155', display: 'block', marginBottom: '8px' }}>
@@ -1105,7 +1103,7 @@ export default function AdminPage() {
             {/* Scrollable Form Body */}
             <form onSubmit={handleSaveAdd} style={{ display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
               <div style={{ padding: '24px', overflowY: 'auto', flex: 1, display: 'flex', flexDirection: 'column', gap: '20px' }}>
-                
+
                 {/* Question text */}
                 <div>
                   <label style={{ fontSize: '0.85rem', fontWeight: 800, color: '#334155', display: 'block', marginBottom: '8px' }}>

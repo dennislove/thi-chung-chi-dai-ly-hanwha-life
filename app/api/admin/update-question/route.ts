@@ -8,7 +8,10 @@ export async function POST(req: NextRequest) {
 
     // Validate admin password
     const adminPassword = process.env.ADMIN_PASSWORD;
-    if (!adminPassword || password !== adminPassword) {
+    const cleanAdminPassword = adminPassword?.replace(/^['"]|['"]$/g, '');
+    const cleanInputPassword = password?.replace(/^['"]|['"]$/g, '');
+
+    if (!cleanAdminPassword || cleanInputPassword !== cleanAdminPassword) {
       return NextResponse.json({ error: 'Unauthorized: Incorrect Admin Password' }, { status: 401 });
     }
 
