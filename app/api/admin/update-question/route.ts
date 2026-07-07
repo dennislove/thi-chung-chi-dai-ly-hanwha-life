@@ -11,8 +11,19 @@ export async function POST(req: NextRequest) {
     const cleanAdminPassword = adminPassword?.replace(/^['"]|['"]$/g, '');
     const cleanInputPassword = password?.replace(/^['"]|['"]$/g, '');
 
-    if (!cleanAdminPassword || cleanInputPassword !== cleanAdminPassword) {
+    if (!cleanAdminPassword) {
+      console.error('ADMIN_PASSWORD is not set in environment variables (process.env.ADMIN_PASSWORD).');
+      return NextResponse.json({ 
+        error: 'Unauthorized: Admin password is not configured on the server. Please check your .env file and restart the server.' 
+      }, { status: 401 });
+    }
+
+    if (cleanInputPassword !== cleanAdminPassword) {
       return NextResponse.json({ error: 'Unauthorized: Incorrect Admin Password' }, { status: 401 });
+    }
+
+    if (action === 'verify') {
+      return NextResponse.json({ success: true, message: 'Password verified successfully.' });
     }
 
     if (!exam_id) {

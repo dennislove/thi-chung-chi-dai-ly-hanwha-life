@@ -75,16 +75,33 @@ export default function AdminPage() {
   }, [isLoggedIn]);
 
   // Handle simple login
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!password.trim()) {
       setLoginError('Vui lòng nhập mật khẩu.');
       return;
     }
-    // Set logged in state and save password to sessionStorage (we will validate it when making mutating requests)
-    sessionStorage.setItem('adminPassword', password);
-    setIsLoggedIn(true);
     setLoginError('');
+    try {
+      const res = await fetch('/api/admin/update-question', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          password,
+          action: 'verify',
+        }),
+      });
+      const result = await res.json();
+      if (!res.ok) {
+        throw new Error(result.error || 'Mật khẩu không chính xác.');
+      }
+      // Set logged in state and save password to sessionStorage
+      sessionStorage.setItem('adminPassword', password);
+      setIsLoggedIn(true);
+    } catch (err: any) {
+      setLoginError(err.message || 'Mật khẩu không chính xác.');
+      sessionStorage.removeItem('adminPassword');
+    }
   };
 
   const handleLogout = () => {
@@ -143,7 +160,12 @@ export default function AdminPage() {
       });
 
       const result = await res.json();
-      if (!res.ok) throw new Error(result.error || 'Cập nhật thất bại.');
+      if (!res.ok) {
+        if (res.status === 401) {
+          handleLogout();
+        }
+        throw new Error(result.error || 'Cập nhật thất bại.');
+      }
 
       showAlert('success', `Đã cập nhật câu hỏi số ${editingQuestion.id} thành công!`);
       setIsEditModalOpen(false);
@@ -211,7 +233,12 @@ export default function AdminPage() {
       });
 
       const result = await res.json();
-      if (!res.ok) throw new Error(result.error || 'Không thể thêm câu hỏi mới.');
+      if (!res.ok) {
+        if (res.status === 401) {
+          handleLogout();
+        }
+        throw new Error(result.error || 'Không thể thêm câu hỏi mới.');
+      }
 
       showAlert('success', `Đã thêm câu hỏi mới vào ${selectedExamId.toUpperCase()} thành công!`);
       setIsAddModalOpen(false);
@@ -264,7 +291,12 @@ export default function AdminPage() {
       });
 
       const result = await res.json();
-      if (!res.ok) throw new Error(result.error || 'Xóa câu hỏi thất bại.');
+      if (!res.ok) {
+        if (res.status === 401) {
+          handleLogout();
+        }
+        throw new Error(result.error || 'Xóa câu hỏi thất bại.');
+      }
 
       showAlert('success', `Đã xóa câu hỏi số ${qNum} thành công!`);
       fetchQuestions(); // Refresh
