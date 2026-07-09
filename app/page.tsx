@@ -53,6 +53,7 @@ export default function Home() {
   const [code, setCode] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [submitTimeStr, setSubmitTimeStr] = useState('');
 
   // Quiz database & setup
   const [questionsData, setQuestionsData] = useState<QuestionsDatabase | null>(null);
@@ -206,6 +207,7 @@ export default function Home() {
     setViewedQuestions({ 0: true });
     setTimeLeft(3600); // 60 minutes
     setStartTime(new Date());
+    setSubmitTimeStr('');
     setScreen('exam');
   };
 
@@ -249,6 +251,20 @@ export default function Home() {
     const elapsed = startTime ? Math.floor((endTime.getTime() - startTime.getTime()) / 1000) : 0;
     setTimeSpent(elapsed);
 
+    // Capture submit time (formatted as HH:MM:SS DD/MM/YYYY)
+    const now = new Date();
+    const formattedDate = now.toLocaleDateString('vi-VN', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric'
+    });
+    const formattedTime = now.toLocaleTimeString('vi-VN', {
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit'
+    });
+    setSubmitTimeStr(`${formattedTime} ngày ${formattedDate}`);
+
     // Calculate score
     let correct = 0;
     currentExamQuestions.forEach((q, idx) => {
@@ -281,8 +297,12 @@ export default function Home() {
   };
 
   const handleLoginAndMode = (selectedMode: 'luyen-thi' | 'thi-thu') => {
+    if (!name.trim()) {
+      alert('Vui lòng nhập Họ và tên người làm bài trước khi bắt đầu!');
+      return;
+    }
     if (username === '88888888' && password === '88888888') {
-      setName('Học viên Hanwha');
+      setName(name.trim());
       setPhone('88888888');
       setCode('HW88888888');
       setMode(selectedMode);
@@ -388,6 +408,20 @@ export default function Home() {
               <h3 className="landing-card-title">HỌC VIÊN</h3>
 
               <form onSubmit={(e) => e.preventDefault()} style={{ marginTop: '16px', width: '100%' }}>
+                <div className="form-group" style={{ marginBottom: '12px' }}>
+                  <label htmlFor="name-input" style={{ fontSize: '0.8rem', fontWeight: 700 }}>Họ và tên người làm bài</label>
+                  <input
+                    id="name-input"
+                    type="text"
+                    className="form-control"
+                    placeholder="Nhập họ và tên của bạn"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    required
+                    style={{ padding: '10px 12px', fontSize: '0.9rem' }}
+                  />
+                </div>
+
                 <div className="form-group" style={{ marginBottom: '12px' }}>
                   <label htmlFor="username-input" style={{ fontSize: '0.8rem', fontWeight: 700 }}>Tên đăng nhập</label>
                   <input
@@ -738,6 +772,8 @@ export default function Home() {
                 (Điểm đạt yêu cầu từ 35 câu đúng trở lên)
               </p>
 
+
+
               {/* DYNAMIC FEEDBACK MESSAGE */}
               <div style={{
                 margin: '20px auto 0',
@@ -777,14 +813,22 @@ export default function Home() {
                   <span className="result-detail-lbl">Học viên</span>
                 </div>
                 <div className="result-detail-item">
+                  <span className="result-detail-val">Đề số {selectedExamId.replace('de_', '')}</span>
+                  <span className="result-detail-lbl">Đề thi</span>
+                </div>
+                <div className="result-detail-item" style={{ borderTop: '1px solid var(--border-color)', paddingTop: '12px', marginTop: '4px' }}>
                   <span className="result-detail-val">{mode === 'luyen-thi' ? 'Luyện tập' : 'Thi thử'}</span>
                   <span className="result-detail-lbl">Chế độ</span>
                 </div>
-                <div className="result-detail-item" style={{ gridColumn: 'span 2', borderTop: '1px solid var(--border-color)', paddingTop: '12px', marginTop: '4px' }}>
+                <div className="result-detail-item" style={{ borderTop: '1px solid var(--border-color)', paddingTop: '12px', marginTop: '4px' }}>
                   <span className="result-detail-val">
                     {Math.floor(timeSpent / 60)} phút {timeSpent % 60} giây
                   </span>
-                  <span className="result-detail-lbl">Thời gian thực hiện</span>
+                  <span className="result-detail-lbl">Thời gian làm bài</span>
+                </div>
+                <div className="result-detail-item" style={{ gridColumn: 'span 2', borderTop: '1px solid var(--border-color)', paddingTop: '12px', marginTop: '4px' }}>
+                  <span className="result-detail-val">{submitTimeStr || 'Vừa xong'}</span>
+                  <span className="result-detail-lbl">Thời gian nộp bài</span>
                 </div>
               </div>
 

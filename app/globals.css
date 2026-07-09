@@ -1299,6 +1299,13 @@ footer a:hover {
   .results-grid-table-container {
     padding: 16px 12px;
   }
+  .results-card.results-score-panel {
+    padding: 24px 16px;
+  }
+  .result-detail-grid {
+    padding: 16px 12px;
+    gap: 12px;
+  }
 }
 
 .results-grid-header {
