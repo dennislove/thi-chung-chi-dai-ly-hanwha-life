@@ -568,7 +568,7 @@ export default function Home() {
             <div className="quiz-main">
               <div className="quiz-card" style={{ border: '1px solid #a3b8cc', padding: '24px', background: 'white', borderRadius: '6px' }}>
                 <div className="question-block" style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                  <div style={{ fontSize: '1.2rem', fontWeight: 800, color: '#e65c00' }}>
+                  <div className="notranslate" translate="no" style={{ fontSize: '1.2rem', fontWeight: 800, color: '#e65c00' }}>
                     Câu {String(currentQuestionIndex + 1).padStart(2, '0')}
                   </div>
                   <div style={{ fontSize: '1.1rem', color: '#000000', lineHeight: '1.6', fontWeight: 500 }}>
@@ -682,7 +682,8 @@ export default function Home() {
                   {currentExamQuestions.map((_, idx) => (
                     <div
                       key={idx}
-                      className={getGridItemClass(idx)}
+                      className={`${getGridItemClass(idx)} notranslate`}
+                      translate="no"
                       onClick={() => setCurrentQuestionIndex(idx)}
                     >
                       Câu {String(idx + 1).padStart(2, '0')}
@@ -837,7 +838,7 @@ export default function Home() {
                         }}
                       >
                         <div style={{ fontWeight: 700, color: 'var(--text-main)', marginBottom: '8px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                          <span>Câu {qIdx + 1}</span>
+                          <span className="notranslate" translate="no">Câu {qIdx + 1}</span>
                           <span
                             style={{
                               fontSize: '0.8rem',
@@ -954,14 +955,14 @@ export default function Home() {
                       </tr>
                     </thead>
                     <tbody>
-                      {/* Rows A, B, C, D, E based on max options in Questions 1-20 */}
+                      {/* Rows A, B, C, D, E unified across all exam sets */}
                       {Array.from({
-                        length: Math.max(4, ...currentExamQuestions.slice(0, 20).map(q => q.options.length))
+                        length: 5
                       }).map((_, rIdx) => {
                         const letter = String.fromCharCode(65 + rIdx);
                         return (
                           <tr key={letter}>
-                            <td className="row-label-cell">{letter}</td>
+                            <td className="row-label-cell notranslate" translate="no">{letter}</td>
                             {Array.from({ length: 20 }).map((_, colIdx) => {
                               const qIdx = colIdx;
                               const question = currentExamQuestions[qIdx];
@@ -982,7 +983,8 @@ export default function Home() {
                               return (
                                 <td
                                   key={colIdx}
-                                  className={`cell-option ${cellClass} ${isSelectedQuestion ? 'selected-column-cell' : ''}`}
+                                  className={`cell-option ${cellClass} ${isSelectedQuestion ? 'selected-column-cell' : ''} notranslate`}
+                                  translate="no"
                                   onClick={() => setSelectedReviewQuestionIdx(qIdx)}
                                   style={{ cursor: 'pointer' }}
                                 >
@@ -1020,14 +1022,14 @@ export default function Home() {
                       </tr>
                     </thead>
                     <tbody>
-                      {/* Rows A, B, C, D, E based on max options in Questions 21-40 */}
+                      {/* Rows A, B, C, D, E unified across all exam sets */}
                       {Array.from({
-                        length: Math.max(4, ...currentExamQuestions.slice(20, 40).map(q => q.options.length))
+                        length: 5
                       }).map((_, rIdx) => {
                         const letter = String.fromCharCode(65 + rIdx);
                         return (
                           <tr key={letter}>
-                            <td className="row-label-cell">{letter}</td>
+                            <td className="row-label-cell notranslate" translate="no">{letter}</td>
                             {Array.from({ length: 20 }).map((_, colIdx) => {
                               const qIdx = colIdx + 20;
                               const question = currentExamQuestions[qIdx];
@@ -1048,7 +1050,8 @@ export default function Home() {
                               return (
                                 <td
                                   key={colIdx}
-                                  className={`cell-option ${cellClass} ${isSelectedQuestion ? 'selected-column-cell' : ''}`}
+                                  className={`cell-option ${cellClass} ${isSelectedQuestion ? 'selected-column-cell' : ''} notranslate`}
+                                  translate="no"
                                   onClick={() => setSelectedReviewQuestionIdx(qIdx)}
                                   style={{ cursor: 'pointer' }}
                                 >
@@ -1123,7 +1126,7 @@ export default function Home() {
                       </button>
 
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px', paddingRight: '32px' }}>
-                        <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 800, color: 'var(--primary-color)' }}>
+                        <h3 className="notranslate" translate="no" style={{ margin: 0, fontSize: '1.1rem', fontWeight: 800, color: 'var(--primary-color)' }}>
                           Chi tiết câu hỏi {selectedReviewQuestionIdx + 1}
                         </h3>
                         <span style={{
