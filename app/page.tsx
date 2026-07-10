@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 // Interfaces matching backend schema
 interface RawQuestion {
@@ -23,25 +23,9 @@ interface QuestionsDatabase {
   [key: string]: RawQuestion[];
 }
 
-interface UserInfo {
-  name: string;
-  phone: string;
-  code: string;
-}
 
-const DEPENDENT_KEYWORDS = [
-  /tất\s+cả/i,                      // Tất cả các đáp án/phương án...
-  /đều\s+(đúng|sai)/i,               // đều đúng, đều sai
-  /phương\s+án\s+trên/i,             // phương án trên, các phương án trên
-  /đáp\s+án\s+trên/i,               // đáp án trên, các đáp án trên
-  /câu\s+trên/i,                     // câu trên, các câu trên
-  /không\s+câu\s+nào/i,              // không câu nào đúng/sai
-  /không\s+có\s+trường\s+hợp/i,      // không có trường hợp nào
-  /\b[a-d]\b\s*(?:[,+&]|và|hoặc|and)\s*\b[a-d]\b/i,  // A, B đúng; A,C sai; A hoặc B; A và C...
-  /cả\s+[a-d]/i,                     // cả A và B, cả A, B, C...
-  /cả\s+(?:hai|ba|bốn|2|3|4)\s+(?:đáp\s+án|phương\s+án|ý|câu)/i,
-  /không\s+(?:có\s+)?(?:đáp\s+án|phương\s+án|câu|trường\s+hợp)(?:\s+nào)?\s*(?:đúng|sai|nào)/i
-];
+
+
 
 export default function Home() {
   // Screens: 'auth' | 'dashboard' | 'exam' | 'result'
@@ -49,8 +33,6 @@ export default function Home() {
 
   // Registration State
   const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
-  const [code, setCode] = useState('');
   const [password, setPassword] = useState('');
   const [submitTimeStr, setSubmitTimeStr] = useState('');
 
@@ -64,7 +46,6 @@ export default function Home() {
 
   // Quiz tracking
   const [userAnswers, setUserAnswers] = useState<Record<number, number>>({});
-  const [isQuestionAnswered, setIsQuestionAnswered] = useState<Record<number, boolean>>({});
   const [viewedQuestions, setViewedQuestions] = useState<Record<number, boolean>>({});
 
   // Timer states
@@ -85,10 +66,7 @@ export default function Home() {
     return text.replace(prefixRegex, '').trim();
   };
 
-  // Determine if answer options contain dependency words
-  const hasDependentOptions = (options: string[]): boolean => {
-    return options.some(opt => DEPENDENT_KEYWORDS.some(regex => regex.test(opt)));
-  };
+
 
   // Fisher-Yates shuffle
   const shuffleArray = <T,>(array: T[]): T[] => {
@@ -171,10 +149,10 @@ export default function Home() {
     // 1. Shuffling questions (Fisher-Yates)
     const shuffledQuestions = shuffleArray(rawList);
 
-    // 2. Conditional Shuffling of answers
+    // 2. Conditional Shuffling of answers (Disabled completely per user request)
     const processed = shuffledQuestions.map((q, idx) => {
       const cleanText = cleanQuestionText(q.question);
-      const shouldShuffle = !hasDependentOptions(q.options);
+      const shouldShuffle = false; // Always false to prevent shuffling answer options
 
       let finalOptions = [...q.options];
       let correctIdx = q.answer;
@@ -202,7 +180,6 @@ export default function Home() {
     setCurrentQuestionIndex(0);
     setSelectedReviewQuestionIdx(null);
     setUserAnswers({});
-    setIsQuestionAnswered({});
     setViewedQuestions({ 0: true });
     setTimeLeft(3600); // 60 minutes
     setStartTime(new Date());
@@ -217,7 +194,6 @@ export default function Home() {
       return;
     }
     setUserAnswers(prev => ({ ...prev, [qIdx]: optIdx }));
-    setIsQuestionAnswered(prev => ({ ...prev, [qIdx]: true }));
   };
 
   // Render navigation grid status classes
@@ -302,8 +278,6 @@ export default function Home() {
     }
     if (password === '88888888') {
       setName(name.trim());
-      setPhone('88888888');
-      setCode('HW88888888');
       setMode(selectedMode);
       setScreen('dashboard');
     } else {

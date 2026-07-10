@@ -724,7 +724,7 @@ export default function AdminPage() {
             </div>
           ) : (
             <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-              {currentQuestions.map((q, idx) => (
+              {currentQuestions.map((q) => (
                 <div
                   key={q.id}
                   style={{
