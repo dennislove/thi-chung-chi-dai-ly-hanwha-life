@@ -337,15 +337,19 @@ export default function AdminPage() {
   // ----------------------------------------------------
   if (!isLoggedIn) {
     return (
-      <div style={{
-        minHeight: '100vh',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        background: 'linear-gradient(135deg, #fff5ed 0%, #ff66000c 100%)',
-        fontFamily: 'var(--font-body)',
-        padding: '24px 16px'
-      }}>
+      <div
+        className="notranslate"
+        translate="no"
+        style={{
+          minHeight: '100vh',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          background: 'linear-gradient(135deg, #fff5ed 0%, #ff66000c 100%)',
+          fontFamily: 'var(--font-body)',
+          padding: '24px 16px'
+        }}
+      >
         <div style={{
           width: '100%',
           maxWidth: '440px',
@@ -439,13 +443,17 @@ export default function AdminPage() {
   // MAIN ADMIN DASHBOARD
   // ----------------------------------------------------
   return (
-    <div style={{
-      minHeight: '100vh',
-      background: 'var(--bg-body)',
-      fontFamily: 'var(--font-body)',
-      padding: '24px 16px',
-      position: 'relative'
-    }}>
+    <div
+      className="notranslate"
+      translate="no"
+      style={{
+        minHeight: '100vh',
+        background: 'var(--bg-body)',
+        fontFamily: 'var(--font-body)',
+        padding: '24px 16px',
+        position: 'relative'
+      }}
+    >
       {/* Alert toast notification */}
       {alertMsg.text && (
         <div style={{

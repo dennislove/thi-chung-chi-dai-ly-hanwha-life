@@ -293,7 +293,7 @@ export default function Home() {
   const isPassed = scoreCorrectCount >= 35;
 
   return (
-    <div className="app-container">
+    <div className="app-container notranslate" translate="no">
 
 
       {/* CONFETTI ANIMATION PANELS */}
@@ -628,7 +628,7 @@ export default function Home() {
                             }`}
                         />
                         <div className="option-text">
-                          <strong className="notranslate" translate="no">{prefix}/</strong> {opt}
+                          <strong className="notranslate" translate="no">{prefix}.</strong> {opt}
                         </div>
                       </div>
                     );
@@ -699,9 +699,7 @@ export default function Home() {
                     }}
                   />
                 </div>
-                <span className="progress-text" style={{ marginBottom: '8px' }}>
-                  Đã làm: {Object.keys(userAnswers).length} / {currentExamQuestions.length} câu
-                </span>
+
               </div>
             </div>
           </div>
@@ -828,10 +826,10 @@ export default function Home() {
                           background: 'white',
                           border: '1px solid var(--border-color)',
                           borderRadius: '8px',
-                          borderLeft: isCorrect 
-                            ? '5px solid var(--success-color)' 
-                            : userChoiceIdx === undefined 
-                              ? '5px solid #94a3b8' 
+                          borderLeft: isCorrect
+                            ? '5px solid var(--success-color)'
+                            : userChoiceIdx === undefined
+                              ? '5px solid #94a3b8'
                               : '5px solid var(--error-color)',
                           boxShadow: 'var(--shadow-sm)',
                           textAlign: 'left'
@@ -840,20 +838,22 @@ export default function Home() {
                         <div style={{ fontWeight: 700, color: 'var(--text-main)', marginBottom: '8px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                           <span className="notranslate" translate="no">Câu {qIdx + 1}</span>
                           <span
+                            className="notranslate"
+                            translate="no"
                             style={{
                               fontSize: '0.8rem',
                               padding: '4px 8px',
                               borderRadius: '4px',
                               fontWeight: 600,
                               color: 'white',
-                              backgroundColor: isCorrect 
-                                ? 'var(--success-color)' 
-                                : userChoiceIdx === undefined 
-                                  ? '#94a3b8' 
+                              backgroundColor: isCorrect
+                                ? 'var(--success-color)'
+                                : userChoiceIdx === undefined
+                                  ? '#94a3b8'
                                   : 'var(--error-color)'
                             }}
                           >
-                            {isCorrect ? 'Đúng' : userChoiceIdx === undefined ? 'Chưa trả lời' : 'Sai'}
+                            {isCorrect ? 'Đúng' : userChoiceIdx === undefined ? 'Chưa có câu trả lời' : 'Sai'}
                           </span>
                         </div>
                         <p style={{ fontWeight: 600, fontSize: '0.95rem', marginBottom: '12px', color: '#1e293b', lineHeight: '1.5' }}>
@@ -916,12 +916,12 @@ export default function Home() {
               <div className="results-grid-table-container" style={{ position: 'relative' }}>
                 {/* Legend Badges */}
                 <div className="results-grid-header" style={{ flexDirection: 'column', alignItems: 'flex-start', gap: '8px' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', width: '100%', flexWrap: 'wrap' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', width: '100%', flexWrap: 'wrap' }} className="notranslate" translate="no">
                     <span className="results-grid-legend-label">Chú ý:</span>
                     <div className="results-grid-legend-badges">
-                      <span className="results-grid-legend-badge unanswered">Chưa trả lời</span>
-                      <span className="results-grid-legend-badge correct">Trả lời đúng</span>
-                      <span className="results-grid-legend-badge incorrect">Trả lời sai</span>
+                      <span className="results-grid-legend-badge unanswered notranslate" translate="no">Chưa có câu trả lời</span>
+                      <span className="results-grid-legend-badge correct notranslate" translate="no">Đúng</span>
+                      <span className="results-grid-legend-badge incorrect notranslate" translate="no">Sai</span>
                     </div>
                   </div>
                   <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', fontStyle: 'italic', marginTop: '4px' }}>
@@ -942,8 +942,8 @@ export default function Home() {
                           const qIdx = i;
                           const isSelectedQuestion = selectedReviewQuestionIdx === qIdx;
                           return (
-                            <th 
-                              key={i} 
+                            <th
+                              key={i}
                               onClick={() => setSelectedReviewQuestionIdx(qIdx)}
                               className={isSelectedQuestion ? 'selected-column-header' : ''}
                               style={{ cursor: 'pointer' }}
@@ -1009,8 +1009,8 @@ export default function Home() {
                           const qIdx = i + 20;
                           const isSelectedQuestion = selectedReviewQuestionIdx === qIdx;
                           return (
-                            <th 
-                              key={i} 
+                            <th
+                              key={i}
                               onClick={() => setSelectedReviewQuestionIdx(qIdx)}
                               className={isSelectedQuestion ? 'selected-column-header' : ''}
                               style={{ cursor: 'pointer' }}
@@ -1068,7 +1068,7 @@ export default function Home() {
 
                 {/* Question Detail Panel styled as Overlay */}
                 {selectedReviewQuestionIdx !== null && currentExamQuestions[selectedReviewQuestionIdx] && (
-                  <div 
+                  <div
                     style={{
                       position: 'absolute',
                       top: 0,
@@ -1084,8 +1084,8 @@ export default function Home() {
                       borderRadius: 'var(--radius-lg)',
                     }}
                   >
-                    <div 
-                      className="selected-question-preview" 
+                    <div
+                      className="selected-question-preview"
                       style={{
                         padding: '24px',
                         background: 'white',
@@ -1129,26 +1129,30 @@ export default function Home() {
                         <h3 className="notranslate" translate="no" style={{ margin: 0, fontSize: '1.1rem', fontWeight: 800, color: 'var(--primary-color)' }}>
                           Chi tiết câu hỏi {selectedReviewQuestionIdx + 1}
                         </h3>
-                        <span style={{
-                          fontSize: '0.8rem',
-                          padding: '4px 10px',
-                          borderRadius: '4px',
-                          fontWeight: 700,
-                          color: 'white',
-                          backgroundColor: userAnswers[selectedReviewQuestionIdx] === currentExamQuestions[selectedReviewQuestionIdx].correctAnswer
-                            ? 'var(--success-color)'
+                        <span
+                          className="notranslate"
+                          translate="no"
+                          style={{
+                            fontSize: '0.8rem',
+                            padding: '4px 10px',
+                            borderRadius: '4px',
+                            fontWeight: 700,
+                            color: 'white',
+                            backgroundColor: userAnswers[selectedReviewQuestionIdx] === currentExamQuestions[selectedReviewQuestionIdx].correctAnswer
+                              ? 'var(--success-color)'
+                              : userAnswers[selectedReviewQuestionIdx] === undefined
+                                ? '#94a3b8'
+                                : 'var(--error-color)'
+                          }}
+                        >
+                          {userAnswers[selectedReviewQuestionIdx] === currentExamQuestions[selectedReviewQuestionIdx].correctAnswer
+                            ? 'Đúng'
                             : userAnswers[selectedReviewQuestionIdx] === undefined
-                              ? '#94a3b8'
-                              : 'var(--error-color)'
-                        }}>
-                          {userAnswers[selectedReviewQuestionIdx] === currentExamQuestions[selectedReviewQuestionIdx].correctAnswer 
-                            ? 'Đúng' 
-                            : userAnswers[selectedReviewQuestionIdx] === undefined 
-                              ? 'Chưa trả lời' 
+                              ? 'Chưa có câu trả lời'
                               : 'Sai'}
                         </span>
                       </div>
-                      
+
                       <p style={{ fontWeight: 600, fontSize: '1rem', color: '#1e293b', marginBottom: '16px', lineHeight: '1.5' }}>
                         {currentExamQuestions[selectedReviewQuestionIdx].questionText}
                       </p>

@@ -11,6 +11,9 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "BỘ PHẬN HUẤN LUYỆN - KÊNH ĐẠI LÝ HANWHA LIFE VIỆT NAM",
   description: "Hệ thống ôn luyện thi thử trực tuyến chứng chỉ bảo hiểm nhân thọ cơ bản dành riêng cho đại lý Hanwha Life Việt Nam. Hỗ trợ chạy offline.",
+  other: {
+    google: 'notranslate',
+  },
 };
 
 export const viewport: Viewport = {
@@ -25,8 +28,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="vi" className={`${inter.variable}`}>
+    <html lang="vi" className={`${inter.variable} notranslate`} translate="no">
       <head>
+        <meta name="google" content="notranslate" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <link rel="apple-touch-icon" href="/logo.png" />
