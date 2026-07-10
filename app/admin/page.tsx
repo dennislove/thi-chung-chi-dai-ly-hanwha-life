@@ -822,7 +822,7 @@ export default function AdminPage() {
                             fontSize: '0.9rem'
                           }}
                         >
-                          <span style={{
+                          <span className="notranslate" translate="no" style={{
                             fontWeight: 800,
                             marginRight: '10px',
                             color: isCorrect ? 'var(--success-color)' : 'var(--text-muted)'
@@ -981,7 +981,7 @@ export default function AdminPage() {
                           }}
                         />
 
-                        <span style={{ fontWeight: 800, fontSize: '0.9rem', width: '20px' }}>
+                        <span className="notranslate" translate="no" style={{ fontWeight: 800, fontSize: '0.9rem', width: '20px' }}>
                           {String.fromCharCode(65 + idx)}.
                         </span>
 
@@ -1198,7 +1198,7 @@ export default function AdminPage() {
                           }}
                         />
 
-                        <span style={{ fontWeight: 800, fontSize: '0.9rem', width: '20px' }}>
+                        <span className="notranslate" translate="no" style={{ fontWeight: 800, fontSize: '0.9rem', width: '20px' }}>
                           {String.fromCharCode(65 + idx)}.
                         </span>
 

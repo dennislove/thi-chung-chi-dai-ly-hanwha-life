@@ -51,7 +51,6 @@ export default function Home() {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [code, setCode] = useState('');
-  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [submitTimeStr, setSubmitTimeStr] = useState('');
 
@@ -301,14 +300,14 @@ export default function Home() {
       alert('Vui lòng nhập Họ và tên người làm bài trước khi bắt đầu!');
       return;
     }
-    if (username === '88888888' && password === '88888888') {
+    if (password === '88888888') {
       setName(name.trim());
       setPhone('88888888');
       setCode('HW88888888');
       setMode(selectedMode);
       setScreen('dashboard');
     } else {
-      alert('Tài khoản hoặc mật khẩu không chính xác! Vui lòng sử dụng tài khoản "88888888" và mật khẩu "88888888".');
+      alert('Mật khẩu không chính xác! Vui lòng kiểm tra lại.');
     }
   };
 
@@ -422,21 +421,7 @@ export default function Home() {
                   />
                 </div>
 
-                <div className="form-group" style={{ marginBottom: '12px' }}>
-                  <label htmlFor="username-input" style={{ fontSize: '0.8rem', fontWeight: 700 }}>Tên đăng nhập</label>
-                  <input
-                    id="username-input"
-                    type="text"
-                    className="form-control"
-                    placeholder="Nhập tên đăng nhập"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    required
-                    style={{ padding: '10px 12px', fontSize: '0.9rem' }}
-                  />
-                </div>
-
-                <div className="form-group" style={{ marginBottom: '12px' }}>
+                <div className="form-group" style={{ marginBottom: '16px' }}>
                   <label htmlFor="password-input" style={{ fontSize: '0.8rem', fontWeight: 700 }}>Mật khẩu</label>
                   <input
                     id="password-input"
@@ -449,10 +434,6 @@ export default function Home() {
                     style={{ padding: '10px 12px', fontSize: '0.9rem' }}
                   />
                 </div>
-
-                <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '16px', textAlign: 'left', borderLeft: '3px solid var(--primary-color)', paddingLeft: '8px' }}>
-                  (*) Đăng nhập bằng tài khoản/mật khẩu: <strong>88888888 (8 số 8)</strong>.
-                </p>
 
                 <div className="auth-actions" style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginTop: '12px' }}>
                   <button
@@ -673,7 +654,7 @@ export default function Home() {
                             }`}
                         />
                         <div className="option-text">
-                          <strong>{prefix}/</strong> {opt}
+                          <strong className="notranslate" translate="no">{prefix}/</strong> {opt}
                         </div>
                       </div>
                     );
@@ -944,7 +925,7 @@ export default function Home() {
                                   fontSize: '0.9rem'
                                 }}
                               >
-                                <span style={{ fontWeight: 700, marginRight: '8px' }}>{prefix}.</span>
+                                <span className="notranslate" translate="no" style={{ fontWeight: 700, marginRight: '8px' }}>{prefix}.</span>
                                 <span style={{ color: 'var(--text-main)' }}>{opt}</span>
                                 {badge}
                               </div>
@@ -978,7 +959,7 @@ export default function Home() {
 
                 {/* Table Block 1: Questions 1-20 */}
                 <div className="results-table-block-wrapper">
-                  <table className="results-table-block">
+                  <table className="results-table-block notranslate" translate="no">
                     <thead>
                       <tr>
                         <th className="header-corner-cell">Câu hỏi</th>
@@ -1044,7 +1025,7 @@ export default function Home() {
 
                 {/* Table Block 2: Questions 21-40 */}
                 <div className="results-table-block-wrapper">
-                  <table className="results-table-block">
+                  <table className="results-table-block notranslate" translate="no">
                     <thead>
                       <tr>
                         <th className="header-corner-cell">Câu hỏi</th>
@@ -1225,7 +1206,7 @@ export default function Home() {
                               border: optBorder,
                               fontSize: '0.92rem'
                             }}>
-                              <span style={{ fontWeight: 700, marginRight: '8px' }}>{prefix}.</span>
+                              <span className="notranslate" translate="no" style={{ fontWeight: 700, marginRight: '8px' }}>{prefix}.</span>
                               <span style={{ color: 'var(--text-main)' }}>{opt}</span>
                               {badge}
                             </div>
