@@ -41,6 +41,11 @@ export default function AdminPage() {
   const [newOptions, setNewOptions] = useState<string[]>(['', '', '', '']);
   const [newAnswer, setNewAnswer] = useState(0);
 
+  // Create/Delete Exam State
+  const [isCreateExamModalOpen, setIsCreateExamModalOpen] = useState(false);
+  const [newExamId, setNewExamId] = useState('');
+  const [newExamIdError, setNewExamIdError] = useState('');
+
   // Status/Alert messages
   const [alertMsg, setAlertMsg] = useState({ type: '', text: '' });
 
@@ -301,6 +306,78 @@ export default function AdminPage() {
 
       showAlert('success', `Đã xóa câu hỏi số ${qNum} thành công!`);
       fetchQuestions(); // Refresh
+    } catch (err: any) {
+      showAlert('error', err.message || 'Lỗi kết nối.');
+    }
+  };
+
+  // Create Exam
+  const handleCreateExam = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const trimmed = newExamId.trim();
+
+    if (!trimmed) {
+      setNewExamIdError('Vui lòng nhập tên đề thi.');
+      return;
+    }
+
+    setNewExamIdError('');
+
+    try {
+      const res = await fetch('/api/admin/manage-exam', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          password,
+          action: 'create_exam',
+          exam_id: trimmed,
+        }),
+      });
+
+      const result = await res.json();
+      if (!res.ok) {
+        if (res.status === 401) handleLogout();
+        throw new Error(result.error || 'Không thể tạo đề thi mới.');
+      }
+
+      showAlert('success', `Đã tạo đề "${trimmed.toUpperCase().replace('_', ' ')}" thành công!`);
+      setIsCreateExamModalOpen(false);
+      setNewExamId('');
+      setSelectedExamId(trimmed);
+      fetchQuestions();
+    } catch (err: any) {
+      showAlert('error', err.message || 'Lỗi kết nối.');
+    }
+  };
+
+  // Delete Exam (all questions in it)
+  const handleDeleteExam = async () => {
+    if (!window.confirm(`Bạn có chắc muốn XÓA TOÀN BỘ đề "${selectedExamId.toUpperCase().replace('_', ' ')}" (${(db[selectedExamId] || []).length} câu hỏi)? Hành động này KHÔNG THỂ hoàn tác!`)) {
+      return;
+    }
+
+    try {
+      const res = await fetch('/api/admin/manage-exam', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          password,
+          action: 'delete_exam',
+          exam_id: selectedExamId,
+        }),
+      });
+
+      const result = await res.json();
+      if (!res.ok) {
+        if (res.status === 401) handleLogout();
+        throw new Error(result.error || 'Xóa đề thi thất bại.');
+      }
+
+      showAlert('success', `Đã xóa đề "${selectedExamId.toUpperCase().replace('_', ' ')}" thành công!`);
+      fetchQuestions();
+      // Switch to first remaining exam
+      const remaining = examIds.filter(id => id !== selectedExamId);
+      if (remaining.length > 0) setSelectedExamId(remaining[0]);
     } catch (err: any) {
       showAlert('error', err.message || 'Lỗi kết nối.');
     }
@@ -579,10 +656,65 @@ export default function AdminPage() {
           padding: '24px',
           boxShadow: 'var(--shadow-sm)'
         }}>
-          {/* List of Exams */}
-          <h2 style={{ fontSize: '1rem', fontWeight: 800, color: 'var(--secondary-color)', marginBottom: '14px' }}>
-            Chọn Đề Thi
-          </h2>
+          {/* List of Exams header with create button */}
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px' }}>
+            <h2 style={{ fontSize: '1rem', fontWeight: 800, color: 'var(--secondary-color)', margin: 0 }}>
+              Chọn Đề Thi
+            </h2>
+            <div style={{ display: 'flex', gap: '8px' }}>
+              <button
+                onClick={() => {
+                  setNewExamId('');
+                  setNewExamIdError('');
+                  setIsCreateExamModalOpen(true);
+                }}
+                style={{
+                  padding: '7px 14px',
+                  borderRadius: '8px',
+                  background: 'var(--success-color)',
+                  color: '#ffffff',
+                  fontWeight: 700,
+                  fontSize: '0.82rem',
+                  border: 'none',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  transition: 'var(--transition)'
+                }}
+                onMouseEnter={e => e.currentTarget.style.opacity = '0.85'}
+                onMouseLeave={e => e.currentTarget.style.opacity = '1'}
+              >
+                <span style={{ fontSize: '1rem' }}>+</span> Tạo đề mới
+              </button>
+              {examIds.includes(selectedExamId) && (
+                <button
+                  onClick={handleDeleteExam}
+                  style={{
+                    padding: '7px 14px',
+                    borderRadius: '8px',
+                    background: '#f1f5f9',
+                    color: 'var(--error-color)',
+                    fontWeight: 700,
+                    fontSize: '0.82rem',
+                    border: '1px solid var(--border-color)',
+                    cursor: 'pointer',
+                    transition: 'var(--transition)'
+                  }}
+                  onMouseEnter={e => {
+                    e.currentTarget.style.background = 'var(--error-light)';
+                    e.currentTarget.style.borderColor = 'var(--error-color)';
+                  }}
+                  onMouseLeave={e => {
+                    e.currentTarget.style.background = '#f1f5f9';
+                    e.currentTarget.style.borderColor = 'var(--border-color)';
+                  }}
+                >
+                  🗑️ Xóa đề này
+                </button>
+              )}
+            </div>
+          </div>
           <div style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fill, minmax(88px, 1fr))',
@@ -1323,6 +1455,158 @@ export default function AdminPage() {
                   }}
                 >
                   Thêm Câu Hỏi
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* ----------------------------------------------------
+          MODAL: CREATE NEW EXAM
+          ---------------------------------------------------- */}
+      {isCreateExamModalOpen && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          background: 'rgba(15, 23, 42, 0.4)',
+          backdropFilter: 'blur(4px)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          zIndex: 999,
+          padding: '16px'
+        }}>
+          <div style={{
+            background: '#ffffff',
+            borderRadius: '20px',
+            width: '100%',
+            maxWidth: '480px',
+            boxShadow: '0 25px 50px -12px rgba(0,0,0,0.25)',
+            border: '1px solid var(--border-color)',
+            animation: 'fadeIn 0.2s'
+          }}>
+            {/* Header */}
+            <div style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              padding: '20px 24px',
+              borderBottom: '1px solid var(--border-color)'
+            }}>
+              <h3 style={{ fontSize: '1.2rem', fontWeight: 800, color: 'var(--secondary-color)', margin: 0 }}>
+                Tạo Đề Thi Mới
+              </h3>
+              <button
+                onClick={() => setIsCreateExamModalOpen(false)}
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  fontSize: '1.5rem',
+                  fontWeight: 'bold',
+                  cursor: 'pointer',
+                  color: 'var(--text-muted)'
+                }}
+              >
+                &times;
+              </button>
+            </div>
+
+            {/* Form Body */}
+            <form onSubmit={handleCreateExam}>
+              <div style={{ padding: '24px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                <div>
+                  <label style={{ fontSize: '0.85rem', fontWeight: 800, color: '#334155', display: 'block', marginBottom: '8px' }}>
+                    Tên đề thi
+                  </label>
+                  <input
+                    type="text"
+                    value={newExamId}
+                    onChange={e => {
+                      setNewExamId(e.target.value);
+                      setNewExamIdError('');
+                    }}
+                    placeholder="Ví dụ: Đề 13, Đề Thử Nghiệm..."
+                    autoFocus
+                    style={{
+                      width: '100%',
+                      padding: '12px 16px',
+                      borderRadius: '10px',
+                      border: '1.5px solid ' + (newExamIdError ? 'var(--error-color)' : 'var(--border-color)'),
+                      fontSize: '1rem',
+                      outline: 'none',
+                      fontFamily: 'inherit'
+                    }}
+                    onFocus={e => e.target.style.borderColor = 'var(--primary-color)'}
+                    onBlur={e => e.target.style.borderColor = newExamIdError ? 'var(--error-color)' : 'var(--border-color)'}
+                  />
+                  {newExamIdError && (
+                    <p style={{ color: 'var(--error-color)', fontSize: '0.8rem', fontWeight: 600, marginTop: '6px', marginBottom: 0 }}>
+                      ⚠️ {newExamIdError}
+                    </p>
+                  )}
+                  <p style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '6px', marginBottom: 0 }}>
+                    Nhập tên bất kỳ. Ví dụ: <strong>Đề 13</strong>, <strong>Đề Thử Nghiệm</strong>.
+                  </p>
+                </div>
+
+                <div style={{
+                  padding: '12px 16px',
+                  borderRadius: '10px',
+                  background: 'var(--primary-light)',
+                  border: '1px solid rgba(255, 102, 0, 0.15)',
+                  fontSize: '0.82rem',
+                  color: '#7c3d00',
+                  lineHeight: '1.6'
+                }}>
+                  📝 Đề mới sẽ được tạo với <strong>1 câu hỏi mẫu</strong>. Bạn có thể sửa hoặc xóa câu đó sau khi tạo xong.
+                </div>
+              </div>
+
+              {/* Footer */}
+              <div style={{
+                display: 'flex',
+                justifyContent: 'flex-end',
+                gap: '12px',
+                padding: '16px 24px',
+                borderTop: '1px solid var(--border-color)',
+                background: '#f8fafc',
+                borderBottomLeftRadius: '20px',
+                borderBottomRightRadius: '20px'
+              }}>
+                <button
+                  type="button"
+                  onClick={() => setIsCreateExamModalOpen(false)}
+                  style={{
+                    padding: '10px 20px',
+                    borderRadius: '8px',
+                    background: '#e2e8f0',
+                    color: '#475569',
+                    fontSize: '0.88rem',
+                    fontWeight: 700,
+                    border: 'none',
+                    cursor: 'pointer'
+                  }}
+                >
+                  Hủy
+                </button>
+                <button
+                  type="submit"
+                  style={{
+                    padding: '10px 24px',
+                    borderRadius: '8px',
+                    background: 'var(--success-color)',
+                    color: '#ffffff',
+                    fontSize: '0.88rem',
+                    fontWeight: 700,
+                    border: 'none',
+                    cursor: 'pointer'
+                  }}
+                >
+                  Tạo Đề Thi
                 </button>
               </div>
             </form>
